@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import CalendarDateHeader from "../components/CalendarDateHeader";
 import Menu from "../components/Menu";
+import TopBar from "../components/TopBar";
 import { Bars4Icon, XMarkIcon  } from "@heroicons/react/24/solid";
 
 export default function HomePage(){
@@ -22,8 +23,8 @@ export default function HomePage(){
   return (
     <div>
         
-       
-      <button onClick={toggleMenu}>Menu</button>
+      <TopBar /> 
+      
       <CalendarDateHeader
         currentDate={currentDate}
         onPrevClick={handlePrevClick}

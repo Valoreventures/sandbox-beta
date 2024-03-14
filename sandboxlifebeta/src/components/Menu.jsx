@@ -13,7 +13,7 @@ import {
 
 const SidebarMenu = () => {
   return (
-    <div className="fixed bg-gray-800 text-gray-300 flex flex-col h-screen left-0 top-0">
+    <div className="fixed bg-gray-800 text-gray-300 flex flex-col h-screen left-0 top-0 z-11">
         <div className='flex justify-between items-center'>
         <div className="text-xl font-semibold mb-4">Sandbox Life</div>
       <XMarkIcon height={24} />
