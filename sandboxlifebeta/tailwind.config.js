@@ -9,10 +9,10 @@ export default {
       xl: '1440px',
     },
     colors: {
-      gray: '',
-      blue: '',
-      red: '',
-      pink: '',
+      bgpapyrus: '#f5f5dc',
+      lightpapyrus: '#fafaf0',
+      darkpapyrus: '#e5e5c7',
+      red: '#9B1D1E',
     },
     fontFamily: {
       sans: ['Graphik', 'sans-serif'],
