@@ -17,6 +17,16 @@ export default function BookJourney() {
   const [selectedIconTheme, setSelectedIconTheme] = useState('');
   const [journalEntry, setJournalEntry] = useState('');
   const [wisdomMessage, setWisdomMessage] = useState('');
+  const [userId, setUserId] = useState(null);
+
+  function getUserIdFromStorage() {
+    const storedUserId = localStorage.getItem('user_id');
+    setUserId(storedUserId);
+  }
+
+  useEffect(() => {
+    getUserIdFromStorage();
+  }, []);
 
   const isFirstRender = useRef(true);
   useEffect(() => {
@@ -44,6 +54,7 @@ export default function BookJourney() {
 
   const saveToDb = async () => {
     const dbOperation = await insertJournalEntry(
+      userId,
       selectedIconTheme.journal_type,
       selectedIconTheme.uuid,
       selectedIconTheme.icon,

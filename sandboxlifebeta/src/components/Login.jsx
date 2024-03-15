@@ -36,6 +36,7 @@ export default function Login() {
     if (error) {
       toast.error(error.message);
     } else {
+      localStorage.setItem('user_id', data.user.id);
       toast('Welcome to Sandbox');
       navigate('/home');
     }

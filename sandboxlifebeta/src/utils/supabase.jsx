@@ -5,6 +5,7 @@ const supabaseKey =
 export const supabase = createClient(supabaseUrl, supabaseKey);
 
 export async function insertJournalEntry(
+  userId,
   journalType,
   journalId,
   journalIcon,
@@ -13,6 +14,7 @@ export async function insertJournalEntry(
   wisdomMessage
 ) {
   const { data, error } = await supabase.from('user_journal_entries').insert({
+    user_id: userId,
     journal_type: journalType,
     journal_id: journalId,
     journal_icon: journalIcon,

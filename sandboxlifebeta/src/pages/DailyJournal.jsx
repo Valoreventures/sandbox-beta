@@ -14,6 +14,16 @@ export default function DailyJournal() {
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedIconTheme, setSelectedIconTheme] = useState('');
   const [journalEntry, setJournalEntry] = useState('');
+  const [userId, setUserId] = useState(null);
+
+  function getUserIdFromStorage() {
+    const storedUserId = localStorage.getItem('user_id');
+    setUserId(storedUserId);
+  }
+
+  useEffect(() => {
+    getUserIdFromStorage();
+  }, []);
 
   const isFirstRender = useRef(true);
   useEffect(() => {
@@ -70,6 +80,7 @@ export default function DailyJournal() {
 
   const saveToDb = async () => {
     const dbOperation = await insertJournalEntry(
+      userId,
       selectedIconTheme.journal_type,
       selectedIconTheme.uuid,
       selectedIconTheme.icon,
