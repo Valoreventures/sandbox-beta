@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ThoughtsOfTheDay = ({ title, date, image, message, time }) => {
+const ThoughtsOfTheDay = ({ title, iconTitle, date, image, message, time }) => {
   const formatTime = (dateObj) => {
     const hrs = dateObj.getHours();
     const mns = dateObj.getMinutes();
@@ -11,8 +11,9 @@ const ThoughtsOfTheDay = ({ title, date, image, message, time }) => {
 
   return (
     <div className="bg-white shadow-md rounded-lg p-4 max-w-sm mx-auto">
+      <h2 className="text-lg font-bold">{title}</h2>
       <div className="flex justify-between items-center mb-2">
-        <h2 className="text-lg font-bold">{title}</h2>
+        <h3 className="text-sm font-bold">{iconTitle}</h3>
         {image && <img src={image} alt="Image" className="h-6 w-6" />}
       </div>
       <p className="flex items-left text-gray-700 mb-2">

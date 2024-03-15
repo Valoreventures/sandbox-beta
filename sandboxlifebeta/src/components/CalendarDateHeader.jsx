@@ -5,12 +5,20 @@ const CalendarComponent = () => {
   const icons = [
     null, // Thursday (no icon)
     null, // Friday (no icon)
-    <img src="http://www.sandboxlife.com/images/icons/bird.jpg" alt="Butterfly" className="h-6 w-6" />, // Saturday
+    <img
+      src="http://www.sandboxlife.com/images/icons/bird.jpg"
+      alt="Butterfly"
+      className="h-6 w-6"
+    />, // Saturday
     [
       <div className="bg-purple-500 rounded-full h-8 w-8 flex items-center justify-center mb-1">
         <span className="text-white font-bold">4</span>
       </div>,
-      <img src="http://www.sandboxlife.com/images/icons/lotus.jpg" alt="Lighthouse" className="h-6 w-6" />,
+      <img
+        src="http://www.sandboxlife.com/images/icons/lotus.jpg"
+        alt="Lighthouse"
+        className="h-6 w-6"
+      />,
     ], // Sunday
     null, // Monday (no icon)
     null, // Tuesday (no icon)
@@ -18,7 +26,7 @@ const CalendarComponent = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center">
+    <div className="flex justify-between items-center top-1">
       {daysOfWeek.map((day, index) => (
         <div key={index} className="flex flex-col items-center">
           <span className="text-gray-600 font-medium mb-2">{day}</span>
