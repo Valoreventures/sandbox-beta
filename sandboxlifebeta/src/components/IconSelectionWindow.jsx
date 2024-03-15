@@ -19,7 +19,7 @@ const IconCarousel = ({ icons }) => {
   const visibleIcons = icons.slice(startIndex, startIndex + 4);
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6">
+    <div className="bg-bgpapyrus rounded-lg shadow-md p-6">
       <h2 className="text-xl font-bold mb-4">
         1. Pick an icon for your Chapter...
       </h2>
