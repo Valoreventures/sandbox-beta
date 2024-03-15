@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 
-const IconCarousel = ({ icons, setCurrentStep }) => {
+const IconCarousel = ({ icons, onSave }) => {
   const [selectedIcon, setSelectedIcon] = useState({ name: '', meaning: '' });
   const [startIndex, setStartIndex] = useState(0);
 
@@ -14,10 +14,6 @@ const IconCarousel = ({ icons, setCurrentStep }) => {
 
   const handleNextClick = () => {
     setStartIndex((prevIndex) => Math.min(prevIndex + 4, icons.length - 4));
-  };
-
-  const handleSave = () => {
-    setCurrentStep(2);
   };
 
   const visibleIcons = icons.slice(startIndex, startIndex + 4);
@@ -98,7 +94,7 @@ const IconCarousel = ({ icons, setCurrentStep }) => {
         </span>
       </button>
       <button
-        onClick={handleSave}
+        onClick={onSave}
         className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none border"
       >
         Next Step

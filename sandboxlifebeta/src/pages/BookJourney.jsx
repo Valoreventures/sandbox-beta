@@ -11,7 +11,14 @@ export default function BookJourney() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-
+  const isFirstRender = useRef(true);
+  useEffect(() => {
+    if (isFirstRender.current) {
+      // Skips setState on the first render
+      isFirstRender.current = false;
+      return;
+    }
+  }, []);
   const handlePrevClick = () => {
     setCurrentDate(
       (prevDate) => new Date(prevDate.setMonth(prevDate.getMonth() - 1))
@@ -35,6 +42,8 @@ export default function BookJourney() {
           <IconSelectionWindow
             icons={book_journal_questions}
             setCurrentStep={setCurrentStep}
+            onSave={() => setCurrentStep(2)}
+            onCancel={() => {}}
           />
         );
       case 2:
@@ -43,9 +52,8 @@ export default function BookJourney() {
             triggerQuestion="What areas in your life, or certain situations required you to be conscious of protecting yourself? What were the threats?"
             triggerIcon="http://www.sandboxlife.com/images/icons/shield.jpg"
             chapterEntry="Write your story here"
-            onCancel={() => {}}
-            onSave={() => {}}
-            setCurrentStep={setCurrentStep}
+            onCancel={() => setCurrentStep(1)}
+            onSave={() => setCurrentStep(3)}
           />
         );
       case 3:
@@ -54,8 +62,8 @@ export default function BookJourney() {
             triggerQuestion="What areas in your life, or certain situations required you to be conscious of protecting yourself? What were the threats?"
             triggerIcon="http://www.sandboxlife.com/images/icons/shield.jpg"
             chapterEntry="Pearls of wisdom"
-            onCancel={() => {}}
-            onSave={() => {}}
+            onCancel={() => setCurrentStep(2)}
+            onSave={() => setCurrentStep(4)}
             setCurrentStep={setCurrentStep}
           />
         );
@@ -64,14 +72,7 @@ export default function BookJourney() {
         return <div>Default component or message</div>;
     }
   };
-  const isFirstRender = useRef(true);
-  useEffect(() => {
-    if (isFirstRender.current) {
-      // Skips setState on the first render
-      isFirstRender.current = false;
-      return;
-    }
-  }, []);
+
   return (
     <div>
       <TopBar toggleMenu={toggleMenu} />
@@ -86,46 +87,6 @@ export default function BookJourney() {
         onNextClick={handleNextClick}
       />
       {renderComponents()}
-      {/* {currentStep == 'bookjournal' && (
-        <IconSelectionWindow
-          icons={book_journal_questions}
-          setCurrentStep={setCurrentStep}
-        />
-      )}
-      {currentStep === 1 && (
-        <JournalEntrySection
-          triggerQuestion="What areas in your life, or certain situations required you to be conscious of protecting yourself? What were the threats?"
-          triggerIcon="http://www.sandboxlife.com/images/icons/shield.jpg"
-          chapterEntry="Write your story here"
-          onCancel={() => {}}
-          onSave={() => {}}
-          setCurrentStep={setCurrentStep}
-        />
-      )}
-      {currentStep === 2 && (
-        <PearlsOfWisdomWindow
-          // triggerQuestion='What areas in your life, or certain situations required you to be conscious of protecting yourself? What were the threats?'
-          triggerIcon="http://www.sandboxlife.com/images/icons/shield.jpg"
-          chapterEntry="Pearls of wisdom"
-          onCancel={() => {}}
-          onSave={() => {}}
-        />
-      )} */}
-      {/* <JournalEntrySection
-        triggerQuestion="What areas in your life, or certain situations required you to be conscious of protecting yourself? What were the threats?"
-        triggerIcon="http://www.sandboxlife.com/images/icons/shield.jpg"
-        chapterEntry="Write your story here"
-        onCancel={() => {}}
-        onSave={() => {}}
-      /> */}
-
-      {/* <PearlsOfWisdomWindow
-        // triggerQuestion='What areas in your life, or certain situations required you to be conscious of protecting yourself? What were the threats?'
-        triggerIcon='http://www.sandboxlife.com/images/icons/shield.jpg'
-        chapterEntry='Pearls of wisdom'
-        onCancel={() => { }}
-        onSave={() => { }}
-      /> */}
     </div>
   );
 }
