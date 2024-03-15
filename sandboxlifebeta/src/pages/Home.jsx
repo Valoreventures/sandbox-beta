@@ -27,32 +27,39 @@ export default function HomePage() {
   const cards = [{}, {}, {}, {}, {}, {}]; // TODO: Fill this with actual data
   const imageUrl = 'http://www.sandboxlife.com/images/icons/lotus.jpg';
   const postTime = new Date('2023-03-10T08:30:00');
+
   return (
-    <div className="flex flex-col h-screen w-screen">
-      <TopBar />
-      {isMenuOpen && <Menu />}
-      <button onClick={toggleMenu}>Menu</button>
-      <CalendarDateHeader
-        currentDate={currentDate}
-        onPrevClick={handlePrevClick}
-        onNextClick={handleNextClick}
-      />
-      <div className="flex w-full">
-        {cards.map((v, index) => {
-          return (
-            <JournalEntry
-              key={index}
-              title="Daily Journal"
-              iconTitle="Lotus"
-              date="10th March 2023"
-              image={imageUrl}
-              message="The day didn't go well in morning. I tried to make coffee but it burned out. I missed my bus."
-              time={postTime}
-            />
-          );
-        })}
+    <div className="flex flex-col h-screen overflow-hidden">
+      <TopBar toggleMenu={toggleMenu} />
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-50">
+          <Menu toggleMenu={toggleMenu} />
+        </div>
+      )}
+      <button className="self-start ml-4 mt-4" onClick={toggleMenu}>
+        Menu
+      </button>
+      <div className="flex-grow overflow-auto">
+        <CalendarDateHeader
+          currentDate={currentDate}
+          onPrevClick={handlePrevClick}
+          onNextClick={handleNextClick}
+        />
+        <div className="flex flex-wrap justify-center p-5">
+          {cards.map((v, index) => (
+            <div key={index} className="m-2">
+              <JournalEntry
+                title="Daily Journal"
+                iconTitle="Lotus"
+                date="10th March 2023"
+                image={imageUrl}
+                message="The day didn't go well in morning. I tried to make coffee but it burned out. I missed my bus."
+                time={postTime}
+              />
+            </div>
+          ))}
+        </div>
       </div>
-      {/* Rest of your calendar components */}
     </div>
   );
 }

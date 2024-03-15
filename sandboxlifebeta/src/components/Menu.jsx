@@ -1,24 +1,23 @@
 import React from 'react';
 import {
-    PresentationChartBarIcon,
-    ShoppingBagIcon,
-    UserCircleIcon,
-    Cog6ToothIcon,
-    InboxIcon,
-    PowerIcon,
-    Bars4Icon,
-    XMarkIcon,
-  } from "@heroicons/react/24/solid";
-  
+  PresentationChartBarIcon,
+  ShoppingBagIcon,
+  UserCircleIcon,
+  Cog6ToothIcon,
+  InboxIcon,
+  PowerIcon,
+  Bars4Icon,
+  XMarkIcon,
+} from '@heroicons/react/24/solid';
 
-const SidebarMenu = () => {
+const SidebarMenu = ({ toggleMenu }) => {
   return (
     <div className="fixed bg-gray-800 text-gray-300 flex flex-col h-screen left-0 top-0 z-11">
-        <div className='flex justify-between items-center'>
+      <div className="flex justify-between items-center">
         <div className="text-xl font-semibold mb-4">Sandbox Life</div>
-      <XMarkIcon height={24} />
-        </div>
-      
+        <XMarkIcon height={24} onClick={toggleMenu} />
+      </div>
+
       <div className="flex flex-col space-y-2">
         <a
           href="#"
