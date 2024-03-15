@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import {     
-    Bars4Icon,
-    XMarkIcon,
-  } from "@heroicons/react/24/solid";
-const TopBar = () => {
+import { Bars4Icon, XMarkIcon } from '@heroicons/react/24/solid';
+const TopBar = ({ toggleMenu }) => {
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSearch = (e) => {
@@ -12,11 +9,10 @@ const TopBar = () => {
   };
 
   return (
-    
     <div className="fixed top-0 left-0 right-0 bg-white shadow-md z-10">
       <div className="container mx-auto px-4 py-2 flex items-center justify-between">
         <div className="flex items-center">
-          <Bars4Icon className="h-6 w-6" />
+          <Bars4Icon className="h-6 w-6" onClick={toggleMenu} />
           <a href="#" className="text-gray-800 font-bold text-xl">
             Sandbox Life
           </a>
@@ -89,4 +85,3 @@ const TopBar = () => {
 };
 
 export default TopBar;
-
