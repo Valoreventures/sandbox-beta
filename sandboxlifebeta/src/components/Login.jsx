@@ -38,7 +38,7 @@ export default function Login() {
     } else {
       localStorage.setItem('user_id', data.user.id);
       toast('Welcome to Sandbox');
-      navigate('/home');
+      navigate(`/home/${data.user.id}`);
     }
   };
 

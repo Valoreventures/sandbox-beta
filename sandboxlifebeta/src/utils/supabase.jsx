@@ -31,3 +31,20 @@ export async function insertJournalEntry(
     return { success: true, data };
   }
 }
+
+export async function fetchTopUserRecords(userId) {
+  const { data, error } = await supabase
+    .from('user_journal_entries')
+    .select('*') // Select all columns (you can adjust this to specific columns)
+    .order('id', { ascending: false }) // Order by ID descending (latest first)
+    .limit(6) // Limit to top 6 records
+    .eq('user_id', userId); // Filter by user ID
+
+  if (error) {
+    console.error('error fetching user records:', error);
+    // return null; // Handle error or return an empty array
+    return { success: false, error };
+  }
+
+  return { success: true, data };
+}

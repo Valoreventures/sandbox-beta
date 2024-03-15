@@ -4,6 +4,7 @@ import FormAction from './FormAction';
 import Input from './Input';
 import { supabase } from '../utils/supabase';
 import { useNavigate } from 'react-router-dom';
+
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -37,7 +38,7 @@ export default function Signup() {
     } else {
       localStorage.setItem('user_id', data.user.id);
       toast('Welcome to Sandbox');
-      navigate('/home');
+      navigate(`/home/${data.user.id}`);
     }
   };
 
