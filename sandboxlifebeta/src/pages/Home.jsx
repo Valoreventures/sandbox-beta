@@ -5,7 +5,6 @@ import TopBar from '../components/TopBar';
 import JournalEntry from '../components/JournalEntry';
 import { fetchTopUserRecords } from '../utils/supabase';
 import { useParams } from 'react-router-dom';
-import { parseISO, format } from 'date-fns';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export default function HomePage() {
