@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
-import { Bars4Icon, XMarkIcon } from '@heroicons/react/24/solid';
+import {
+  Bars4Icon,
+  PlusIcon,
+  BookOpenIcon,
+  CalendarIcon,
+  LightBulbIcon,
+} from '@heroicons/react/24/solid';
+
 const TopBar = ({ toggleMenu }) => {
   const [searchQuery, setSearchQuery] = useState('');
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
@@ -13,7 +21,7 @@ const TopBar = ({ toggleMenu }) => {
       <div className="container mx-auto px-4 py-2 flex items-center justify-between">
         <div className="flex items-center">
           <Bars4Icon className="h-6 w-6" onClick={toggleMenu} />
-          <a href="#" className="text-gray-800 font-bold text-xl">
+          <a href="#" className="text-gray-800 font-bold text-xl ml-2">
             Sandbox Life
           </a>
         </div>
@@ -27,7 +35,7 @@ const TopBar = ({ toggleMenu }) => {
               className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <svg
-              className="absolute right-0 top-0 mt-3 mr-4 h-6 w-6 text-gray-500"
+              className="absolute right-3 top-0 mt-3 h-6 w-6 text-gray-500"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -42,42 +50,41 @@ const TopBar = ({ toggleMenu }) => {
           </div>
         </div>
         <div className="flex items-center">
-          <a href="#" className="text-gray-800 hover:text-gray-600 mr-4">
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          {/* Dropdown Button */}
+          <div className="relative">
+            <button
+              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+              className="flex items-center text-gray-800 hover:text-gray-600 mr-4"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-              />
-            </svg>
-          </a>
-          <a href="#" className="text-gray-800 hover:text-gray-600">
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-              />
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-              />
-            </svg>
-          </a>
+              <PlusIcon className="h-6 w-6" />
+              <span className="ml-1">Journal Now</span>
+            </button>
+            {isDropdownOpen && (
+              <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20">
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
+                >
+                  <BookOpenIcon className="h-5 w-5 inline mr-2" />
+                  Book Journal
+                </a>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
+                >
+                  <CalendarIcon className="h-5 w-5 inline mr-2" />
+                  Daily Journal
+                </a>
+                <a
+                  href="#"
+                  className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
+                >
+                  <LightBulbIcon className="h-5 w-5 inline mr-2" />
+                  Thoughts of the Day
+                </a>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </div>
