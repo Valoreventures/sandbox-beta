@@ -10,6 +10,8 @@ export default function ThoughtOfTheDay() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
+  const [selectedIconTheme, setSelectedIconTheme] = useState('');
+
   const isFirstRender = useRef(true);
   useEffect(() => {
     if (isFirstRender.current) {
@@ -40,6 +42,7 @@ export default function ThoughtOfTheDay() {
         return (
           <IconSelectionWindow
             icons={daily_journal_questions}
+            setSelectedIconTheme={setSelectedIconTheme}
             onSave={() => setCurrentStep(2)}
             onCancel={() => {}}
           />
@@ -47,8 +50,8 @@ export default function ThoughtOfTheDay() {
       case 2:
         return (
           <JournalEntrySection
-            triggerQuestion="What areas in your life, or certain situations required you to be conscious of protecting yourself? What were the threats?"
-            triggerIcon="http://www.sandboxlife.com/images/icons/shield.jpg"
+            triggerQuestion={selectedIconTheme.trigger_question}
+            triggerIcon={selectedIconTheme.icon}
             chapterEntry="Write your story here"
             onCancel={() => setCurrentStep(1)}
             onSave={() => setCurrentStep(3)}

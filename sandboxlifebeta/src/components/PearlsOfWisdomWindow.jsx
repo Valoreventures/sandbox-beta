@@ -28,11 +28,7 @@ export const PearlsOfWisdomWindow = ({
         <div className="flex items-center justify-center mb-4">
           <img className="w-16 h-16" src={triggerIcon} alt="Trigger Icon" />
         </div>
-        <p className="text-gray-800 mb-4">
-          Click to show trigger question
-          <br />
-          {triggerQuestion}
-        </p>
+
         <textarea
           className="w-full p-2 border border-gray-300 rounded-md resize-none"
           rows={4}

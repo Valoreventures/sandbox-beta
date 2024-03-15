@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 
-const IconCarousel = ({ icons, onSave }) => {
+const IconCarousel = ({ icons, onSave, setSelectedIconTheme }) => {
   const [selectedIcon, setSelectedIcon] = useState({ name: '', meaning: '' });
   const [startIndex, setStartIndex] = useState(0);
 
   const handleIconClick = (icon) => {
     setSelectedIcon(icon);
+    setSelectedIconTheme(icon);
   };
 
   const handlePrevClick = () => {
