@@ -13,7 +13,7 @@ export const JournalEntrySection = ({
   };
   return (
     <div className="flex flex-col items-center justify-center p-4">
-      <div className="bg-white rounded-md shadow-md p-4 max-w-2xl">
+      <div className="bg-bgpapyrus rounded-md shadow-md p-4 max-w-2xl">
         <h2 className="text-lg font-semibold mb-2">The Story...</h2>
         <p className="text-gray-600 mb-4">2. Answer the trigger question.</p>
         <div className="flex items-center justify-center mb-4">
