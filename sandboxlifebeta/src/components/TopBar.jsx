@@ -17,7 +17,7 @@ const TopBar = ({ toggleMenu }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 bg-white shadow-md z-10 bg-lightpapyrus">
+    <div className="fixed top-0 left-0 right-0 shadow-md z-10 bg-darkpapyrus">
       <div className="container mx-auto px-4 py-2 flex items-center justify-between">
         <div className="flex items-center">
           <Bars4Icon className="h-6 w-6" onClick={toggleMenu} />
@@ -60,7 +60,7 @@ const TopBar = ({ toggleMenu }) => {
               <span className="ml-1">Journal Now</span>
             </button>
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20">
+              <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20 bg-darkpapyrus">
                 <a
                   href="#"
                   className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"

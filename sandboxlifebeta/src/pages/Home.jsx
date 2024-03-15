@@ -24,41 +24,52 @@ export default function HomePage() {
     setIsMenuOpen((prev) => !prev);
   };
 
-  const cards = [{}, {}, {}, {}, {}, {}]; // TODO: Fill this with actual data
+  const cards = [{}, {}, {}, {}]; // TODO: Fill this with actual data
   const imageUrl = 'http://www.sandboxlife.com/images/icons/lotus.jpg';
   const postTime = new Date('2023-03-10T08:30:00');
 
   return (
     <>
       <TopBar toggleMenu={toggleMenu} />
-      <div className="flex flex-col h-screen w-screen overflow-hidden bg-bgpapyrus">
-        {isMenuOpen && (
-          <div className="fixed inset-0 z-50">
-            <Menu toggleMenu={toggleMenu} />
-          </div>
-        )}
-
-        <div className="flex-grow overflow-auto pt-10">
-          <CalendarDateHeader
-            currentDate={currentDate}
-            onPrevClick={handlePrevClick}
-            onNextClick={handleNextClick}
-          />
-          <div className="flex flex-wrap justify-center p-5">
-            {cards.map((v, index) => (
-              <div key={index} className="m-2">
-                <JournalEntry
-                  title="Daily Journal"
-                  iconTitle="Lotus"
-                  date="10th March 2023"
-                  image={imageUrl}
-                  message="The day didn't go well in morning. I tried to make coffee but it burned out. I missed my bus."
-                  time={postTime}
-                />
-              </div>
-            ))}
-          </div>
+      {isMenuOpen && (
+        <div className="fixed inset-0 z-50">
+          <Menu toggleMenu={toggleMenu} />
         </div>
+      )}
+      <CalendarDateHeader
+        currentDate={currentDate}
+        onPrevClick={handlePrevClick}
+        onNextClick={handleNextClick}
+      />
+
+      {/* <div className="left-0 bg-red flex flex-grow">
+        {cards.map((v, index) => (
+          <div key={index} className="m-2 w-full">
+            <JournalEntry
+              title="Daily Journal"
+              iconTitle="Lotus"
+              date="10th March 2023"
+              image={imageUrl}
+              message="The day didn't go well in morning. I tried to make coffee but it burned out. I missed my bus."
+              time={postTime}
+            />
+          </div>
+        ))}
+      </div> */}
+
+      <div className="flex flex-row py-16 w-full left-0 border border-gray-300 rounded-xl  ">
+        {cards.map((v, index) => (
+          <div key={index} className=" m-2">
+            <JournalEntry
+              title="Daily Journal"
+              iconTitle="Lotus"
+              date="10th March 2023"
+              image={imageUrl}
+              message="The day didn't go well in morning. I tried to make coffee but it burned out. I missed my bus."
+              time={postTime}
+            />
+          </div>
+        ))}
       </div>
     </>
   );

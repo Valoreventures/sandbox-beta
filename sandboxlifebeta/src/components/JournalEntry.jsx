@@ -10,7 +10,7 @@ const ThoughtsOfTheDay = ({ title, iconTitle, date, image, message, time }) => {
   };
 
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 max-w-sm mx-2 my-2">
+    <div className="bg-white shadow-md rounded-lg p-4 min-w-[380px] mx-2 my-2">
       <h2 className="text-lg font-bold">{title}</h2>
       <div className="flex justify-between items-center mb-2">
         <h3 className="text-sm font-bold">{iconTitle}</h3>

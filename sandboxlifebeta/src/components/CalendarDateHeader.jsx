@@ -26,7 +26,7 @@ const CalendarComponent = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center top-1">
+    <div className=" fixed w-full flex justify-between items-center right-0 top-8 bg-lightpapyrus">
       {daysOfWeek.map((day, index) => (
         <div key={index} className="flex flex-col items-center">
           <span className="text-gray-600 font-medium mb-2">{day}</span>
