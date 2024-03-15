@@ -42,22 +42,21 @@ export default function NewJournal() {
       />
 
       {/* <IconSelectionWindow icons={book_journal_questions} /> */}
-      {/* <JournalEntrySection
-        triggerQuestion='What areas in your life, or certain situations required you to be conscious of protecting yourself? What were the threats?'
-        triggerIcon='http://www.sandboxlife.com/images/icons/shield.jpg'
-        chapterEntry='Write your story here'
-        onCancel={() => { }}
-        onSave={() => { }}
-      /> */}
+      <JournalEntrySection
+        triggerQuestion="What areas in your life, or certain situations required you to be conscious of protecting yourself? What were the threats?"
+        triggerIcon="http://www.sandboxlife.com/images/icons/shield.jpg"
+        chapterEntry="Write your story here"
+        onCancel={() => {}}
+        onSave={() => {}}
+      />
 
-      <PearlsOfWisdomWindow
+      {/* <PearlsOfWisdomWindow
         // triggerQuestion='What areas in your life, or certain situations required you to be conscious of protecting yourself? What were the threats?'
         triggerIcon='http://www.sandboxlife.com/images/icons/shield.jpg'
         chapterEntry='Pearls of wisdom'
         onCancel={() => { }}
         onSave={() => { }}
-      />
-
+      /> */}
     </div>
   );
 }

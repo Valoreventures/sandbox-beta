@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 export const JournalEntrySection = ({
   triggerQuestion,
@@ -7,17 +7,17 @@ export const JournalEntrySection = ({
   onCancel,
   onSave,
 }) => {
+  const [input, setInput] = useState('');
+  const handleTextChange = (e) => {
+    setInput(e.target.value);
+  };
   return (
     <div className="flex flex-col items-center justify-center p-4">
       <div className="bg-white rounded-md shadow-md p-4 max-w-2xl">
         <h2 className="text-lg font-semibold mb-2">The Story...</h2>
         <p className="text-gray-600 mb-4">2. Answer the trigger question.</p>
         <div className="flex items-center justify-center mb-4">
-          <img
-            className="w-16 h-16"
-            src={triggerIcon}
-            alt="Trigger Icon"
-          />
+          <img className="w-16 h-16" src={triggerIcon} alt="Trigger Icon" />
         </div>
         <p className="text-gray-800 mb-4">
           Click to show trigger question
@@ -27,7 +27,8 @@ export const JournalEntrySection = ({
         <textarea
           className="w-full p-2 border border-gray-300 rounded-md resize-none"
           rows={4}
-          value={chapterEntry}
+          value={input}
+          onChange={handleTextChange}
           placeholder="Chapter Entry 'The Story'"
         />
         <div className="flex justify-end mt-4">
@@ -48,7 +49,5 @@ export const JournalEntrySection = ({
     </div>
   );
 };
-
-
 
 // export default JournalEntrySection;
