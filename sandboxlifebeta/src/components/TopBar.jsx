@@ -18,7 +18,7 @@ const TopBar = () => {
         <div className="flex items-center">
           <Bars4Icon className="h-6 w-6" />
           <a href="#" className="text-gray-800 font-bold text-xl">
-            Logo
+            Sandbox Life
           </a>
         </div>
         <div className="flex-grow">
