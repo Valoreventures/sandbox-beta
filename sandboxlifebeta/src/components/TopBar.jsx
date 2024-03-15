@@ -17,7 +17,7 @@ const TopBar = ({ toggleMenu }) => {
   };
 
   return (
-    <div className="fixed top-0 left-0 right-0 bg-white shadow-md z-10">
+    <div className="fixed top-0 left-0 right-0 bg-white shadow-md z-10 bg-lightpapyrus">
       <div className="container mx-auto px-4 py-2 flex items-center justify-between">
         <div className="flex items-center">
           <Bars4Icon className="h-6 w-6" onClick={toggleMenu} />
