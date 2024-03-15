@@ -6,10 +6,18 @@ export const PearlsOfWisdomWindow = ({
   chapterEntry,
   onCancel,
   onSave,
+  setCurrentStep,
 }) => {
   const [input, setInput] = useState('');
   const handleTextChange = (e) => {
     setInput(e.target.value);
+  };
+
+  const handleBack = () => {
+    setCurrentStep(1);
+  };
+  const handleSave = () => {
+    setCurrentStep(4);
   };
 
   return (
@@ -34,13 +42,13 @@ export const PearlsOfWisdomWindow = ({
         />
         <div className="flex justify-end mt-4">
           <button
-            onClick={onCancel}
+            onClick={handleBack}
             className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none mr-2"
           >
-            Cancel
+            Back
           </button>
           <button
-            onClick={onSave}
+            onClick={handleSave}
             className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none border border-red-500"
           >
             Save &amp; Continue

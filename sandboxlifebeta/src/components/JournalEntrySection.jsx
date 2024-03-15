@@ -6,10 +6,17 @@ export const JournalEntrySection = ({
   chapterEntry,
   onCancel,
   onSave,
+  setCurrentStep,
 }) => {
   const [input, setInput] = useState('');
   const handleTextChange = (e) => {
     setInput(e.target.value);
+  };
+  const handleBack = () => {
+    setCurrentStep(1);
+  };
+  const handleSave = () => {
+    setCurrentStep(3);
   };
   return (
     <div className="flex flex-col items-center justify-center p-4">
@@ -33,13 +40,13 @@ export const JournalEntrySection = ({
         />
         <div className="flex justify-end mt-4">
           <button
-            onClick={onCancel}
+            onClick={handleBack}
             className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none mr-2"
           >
-            Cancel
+            Back
           </button>
           <button
-            onClick={onSave}
+            onClick={handleSave}
             className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none"
           >
             Save &amp; Continue

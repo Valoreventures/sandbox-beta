@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 const IconCarousel = ({ icons, setCurrentStep }) => {
   const [selectedIcon, setSelectedIcon] = useState({ name: '', meaning: '' });
@@ -14,6 +14,10 @@ const IconCarousel = ({ icons, setCurrentStep }) => {
 
   const handleNextClick = () => {
     setStartIndex((prevIndex) => Math.min(prevIndex + 4, icons.length - 4));
+  };
+
+  const handleSave = () => {
+    setCurrentStep(2);
   };
 
   const visibleIcons = icons.slice(startIndex, startIndex + 4);
@@ -94,7 +98,7 @@ const IconCarousel = ({ icons, setCurrentStep }) => {
         </span>
       </button>
       <button
-        onClick={setCurrentStep(2)}
+        onClick={handleSave}
         className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none border"
       >
         Next Step
