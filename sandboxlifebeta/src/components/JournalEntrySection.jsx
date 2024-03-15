@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const PearlsOfWisdomWindow = ({
+export const JournalEntrySection = ({
   triggerQuestion,
   triggerIcon,
   chapterEntry,
@@ -10,8 +10,8 @@ export const PearlsOfWisdomWindow = ({
   return (
     <div className="flex flex-col items-center justify-center p-4">
       <div className="bg-white rounded-md shadow-md p-4 max-w-2xl">
-        <h2 className="text-lg font-semibold mb-2">Pearls of Wisdom</h2>
-        <p className="text-gray-600 mb-4">3. Reflect on the topic.</p>
+        <h2 className="text-lg font-semibold mb-2">The Story...</h2>
+        <p className="text-gray-600 mb-4">2. Answer the trigger question.</p>
         <div className="flex items-center justify-center mb-4">
           <img
             className="w-16 h-16"
