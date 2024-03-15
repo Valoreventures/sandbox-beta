@@ -9,6 +9,7 @@ import {
   Bars4Icon,
   XMarkIcon,
 } from '@heroicons/react/24/solid';
+import { Link } from 'react-router-dom';
 
 const SidebarMenu = ({ toggleMenu }) => {
   return (
@@ -24,22 +25,10 @@ const SidebarMenu = ({ toggleMenu }) => {
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
           <PresentationChartBarIcon className="h-5 w-5" />
-          <span>Dashboard</span>
+          {/* <span>Dashboard</span> */}
+          <Link to="/home">Dashboard</Link>
         </a>
-        <a
-          href="#"
-          className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
-        >
-          <Bars4Icon className="h-5 w-5" />
-          <span>Book Journal</span>
-        </a>
-        <a
-          href="#"
-          className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
-        >
-          <ShoppingBagIcon className="h-5 w-5" />
-          <span>Daily Journal</span>
-        </a>
+
         <a
           href="#"
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"

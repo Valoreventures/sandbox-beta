@@ -57,7 +57,7 @@ export default function HomePage() {
         ))}
       </div> */}
 
-      <div className="flex flex-row py-16 w-full left-0 border border-gray-300 rounded-xl  ">
+      <div className="flex flex-row py-16 w-full left-0">
         {cards.map((v, index) => (
           <div key={index} className=" m-2">
             <JournalEntry
