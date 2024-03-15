@@ -6,12 +6,17 @@ import IconSelectionWindow from '../components/IconSelectionWindow';
 import { book_journal_questions } from '../constants/questions';
 import { JournalEntrySection } from '../components/JournalEntrySection';
 import { PearlsOfWisdomWindow } from '../components/PearlsOfWisdomWindow';
+import { insertJournalEntry } from '../utils/supabase';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function BookJourney() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedIconTheme, setSelectedIconTheme] = useState('');
+  const [journalEntry, setJournalEntry] = useState('');
+  const [wisdomMessage, setWisdomMessage] = useState('');
 
   const isFirstRender = useRef(true);
   useEffect(() => {
@@ -37,6 +42,21 @@ export default function BookJourney() {
     setIsMenuOpen((prev) => !prev);
   };
 
+  const saveToDb = async () => {
+    const dbOperation = await insertJournalEntry(
+      selectedIconTheme.journal_type,
+      selectedIconTheme.uuid,
+      selectedIconTheme.icon,
+      selectedIconTheme.meaning,
+      journalEntry,
+      wisdomMessage
+    );
+    if (dbOperation.success) {
+      toast.success('saved successfully!');
+    } else {
+      toast('something went wrong while saving the data');
+    }
+  };
   const renderComponents = () => {
     switch (currentStep) {
       case 1:
@@ -56,17 +76,20 @@ export default function BookJourney() {
             chapterEntry="Write your story here"
             onCancel={() => setCurrentStep(1)}
             onSave={() => setCurrentStep(3)}
+            journalEntry={journalEntry}
+            setJournalEntry={setJournalEntry}
           />
         );
       case 3:
         return (
           <PearlsOfWisdomWindow
-            triggerQuestion="What areas in your life, or certain situations required you to be conscious of protecting yourself? What were the threats?"
-            triggerIcon="http://www.sandboxlife.com/images/icons/shield.jpg"
+            triggerQuestion={selectedIconTheme.trigger_question}
+            triggerIcon={selectedIconTheme.icon}
             chapterEntry="Pearls of wisdom"
             onCancel={() => setCurrentStep(2)}
-            onSave={() => setCurrentStep(4)}
-            setCurrentStep={setCurrentStep}
+            onSave={() => saveToDb()}
+            wisdomMessage={wisdomMessage}
+            setWisdomMessage={setWisdomMessage}
           />
         );
 
@@ -77,6 +100,7 @@ export default function BookJourney() {
 
   return (
     <div>
+      <ToastContainer />
       <TopBar toggleMenu={toggleMenu} />
       {isMenuOpen && (
         <div className="fixed inset-0 z-50">

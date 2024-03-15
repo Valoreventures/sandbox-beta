@@ -6,18 +6,12 @@ export const PearlsOfWisdomWindow = ({
   chapterEntry,
   onCancel,
   onSave,
-  setCurrentStep,
+  wisdomMessage,
+  setWisdomMessage,
 }) => {
   const [input, setInput] = useState('');
   const handleTextChange = (e) => {
-    setInput(e.target.value);
-  };
-
-  const handleBack = () => {
-    setCurrentStep(1);
-  };
-  const handleSave = () => {
-    setCurrentStep(4);
+    setWisdomMessage(e.target.value);
   };
 
   return (
@@ -32,19 +26,19 @@ export const PearlsOfWisdomWindow = ({
         <textarea
           className="w-full p-2 border border-gray-300 rounded-md resize-none"
           rows={4}
-          value={input}
+          value={wisdomMessage}
           onChange={handleTextChange}
           placeholder="Chapter Entry 'The Story'"
         />
         <div className="flex justify-end mt-4">
           <button
-            onClick={handleBack}
+            onClick={onCancel}
             className="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600 focus:outline-none mr-2"
           >
             Back
           </button>
           <button
-            onClick={handleSave}
+            onClick={onSave}
             className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 focus:outline-none border border-red-500"
           >
             Save &amp; Continue

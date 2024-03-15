@@ -6,10 +6,13 @@ export const JournalEntrySection = ({
   chapterEntry,
   onCancel,
   onSave,
+  journalEntry,
+  setJournalEntry,
 }) => {
   const [input, setInput] = useState('');
   const handleTextChange = (e) => {
-    setInput(e.target.value);
+    // setInput(e.target.value);
+    setJournalEntry(e.target.value);
   };
 
   return (
@@ -20,15 +23,11 @@ export const JournalEntrySection = ({
         <div className="flex items-center justify-center mb-4">
           <img className="w-16 h-16" src={triggerIcon} alt="Trigger Icon" />
         </div>
-        <p className="text-gray-800 mb-4">
-          Click to show trigger question
-          <br />
-          {triggerQuestion}
-        </p>
+        <p className="text-gray-800 mb-4">{triggerQuestion}</p>
         <textarea
           className="w-full p-2 border border-gray-300 rounded-md resize-none"
           rows={4}
-          value={input}
+          value={journalEntry}
           onChange={handleTextChange}
           placeholder="Chapter Entry 'The Story'"
         />
