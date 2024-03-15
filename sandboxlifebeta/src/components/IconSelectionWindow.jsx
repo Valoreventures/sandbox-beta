@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const IconCarousel = ({ icons }) => {
+const IconCarousel = ({ icons, setCurrentStep }) => {
   const [selectedIcon, setSelectedIcon] = useState({ name: '', meaning: '' });
   const [startIndex, setStartIndex] = useState(0);
 
@@ -93,7 +93,10 @@ const IconCarousel = ({ icons }) => {
           {selectedIcon.name}-{selectedIcon.meaning}
         </span>
       </button>
-      <button className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none border">
+      <button
+        onClick={setCurrentStep(2)}
+        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none border"
+      >
         Next Step
       </button>
     </div>

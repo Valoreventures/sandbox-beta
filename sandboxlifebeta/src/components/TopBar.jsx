@@ -7,6 +7,8 @@ import {
   LightBulbIcon,
 } from '@heroicons/react/24/solid';
 
+import { Link } from 'react-router-dom';
+
 const TopBar = ({ toggleMenu }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -66,21 +68,39 @@ const TopBar = ({ toggleMenu }) => {
                   className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
                 >
                   <BookOpenIcon className="h-5 w-5 inline mr-2" />
-                  Book Journal
+                  {/* Book Journal */}
+                  <Link
+                    to="/bookjourney"
+                    className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none"
+                  >
+                    Book Journal
+                  </Link>
                 </a>
                 <a
                   href="#"
                   className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
                 >
                   <CalendarIcon className="h-5 w-5 inline mr-2" />
-                  Daily Journal
+                  {/* Daily Journal */}
+                  <Link
+                    to="/dailyjournal"
+                    className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none"
+                  >
+                    Daily Journal
+                  </Link>
                 </a>
                 <a
                   href="#"
                   className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
                 >
                   <LightBulbIcon className="h-5 w-5 inline mr-2" />
-                  Thoughts of the Day
+                  {/* Thoughts of the Day */}
+                  <Link
+                    to="/thoughtoftheday"
+                    className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none"
+                  >
+                    Thoughts of the Day
+                  </Link>
                 </a>
               </div>
             )}

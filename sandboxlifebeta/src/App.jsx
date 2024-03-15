@@ -3,7 +3,9 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
 import HomePage from './pages/Home';
-import NewJournal from './pages/NewJournal';
+import BookJourney from './pages/BookJourney';
+import DailyJournal from './pages/DailyJournal';
+import ThoughtOfTheDay from './pages/ThoughtOfTheDay';
 
 function App() {
   return (
@@ -15,7 +17,9 @@ function App() {
             <Route path="/signup" element={<SignupPage />} />
             {/* <Route path="/signup" element={<SignupPage/>} /> */}
             <Route path="/home" element={<HomePage />} />
-            <Route path="/nj" element={<NewJournal />} />
+            <Route path="/bookjourney" element={<BookJourney />} />
+            <Route path="/dailyjournal" element={<DailyJournal />} />
+            <Route path="/thoughtoftheday" element={<ThoughtOfTheDay />} />
           </Routes>
         </BrowserRouter>
       </div>
