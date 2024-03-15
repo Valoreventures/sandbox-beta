@@ -13,7 +13,7 @@ import {
 const SidebarMenu = ({ toggleMenu }) => {
   return (
     <div className="fixed bg-darkpapyrus text-gray-300 flex flex-col h-screen left-0 top-0 z-11 w-1/5">
-      <div className="flex justify-between items-cente">
+      <div className="flex justify-between items-cente px-10 py-20">
         <div className="text-xl font-semibold mb-4">Sandbox Life</div>
         <XMarkIcon height={24} onClick={toggleMenu} />
       </div>

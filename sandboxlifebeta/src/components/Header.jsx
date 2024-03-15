@@ -11,8 +11,8 @@ export default function Header({
             <div className="flex justify-center">
                 <img 
                     alt=""
-                    className="h-14 w-14"
-                    src="https://ik.imagekit.io/pibjyepn7p9/Lilac_Navy_Simple_Line_Business_Logo_CGktk8RHK.png?ik-sdk-version=javascript-1.4.3&updatedAt=1649962071315"/>
+                    className="h-14 w-42"
+                    src="http://www.sandboxlife.com/images/logo_small.jpg"/>
             </div>
             <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
                 {heading}
