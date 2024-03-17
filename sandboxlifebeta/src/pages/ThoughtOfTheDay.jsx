@@ -6,10 +6,12 @@ import IconSelectionWindow from '../components/IconSelectionWindow';
 import { daily_journal_questions } from '../constants/questions';
 import { JournalEntrySection } from '../components/JournalEntrySection';
 import { insertJournalEntry } from '../utils/supabase';
+import { useNavigate } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function ThoughtOfTheDay() {
+  const navigate = useNavigate();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
@@ -90,6 +92,7 @@ export default function ThoughtOfTheDay() {
     );
     if (dbOperation.success) {
       toast.success('saved successfully!');
+      navigate(`/home/${userId}`);
     } else {
       toast('something went wrong while saving the data');
     }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   PresentationChartBarIcon,
   ShoppingBagIcon,
@@ -12,6 +12,16 @@ import {
 import { Link } from 'react-router-dom';
 
 const SidebarMenu = ({ toggleMenu }) => {
+  const [userId, setUserId] = useState(null);
+
+  function getUserIdFromStorage() {
+    const storedUserId = localStorage.getItem('user_id');
+    setUserId(storedUserId);
+  }
+
+  useEffect(() => {
+    getUserIdFromStorage();
+  }, []);
   return (
     <div className="fixed bg-darkpapyrus text-gray-300 flex flex-col h-screen left-0 top-0 z-11 w-1/5">
       <div className="flex justify-between items-cente px-10 py-20">
@@ -26,7 +36,7 @@ const SidebarMenu = ({ toggleMenu }) => {
         >
           <PresentationChartBarIcon className="h-5 w-5" />
           {/* <span>Dashboard</span> */}
-          <Link to="/home">Dashboard</Link>
+          <Link to={`/home/${userId}`}>Dashboard</Link>
         </a>
 
         <a
