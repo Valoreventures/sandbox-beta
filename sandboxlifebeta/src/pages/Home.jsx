@@ -3,7 +3,7 @@ import CalendarDateHeader from '../components/CalendarDateHeader';
 import Menu from '../components/Menu';
 import TopBar from '../components/TopBar';
 import JournalEntry from '../components/JournalEntry';
-import { fetchTopUserRecords } from '../utils/supabase';
+import { fetchTopUserRecords, fetchThoughtOfTheDay } from '../utils/supabase';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,16 +13,21 @@ export default function HomePage() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [entries, setEntries] = useState([]);
+  const [tod, setTod] = useState({});
+
   // const [userId, setUserId] = useState(null);
 
-  // function getUserIdFromStorage() {
-  //   const storedUserId = localStorage.getItem('user_id');
-  //   setUserId(storedUserId);
-  // }
+  useEffect(() => {
+    fetchThoughtOfTheDay(userId)
+      .then((data) => {
+        console.log('HOME ToD', data);
+        setTod(data);
+      })
+      .catch((error) => {
+        console.log('ERROR', error), toast.error(error.message);
+      });
+  }, []);
 
-  // useEffect(() => {
-  //   getUserIdFromStorage();
-  // }, []);
   useEffect(() => {
     fetchTopUserRecords(userId)
       .then((data) => {
@@ -39,8 +44,11 @@ export default function HomePage() {
         });
         setEntries(tempData);
       })
-      .catch((error) => console.log('ERROR', error));
+      .catch((error) => {
+        console.log('ERROR', error), toast.error(error.message);
+      });
   }, []);
+
   const handlePrevClick = () => {
     setCurrentDate(
       (prevDate) => new Date(prevDate.setMonth(prevDate.getMonth() - 1))
@@ -129,7 +137,7 @@ export default function HomePage() {
         {entries.map((d, index) => (
           <div key={index} className=" m-2">
             <JournalEntry
-              title={index == 0 ? 'Thought of the Day' : d.journal_type}
+              title={d.journal_type}
               iconTitle={d.journal_meaning}
               // date="10th March 2023"
               date={formatDatetime(d.created_at).date}

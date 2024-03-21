@@ -48,3 +48,24 @@ export async function fetchTopUserRecords(userId) {
 
   return { success: true, data };
 }
+
+export const fetchThoughtOfTheDay = async (userId) => {
+  try {
+    const { data, error } = await supabase
+      .from('user_journal_entries')
+      .select('*')
+      .eq('user_id', userId)
+      .eq('journal_type', 'tought_of_the_day')
+      .order('created_at', { ascending: false })
+      .limit(1);
+
+    if (error) {
+      console.error('Error fetching thought of the day:', error);
+      return error;
+    } else {
+      return data[0];
+    }
+  } catch (error) {
+    console.error('Error fetching thought of the day:', error);
+  }
+};

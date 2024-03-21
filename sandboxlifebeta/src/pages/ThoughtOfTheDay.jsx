@@ -52,6 +52,13 @@ export default function ThoughtOfTheDay() {
     setIsMenuOpen((prev) => !prev);
   };
 
+  function replacePrefixForThoughtOfTheDay(str) {
+    if (str.startsWith('d_')) {
+      return 't_' + str.slice(2);
+    }
+    console.log('str', str);
+    return str;
+  }
   const renderComponents = () => {
     switch (currentStep) {
       case 1:
@@ -84,8 +91,8 @@ export default function ThoughtOfTheDay() {
   const saveToDb = async () => {
     const dbOperation = await insertJournalEntry(
       userId,
-      selectedIconTheme.journal_type,
-      selectedIconTheme.uuid,
+      'tought_of_the_day',
+      replacePrefixForThoughtOfTheDay(selectedIconTheme.uuid),
       selectedIconTheme.icon,
       selectedIconTheme.meaning,
       journalEntry
