@@ -113,8 +113,7 @@ export default function BookJourney() {
   };
 
   return (
-    <div>
-      <ToastContainer />
+    <div className="h-screen flex items-center justify-center">
       <TopBar toggleMenu={toggleMenu} />
       {isMenuOpen && (
         <div className="fixed inset-0 z-50">
@@ -127,6 +126,8 @@ export default function BookJourney() {
         onNextClick={handleNextClick}
       />
       {renderComponents()}
+
+      <ToastContainer />
     </div>
   );
 }

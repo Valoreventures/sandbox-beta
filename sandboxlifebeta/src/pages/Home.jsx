@@ -14,6 +14,7 @@ export default function HomePage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [entries, setEntries] = useState([]);
   const [tod, setTod] = useState({});
+  const newHomeData = [tod, ...entries];
 
   // const [userId, setUserId] = useState(null);
 
@@ -92,14 +93,6 @@ export default function HomePage() {
       time: formatTime(),
     };
   }
-
-  const newHomeData = [tod, ...entries];
-
-  // Example usage
-  const datetimeStr = '2024-03-15 21:08:38.13273+00';
-  const formattedDatetime = formatDatetime(datetimeStr);
-  console.log(formattedDatetime.date); // Output: 2024-03-15
-  console.log(formattedDatetime.time); // Output: 21:08
 
   return (
     <>

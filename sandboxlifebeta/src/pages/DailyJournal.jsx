@@ -99,7 +99,7 @@ export default function DailyJournal() {
   };
 
   return (
-    <div>
+    <div className="h-screen flex items-center justify-center">
       <ToastContainer />
       <TopBar toggleMenu={toggleMenu} />
       {isMenuOpen && (

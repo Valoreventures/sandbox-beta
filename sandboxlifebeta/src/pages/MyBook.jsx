@@ -55,10 +55,6 @@ export default function MyBook() {
     setIsMenuOpen((prev) => !prev);
   };
 
-  const cards = [{}, {}, {}, {}]; // TODO: Fill this with actual data
-  const imageUrl = 'http://www.sandboxlife.com/images/icons/lotus.jpg';
-  const postTime = new Date('2023-03-10T08:30:00');
-
   function formatDatetime(datetimeStr) {
     // Create a Date object from the datetime string
     const date = new Date(datetimeStr);
@@ -86,12 +82,6 @@ export default function MyBook() {
       time: formatTime(),
     };
   }
-
-  // Example usage
-  const datetimeStr = '2024-03-15 21:08:38.13273+00';
-  const formattedDatetime = formatDatetime(datetimeStr);
-  console.log(formattedDatetime.date); // Output: 2024-03-15
-  console.log(formattedDatetime.time); // Output: 21:08
 
   return (
     <>
