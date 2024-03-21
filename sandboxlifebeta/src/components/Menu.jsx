@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import {
   PresentationChartBarIcon,
-  ShoppingBagIcon,
   UserCircleIcon,
   Cog6ToothIcon,
   InboxIcon,
   PowerIcon,
-  Bars4Icon,
   XMarkIcon,
+  CalendarDaysIcon,
+  BookOpenIcon,
 } from '@heroicons/react/24/solid';
 import { Link } from 'react-router-dom';
 
@@ -43,8 +43,17 @@ const SidebarMenu = ({ toggleMenu }) => {
           href="#"
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
-          <ShoppingBagIcon className="h-5 w-5" />
-          <span>About Us</span>
+          <BookOpenIcon className="h-5 w-5" />
+          {/* <span>My book</span> */}
+          <Link to={`/my-book/${userId}`}>My book</Link>
+        </a>
+        <a
+          href="#"
+          className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
+        >
+          <CalendarDaysIcon className="h-5 w-5" />
+          {/* <span>My calendar</span> */}
+          <Link to={`/my-calandar/${userId}`}>My Calendar</Link>
         </a>
         <a
           href="#"

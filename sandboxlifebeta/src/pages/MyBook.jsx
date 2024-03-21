@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { formatJournalType } from '../utils/helpers';
-export default function HomePage() {
+export default function MyBook() {
   const { userId } = useParams();
   // const date = parseISO(datetimeStr);
   const [currentDate, setCurrentDate] = useState(new Date());

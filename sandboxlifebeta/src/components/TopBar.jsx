@@ -59,7 +59,7 @@ const TopBar = ({ toggleMenu }) => {
               className="flex items-center text-gray-800 hover:text-gray-600 mr-4"
             >
               <PlusIcon className="h-6 w-6" />
-              <span className="ml-1">Journal Now</span>
+              <span className="ml-1">New Entry</span>
             </button>
             {isDropdownOpen && (
               <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20 bg-darkpapyrus">
@@ -73,7 +73,7 @@ const TopBar = ({ toggleMenu }) => {
                     to="/bookjourney"
                     className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none"
                   >
-                    Book Journal
+                    Book Entry
                   </Link>
                 </a>
                 <a
@@ -86,7 +86,7 @@ const TopBar = ({ toggleMenu }) => {
                     to="/dailyjournal"
                     className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none"
                   >
-                    Daily Journal
+                    Daily Entry
                   </Link>
                 </a>
                 <a
@@ -99,7 +99,7 @@ const TopBar = ({ toggleMenu }) => {
                     to="/thoughtoftheday"
                     className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none"
                   >
-                    Thoughts of the Day
+                    Update Status
                   </Link>
                 </a>
               </div>

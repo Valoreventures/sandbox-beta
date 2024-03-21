@@ -8,7 +8,7 @@ import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { formatJournalType } from '../utils/helpers';
-export default function HomePage() {
+export default function MyCalandar() {
   const { userId } = useParams();
   // const date = parseISO(datetimeStr);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -65,10 +65,6 @@ export default function HomePage() {
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
-
-  const cards = [{}, {}, {}, {}]; // TODO: Fill this with actual data
-  const imageUrl = 'http://www.sandboxlife.com/images/icons/lotus.jpg';
-  const postTime = new Date('2023-03-10T08:30:00');
 
   function formatDatetime(datetimeStr) {
     // Create a Date object from the datetime string
