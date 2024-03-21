@@ -11,23 +11,19 @@ import MyCalandar from './pages/MyCalandar';
 
 function App() {
   return (
-    <div className="min-h-full h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-md w-full space-y-8">
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<LoginPage />} />
-            <Route path="/signup" element={<SignupPage />} />
-            {/* <Route path="/signup" element={<SignupPage/>} /> */}
-            <Route path="/home/:userId" element={<HomePage />} />
-            <Route path="/my-book/:userId" element={<MyBook />} />
-            <Route path="/my-calandar/:userId" element={<MyCalandar />} />
-            <Route path="/bookjourney" element={<BookJourney />} />
-            <Route path="/dailyjournal" element={<DailyJournal />} />
-            <Route path="/thoughtoftheday" element={<ThoughtOfTheDay />} />
-          </Routes>
-        </BrowserRouter>
-      </div>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/signup" element={<SignupPage />} />
+        {/* <Route path="/signup" element={<SignupPage/>} /> */}
+        <Route path="/home/:userId" element={<HomePage />} />
+        <Route path="/my-book/:userId" element={<MyBook />} />
+        <Route path="/my-calandar/:userId" element={<MyCalandar />} />
+        <Route path="/bookjourney" element={<BookJourney />} />
+        <Route path="/dailyjournal" element={<DailyJournal />} />
+        <Route path="/thoughtoftheday" element={<ThoughtOfTheDay />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

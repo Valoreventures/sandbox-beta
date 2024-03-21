@@ -7,7 +7,7 @@ import { fetchEntries } from '../utils/supabase';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { formatJournalType } from '../utils/helpers';
+import { GridList, formatJournalType } from '../utils/helpers';
 export default function MyCalandar() {
   const { userId } = useParams();
   // const date = parseISO(datetimeStr);
@@ -55,10 +55,6 @@ export default function MyCalandar() {
     setIsMenuOpen((prev) => !prev);
   };
 
-  const cards = [{}, {}, {}, {}]; // TODO: Fill this with actual data
-  const imageUrl = 'http://www.sandboxlife.com/images/icons/lotus.jpg';
-  const postTime = new Date('2023-03-10T08:30:00');
-
   function formatDatetime(datetimeStr) {
     // Create a Date object from the datetime string
     const date = new Date(datetimeStr);
@@ -87,15 +83,10 @@ export default function MyCalandar() {
     };
   }
 
-  // Example usage
-  const datetimeStr = '2024-03-15 21:08:38.13273+00';
-  const formattedDatetime = formatDatetime(datetimeStr);
-  console.log(formattedDatetime.date); // Output: 2024-03-15
-  console.log(formattedDatetime.time); // Output: 21:08
-
   return (
-    <>
+    <div className="">
       <TopBar toggleMenu={toggleMenu} />
+
       {isMenuOpen && (
         <div className="fixed inset-0 z-50">
           <Menu toggleMenu={toggleMenu} />
@@ -107,24 +98,10 @@ export default function MyCalandar() {
         onNextClick={handleNextClick}
       />
       <ToastContainer />
-      {/* <div className="left-0 bg-red flex flex-grow">
-        {cards.map((v, index) => (
-          <div key={index} className="m-2 w-full">
-            <JournalEntry
-              title="Daily Journal"
-              iconTitle="Lotus"
-              date="10th March 2023"
-              image={imageUrl}
-              message="The day didn't go well in morning. I tried to make coffee but it burned out. I missed my bus."
-              time={postTime}
-            />
-          </div>
-        ))}
-      </div> */}
-
-      <div className="flex flex-row py-16 w-full left-0">
+      <div className="flex flex-row w-full items-center justify-center mt-60">
         {/* Other list cards */}
-        {entries.map((d, index) => (
+        <GridList items={entries} numColumns={3} />
+        {/* {entries.map((d, index) => (
           <div key={index} className=" m-2">
             <JournalEntry
               title={formatJournalType(d.journal_type)}
@@ -136,8 +113,8 @@ export default function MyCalandar() {
               time={d.created_at}
             />
           </div>
-        ))}
+        ))} */}
       </div>
-    </>
+    </div>
   );
 }

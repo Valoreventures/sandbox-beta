@@ -10,6 +10,7 @@ import {
   BookOpenIcon,
 } from '@heroicons/react/24/solid';
 import { Link } from 'react-router-dom';
+import { supabase } from '../utils/supabase';
 
 const SidebarMenu = ({ toggleMenu }) => {
   const [userId, setUserId] = useState(null);
@@ -22,6 +23,15 @@ const SidebarMenu = ({ toggleMenu }) => {
   useEffect(() => {
     getUserIdFromStorage();
   }, []);
+
+  const handleLogout = async () => {
+    try {
+      await supabase.auth.signOut();
+      console.log('successfully loggerd out');
+    } catch (error) {
+      console.error('Error logging out:', error);
+    }
+  };
   return (
     <div className="fixed bg-darkpapyrus text-gray-300 flex flex-col h-screen left-0 top-0 z-11 w-1/5">
       <div className="flex justify-between items-cente px-10 py-20">
@@ -84,7 +94,10 @@ const SidebarMenu = ({ toggleMenu }) => {
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
           <PowerIcon className="h-5 w-5" />
-          <span>Log Out</span>
+          {/* <span>Log Out</span> */}
+          <Link to={`/`} onClick={handleLogout}>
+            Log Out
+          </Link>
         </a>
       </div>
     </div>
