@@ -2,12 +2,11 @@ import { useState, useEffect } from 'react';
 import CalendarDateHeader from '../components/CalendarDateHeader';
 import Menu from '../components/Menu';
 import TopBar from '../components/TopBar';
-import JournalEntry from '../components/JournalEntry';
 import { fetchTopUserRecords, fetchEntries } from '../utils/supabase';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { formatJournalType } from '../utils/helpers';
+import { GridList } from '../utils/helpers';
 export default function HomePage() {
   const { userId } = useParams();
   // const date = parseISO(datetimeStr);
@@ -66,10 +65,6 @@ export default function HomePage() {
     setIsMenuOpen((prev) => !prev);
   };
 
-  const cards = [{}, {}, {}, {}]; // TODO: Fill this with actual data
-  const imageUrl = 'http://www.sandboxlife.com/images/icons/lotus.jpg';
-  const postTime = new Date('2023-03-10T08:30:00');
-
   function formatDatetime(datetimeStr) {
     // Create a Date object from the datetime string
     const date = new Date(datetimeStr);
@@ -98,6 +93,8 @@ export default function HomePage() {
     };
   }
 
+  const newHomeData = [tod, ...entries];
+
   // Example usage
   const datetimeStr = '2024-03-15 21:08:38.13273+00';
   const formattedDatetime = formatDatetime(datetimeStr);
@@ -118,46 +115,10 @@ export default function HomePage() {
         onNextClick={handleNextClick}
       />
       <ToastContainer />
-      {/* <div className="left-0 bg-red flex flex-grow">
-        {cards.map((v, index) => (
-          <div key={index} className="m-2 w-full">
-            <JournalEntry
-              title="Daily Journal"
-              iconTitle="Lotus"
-              date="10th March 2023"
-              image={imageUrl}
-              message="The day didn't go well in morning. I tried to make coffee but it burned out. I missed my bus."
-              time={postTime}
-            />
-          </div>
-        ))}
-      </div> */}
 
-      <div className="flex flex-row py-16 w-full left-0">
-        {/* One today's entry card */}
-        <JournalEntry
-          title={formatJournalType(tod.journal_type)}
-          iconTitle={tod.journal_meaning}
-          // date="10th March 2023"
-          date={formatDatetime(tod.created_at).date}
-          image={tod.journal_icon}
-          message={tod.journal_entry}
-          time={tod.created_at}
-        />
+      <div className="flex flex-row w-full items-center justify-center mt-60">
         {/* Other list cards */}
-        {entries.map((d, index) => (
-          <div key={index} className=" m-2">
-            <JournalEntry
-              title={formatJournalType(d.journal_type)}
-              iconTitle={d.journal_meaning}
-              // date="10th March 2023"
-              date={formatDatetime(d.created_at).date}
-              image={d.journal_icon}
-              message={d.journal_entry}
-              time={d.created_at}
-            />
-          </div>
-        ))}
+        <GridList items={newHomeData} />
       </div>
     </>
   );

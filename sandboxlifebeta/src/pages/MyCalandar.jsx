@@ -100,20 +100,7 @@ export default function MyCalandar() {
       <ToastContainer />
       <div className="flex flex-row w-full items-center justify-center mt-60">
         {/* Other list cards */}
-        <GridList items={entries} numColumns={3} />
-        {/* {entries.map((d, index) => (
-          <div key={index} className=" m-2">
-            <JournalEntry
-              title={formatJournalType(d.journal_type)}
-              iconTitle={d.journal_meaning}
-              // date="10th March 2023"
-              date={formatDatetime(d.created_at).date}
-              image={d.journal_icon}
-              message={d.journal_entry}
-              time={d.created_at}
-            />
-          </div>
-        ))} */}
+        <GridList items={entries} />
       </div>
     </div>
   );

@@ -7,7 +7,7 @@ import { fetchEntries } from '../utils/supabase';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { formatJournalType } from '../utils/helpers';
+import { GridList, formatJournalType } from '../utils/helpers';
 export default function MyBook() {
   const { userId } = useParams();
   // const date = parseISO(datetimeStr);
@@ -107,36 +107,10 @@ export default function MyBook() {
         onNextClick={handleNextClick}
       />
       <ToastContainer />
-      {/* <div className="left-0 bg-red flex flex-grow">
-        {cards.map((v, index) => (
-          <div key={index} className="m-2 w-full">
-            <JournalEntry
-              title="Daily Journal"
-              iconTitle="Lotus"
-              date="10th March 2023"
-              image={imageUrl}
-              message="The day didn't go well in morning. I tried to make coffee but it burned out. I missed my bus."
-              time={postTime}
-            />
-          </div>
-        ))}
-      </div> */}
 
-      <div className="flex flex-row py-16 w-full left-0">
+      <div className="flex flex-row w-full items-center justify-center mt-60">
         {/* Other list cards */}
-        {entries.map((d, index) => (
-          <div key={index} className=" m-2">
-            <JournalEntry
-              title={formatJournalType(d.journal_type)}
-              iconTitle={d.journal_meaning}
-              // date="10th March 2023"
-              date={formatDatetime(d.created_at).date}
-              image={d.journal_icon}
-              message={d.journal_entry}
-              time={d.created_at}
-            />
-          </div>
-        ))}
+        <GridList items={entries} />
       </div>
     </>
   );
