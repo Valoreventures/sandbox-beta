@@ -3,7 +3,7 @@ import CalendarDateHeader from '../components/CalendarDateHeader';
 import Menu from '../components/Menu';
 import TopBar from '../components/TopBar';
 import JournalEntry from '../components/JournalEntry';
-import { fetchTopUserRecords, fetchThoughtOfTheDay } from '../utils/supabase';
+import { fetchTopUserRecords, fetchEntries } from '../utils/supabase';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,10 +19,10 @@ export default function HomePage() {
   // const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    fetchThoughtOfTheDay(userId)
+    fetchEntries(userId, 'thought_of_the_day', 1)
       .then((data) => {
         console.log('HOME ToD', data);
-        setTod(data);
+        setTod(data[0]);
       })
       .catch((error) => {
         console.log('ERROR', error), toast.error(error.message);

@@ -38,7 +38,7 @@ export async function fetchTopUserRecords(userId) {
     .select('*') // Select all columns (you can adjust this to specific columns)
     .order('id', { ascending: false }) // Order by ID descending (latest first)
     .limit(6) // Limit to top 6 records
-    .neq('journal_type', 'tought_of_the_day')
+    .neq('journal_type', 'thought_of_the_day')
     .eq('user_id', userId); // Filter by user ID
 
   if (error) {
@@ -50,21 +50,21 @@ export async function fetchTopUserRecords(userId) {
   return { success: true, data };
 }
 
-export const fetchThoughtOfTheDay = async (userId) => {
+export const fetchEntries = async (userId, journalType, limit) => {
   try {
     const { data, error } = await supabase
       .from('user_journal_entries')
       .select('*')
       .eq('user_id', userId)
-      .eq('journal_type', 'tought_of_the_day')
+      .eq('journal_type', journalType)
       .order('created_at', { ascending: false })
-      .limit(1);
+      .limit(limit);
 
     if (error) {
       console.error('Error fetching thought of the day:', error);
       return error;
     } else {
-      return data[0];
+      return data;
     }
   } catch (error) {
     console.error('Error fetching thought of the day:', error);

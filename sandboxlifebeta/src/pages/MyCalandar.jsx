@@ -3,7 +3,7 @@ import CalendarDateHeader from '../components/CalendarDateHeader';
 import Menu from '../components/Menu';
 import TopBar from '../components/TopBar';
 import JournalEntry from '../components/JournalEntry';
-import { fetchTopUserRecords, fetchThoughtOfTheDay } from '../utils/supabase';
+import { fetchEntries } from '../utils/supabase';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -19,21 +19,10 @@ export default function MyCalandar() {
   // const [userId, setUserId] = useState(null);
 
   useEffect(() => {
-    fetchThoughtOfTheDay(userId)
+    fetchEntries(userId, 'daily_journal', 50)
       .then((data) => {
-        console.log('HOME ToD', data);
-        setTod(data);
-      })
-      .catch((error) => {
-        console.log('ERROR', error), toast.error(error.message);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetchTopUserRecords(userId)
-      .then((data) => {
-        console.log('HOME DATA', data);
-        let tempData = data.data.map((entry) => {
+        console.log('My Calendar', data);
+        let tempData = data.map((entry) => {
           // Format the created_at field
           const formattedDatetime = formatDatetime(entry.created_at);
           // Add the formatted date and time to the entry
@@ -65,6 +54,10 @@ export default function MyCalandar() {
   const toggleMenu = () => {
     setIsMenuOpen((prev) => !prev);
   };
+
+  const cards = [{}, {}, {}, {}]; // TODO: Fill this with actual data
+  const imageUrl = 'http://www.sandboxlife.com/images/icons/lotus.jpg';
+  const postTime = new Date('2023-03-10T08:30:00');
 
   function formatDatetime(datetimeStr) {
     // Create a Date object from the datetime string
@@ -130,16 +123,6 @@ export default function MyCalandar() {
       </div> */}
 
       <div className="flex flex-row py-16 w-full left-0">
-        {/* One today's entry card */}
-        <JournalEntry
-          title={formatJournalType(tod.journal_type)}
-          iconTitle={tod.journal_meaning}
-          // date="10th March 2023"
-          date={formatDatetime(tod.created_at).date}
-          image={tod.journal_icon}
-          message={tod.journal_entry}
-          time={tod.created_at}
-        />
         {/* Other list cards */}
         {entries.map((d, index) => (
           <div key={index} className=" m-2">
