@@ -7,6 +7,7 @@ import { fetchTopUserRecords, fetchThoughtOfTheDay } from '../utils/supabase';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { formatJournalType } from '../utils/helpers';
 export default function HomePage() {
   const { userId } = useParams();
   // const date = parseISO(datetimeStr);
@@ -134,10 +135,19 @@ export default function HomePage() {
       </div> */}
 
       <div className="flex flex-row py-16 w-full left-0">
+        <JournalEntry
+          title={formatJournalType(tod.journal_type)}
+          iconTitle={tod.journal_meaning}
+          // date="10th March 2023"
+          date={formatDatetime(tod.created_at).date}
+          image={tod.journal_icon}
+          message={tod.journal_entry}
+          time={tod.created_at}
+        />
         {entries.map((d, index) => (
           <div key={index} className=" m-2">
             <JournalEntry
-              title={d.journal_type}
+              title={formatJournalType(d.journal_type)}
               iconTitle={d.journal_meaning}
               // date="10th March 2023"
               date={formatDatetime(d.created_at).date}

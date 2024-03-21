@@ -91,7 +91,7 @@ export default function ThoughtOfTheDay() {
   const saveToDb = async () => {
     const dbOperation = await insertJournalEntry(
       userId,
-      'tought_of_the_day',
+      'thought_of_the_day',
       replacePrefixForThoughtOfTheDay(selectedIconTheme.uuid),
       selectedIconTheme.icon,
       selectedIconTheme.meaning,

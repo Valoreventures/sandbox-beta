@@ -38,6 +38,7 @@ export async function fetchTopUserRecords(userId) {
     .select('*') // Select all columns (you can adjust this to specific columns)
     .order('id', { ascending: false }) // Order by ID descending (latest first)
     .limit(6) // Limit to top 6 records
+    .neq('journal_type', 'tought_of_the_day')
     .eq('user_id', userId); // Filter by user ID
 
   if (error) {
