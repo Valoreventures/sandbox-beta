@@ -70,3 +70,27 @@ export const fetchEntries = async (userId, journalType, limit) => {
     console.error('Error fetching thought of the day:', error);
   }
 };
+
+
+
+//------------------------------------------ made change here ------------------------------- //
+export const fetchAllEntries = async (userId, startDay, lastDay) => {
+  try {
+    const { data, error } = await supabase
+      .from("user_journal_entries")
+      .select("*")
+      .eq("user_id", userId)
+      .order("created_at", { ascending: false })
+      .gte("created_at", startDay)
+      .lte("created_at", lastDay);
+
+    if (error) {
+      console.error("Error fetching thought of the day:", error);
+      return error;
+    } else {
+      return data;
+    }
+  } catch (error) {
+    console.error("Error fetching thought of the day:", error);
+  }
+};
