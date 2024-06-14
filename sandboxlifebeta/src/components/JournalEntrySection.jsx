@@ -1,3 +1,4 @@
+import { ArrowPathIcon } from '@heroicons/react/24/solid';
 import React, { useState } from 'react';
 
 export const JournalEntrySection = ({
@@ -8,6 +9,7 @@ export const JournalEntrySection = ({
   onSave,
   journalEntry,
   setJournalEntry,
+  changeQuestion
 }) => {
   const [input, setInput] = useState('');
   const handleTextChange = (e) => {
@@ -16,7 +18,7 @@ export const JournalEntrySection = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-4">
+    <div className="flex flex-col items-center justify-center p-4 mt-52 md:mt-28">
       <div className="bg-bgpapyrus rounded-md shadow-md p-4 max-w-2xl">
         <h2 className="text-lg font-semibold mb-2">The Story...</h2>
         <p className="text-gray-600 mb-4">2. Answer the trigger question.</p>
@@ -24,6 +26,7 @@ export const JournalEntrySection = ({
           <img className="w-16 h-16" src={triggerIcon} alt="Trigger Icon" />
         </div>
         <p className="text-gray-800 mb-4">{triggerQuestion}</p>
+        <ArrowPathIcon className='w-5 ml-auto m-2 cursor-pointer ' onClick={()=>changeQuestion()} />
         <textarea
           className="w-full p-2 border border-gray-300 rounded-md resize-none"
           rows={4}

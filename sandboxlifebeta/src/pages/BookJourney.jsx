@@ -20,7 +20,8 @@ export default function BookJourney() {
   const [journalEntry, setJournalEntry] = useState('');
   const [wisdomMessage, setWisdomMessage] = useState('');
   const [userId, setUserId] = useState(null);
-
+  const [changeQuestion, setChangeQuestion] = useState(0);
+  
   function getUserIdFromStorage() {
     const storedUserId = localStorage.getItem('user_id');
     setUserId(storedUserId);
@@ -29,6 +30,11 @@ export default function BookJourney() {
   useEffect(() => {
     getUserIdFromStorage();
   }, []);
+
+  const handleChangeQuestion = () =>{
+    const number = Math.floor(Math.random() * 4)
+    setChangeQuestion(number)
+ }
 
   const isFirstRender = useRef(true);
   useEffect(() => {
@@ -55,6 +61,8 @@ export default function BookJourney() {
   };
 
   const saveToDb = async () => {
+
+
     const dbOperation = await insertJournalEntry(
       userId,
       selectedIconTheme.journal_type,
@@ -85,13 +93,14 @@ export default function BookJourney() {
       case 2:
         return (
           <JournalEntrySection
-            triggerQuestion={selectedIconTheme.trigger_question}
+            triggerQuestion={selectedIconTheme.trigger_question[changeQuestion]}
             triggerIcon={selectedIconTheme.icon}
             chapterEntry="Write your story here"
             onCancel={() => setCurrentStep(1)}
             onSave={() => setCurrentStep(3)}
             journalEntry={journalEntry}
             setJournalEntry={setJournalEntry}
+            changeQuestion={handleChangeQuestion}
           />
         );
       case 3:

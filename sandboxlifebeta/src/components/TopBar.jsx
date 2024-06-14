@@ -63,11 +63,11 @@ const TopBar = ({ toggleMenu }) => {
   }, [value]);
 
   return (
-    <div className="fixed top-0 left-0 right-0 shadow-md z-10 bg-darkpapyrus">
-      <div className="container mx-auto px-4 py-2 flex items-center justify-between">
-        <div className="flex items-center">
+    <div className="fixed z-50 top-0 left-0 right-0 shadow-md  bg-darkpapyrus">
+      <div className="container mx-auto px-2 py-2 flex items-center justify-between">
+        <div className="flex items-center ">
           <Bars4Icon className="h-6 w-6" onClick={toggleMenu} />
-          <a href="#" className="text-gray-800 font-bold text-xl ml-2">
+          <a href="#" className="text-gray-800 text-[0.7rem] md:text-lg font-bold mx-2">
             Sandbox Life
           </a>
         </div>
@@ -95,30 +95,18 @@ const TopBar = ({ toggleMenu }) => {
             </svg>
           </div>
         </div>
-        <div>
-          {/*check activity*/}
-          <div className="relative w-min flex flex-col p-1  text-start text-sm mx-1">
-            <p className="right-5 ">check activity</p>
-            <input
-              ref={monthAndRef}
-              type="month"
-              className=" rounded-md px-1 "
-              onChange={(e) => setValue(e.target.value)}
-            />
-          </div>
-        </div>
-        <div className="flex items-center">
+        <div className="flex  items-center">
           {/* Dropdown Button */}
-          <div className="relative">
+          <div className="relative ">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="flex items-center text-gray-800 hover:text-gray-600 mr-4"
+              className="flex items-center ml-1 text-gray-800 hover:text-gray-600 "
             >
-              <PlusIcon className="h-6 w-6" />
-              <span className="ml-1">New Entry</span>
+              <PlusIcon className="h-5 w-5 mx-1" />
+              <span className=" text-[0.7rem] md:text-lg font-bold ">New Entry</span>
             </button>
             {isDropdownOpen && (
-              <div className="absolute right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20 bg-darkpapyrus">
+              <div className="absolute border right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20 bg-darkpapyrus">
                 <a
                   href="#"
                   className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
@@ -163,44 +151,6 @@ const TopBar = ({ toggleMenu }) => {
           </div>
         </div>
       </div>
-      {open && (
-        <div className="absolute w-full   ">
-          <div className="w-96 m-auto bg-darkpapyrus shadow-2xl shadow-[#000000] border rounded-md  p-1   mt-10">
-            <XMarkIcon
-              onClick={() => {
-                setOpen(false),
-                  (monthAndRef.current.value = ""), // here clearing the current value that showing in chek activity bar
-                  setValue("");
-              }}
-              className="ml-auto w-6  bg-bgpapyrus shadow-md border cursor-pointer rounded-md"
-            />
-            <span>{monthAndYear && monthAndYear}</span>
-            <div className="grid grid-cols-6 gap-1 p-1 w-full h-full border rounded-md">
-              {total.map((value, index) => (
-                <div
-                  key={index}
-                  className={`relative bg-opacity-35 h-14 w-14 cursor-pointer ${
-                    index + 1 <= totalDays ? "bg-red" : "bg-[#000000] "
-                  } `}
-                >
-                  {" "}
-                  <p className="absolute text-xs">{index + 1}</p>
-                  {/* Here will check last entry of the current day */}
-                  {value.length ? (
-                    <img
-                      src={value[0].journal_icon}
-                      alt=""
-                      className=" object-cover h-14 w-full"
-                    />
-                  ) : (
-                    ""
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      )}
       <ToastContainer />
     </div>
   );

@@ -95,7 +95,7 @@ const IconCarousel = ({ icons, onSave, setSelectedIconTheme }) => {
         </span>
       </button>
       <button
-        onClick={onSave}
+        onClick={selectedIcon.name&&onSave}
         className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none border"
       >
         Next Step

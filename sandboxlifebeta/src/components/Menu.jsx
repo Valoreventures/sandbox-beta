@@ -63,7 +63,7 @@ const SidebarMenu = ({ toggleMenu }) => {
         >
           <CalendarDaysIcon className="h-5 w-5" />
           {/* <span>My calendar</span> */}
-          <Link to={`/my-calandar/${userId}`}>My Calendar</Link>
+          <Link to={`/my-calendar/${userId}`}>My Calendar</Link>
         </a>
         <a
           href="#"

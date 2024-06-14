@@ -7,7 +7,7 @@ import BookJourney from './pages/BookJourney';
 import DailyJournal from './pages/DailyJournal';
 import ThoughtOfTheDay from './pages/ThoughtOfTheDay';
 import MyBook from './pages/MyBook';
-import MyCalandar from './pages/MyCalandar';
+import MyCalendar from './pages/MyCalendar';
 
 function App() {
   return (
@@ -18,7 +18,7 @@ function App() {
         {/* <Route path="/signup" element={<SignupPage/>} /> */}
         <Route path="/home/:userId" element={<HomePage />} />
         <Route path="/my-book/:userId" element={<MyBook />} />
-        <Route path="/my-calandar/:userId" element={<MyCalandar />} />
+        <Route path="/my-calendar/:userId" element={<MyCalendar />} />
         <Route path="/bookjourney" element={<BookJourney />} />
         <Route path="/dailyjournal" element={<DailyJournal />} />
         <Route path="/thoughtoftheday" element={<ThoughtOfTheDay />} />
