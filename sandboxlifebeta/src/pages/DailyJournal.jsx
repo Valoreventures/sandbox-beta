@@ -18,6 +18,7 @@ export default function DailyJournal() {
   const [selectedIconTheme, setSelectedIconTheme] = useState('');
   const [journalEntry, setJournalEntry] = useState('');
   const [userId, setUserId] = useState(null);
+  const [changeQuestion, setChangeQuestion] = useState(0);
 
   function getUserIdFromStorage() {
     const storedUserId = localStorage.getItem('user_id');
@@ -27,6 +28,11 @@ export default function DailyJournal() {
   useEffect(() => {
     getUserIdFromStorage();
   }, []);
+
+  const handleChangeQuestion = () =>{
+     const number = Math.floor(Math.random() * 4)
+     setChangeQuestion(number)
+  }
 
   const isFirstRender = useRef(true);
   useEffect(() => {
@@ -66,13 +72,14 @@ export default function DailyJournal() {
       case 2:
         return (
           <JournalEntrySection
-            triggerQuestion={selectedIconTheme.trigger_question}
+            triggerQuestion={selectedIconTheme.trigger_question[changeQuestion]}
             triggerIcon={selectedIconTheme.icon}
             chapterEntry="Write your story here"
             onCancel={() => setCurrentStep(1)}
             onSave={() => saveToDb()}
             journalEntry={journalEntry}
             setJournalEntry={setJournalEntry}
+            changeQuestion={handleChangeQuestion}
           />
         );
 
