@@ -11,7 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import { fetchAllEntries } from "../utils/supabase";
-
+import logo from '../assets/otherImg/sandBoxLifeR.png'
 const TopBar = ({ toggleMenu }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -65,11 +65,20 @@ const TopBar = ({ toggleMenu }) => {
   return (
     <div className="fixed z-50 top-0 left-0 right-0 shadow-md  bg-darkpapyrus">
       <div className="container mx-auto px-2 py-2 flex items-center justify-between">
-        <div className="flex items-center ">
+        <div className="flex items-center  ">
           <Bars4Icon className="h-6 w-6" onClick={toggleMenu} />
-          <a href="#" className="text-gray-800 text-[0.7rem] md:text-lg font-bold mx-2">
-            Sandbox Life
+         <div className="flex justify-center ml-2">
+          <a
+            href="#"
+  
+          >
+        <img
+          alt=""
+          className="h-6 md:h-8 "
+          src={logo}
+          />
           </a>
+        </div>
         </div>
         <div className="flex-grow">
           <div className="relative mx-auto max-w-md">
@@ -95,53 +104,55 @@ const TopBar = ({ toggleMenu }) => {
             </svg>
           </div>
         </div>
-        <div className="flex  items-center">
+        <div className="flex  ">
           {/* Dropdown Button */}
-          <div className="relative ">
+          <div className="relative  ">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="flex items-center ml-1 text-gray-800 hover:text-gray-600 "
             >
               <PlusIcon className="h-5 w-5 mx-1" />
-              <span className=" text-[0.7rem] md:text-lg font-bold ">New Entry</span>
+              <span className=" text-[0.7rem] md:text-lg font-bold ">
+                New Entry
+              </span>
             </button>
             {isDropdownOpen && (
-              <div className="absolute border right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20 bg-darkpapyrus">
+              <div className="absolute  border right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20 bg-darkpapyrus">
                 <a
                   href="#"
-                  className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
+                  className=" flex justify-start items-center  px-2 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
                 >
-                  <BookOpenIcon className="h-5 w-5 inline mr-2" />
+                  <BookOpenIcon className="h-5 w-5  inline " />
                   {/* Book Journal */}
                   <Link
                     to="/bookjourney"
-                    className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none"
+                    className="bg-gray-500 text-white px-2 py-1 rounded-md hover:bg-gray-600 focus:outline-none"
                   >
                     Book Entry
                   </Link>
                 </a>
                 <a
                   href="#"
-                  className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
+                  className=" flex justify-start items-center  px-2 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
                 >
-                  <CalendarIcon className="h-5 w-5 inline mr-2" />
+                  <CalendarIcon className="h-5 w-5 inline " />
                   {/* Daily Journal */}
                   <Link
                     to="/dailyjournal"
-                    className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none"
+                    className="bg-gray-500 text-white px-2 py-1 rounded-md hover:bg-gray-600 focus:outline-none"
                   >
                     Daily Entry
                   </Link>
                 </a>
                 <a
                   href="#"
-                  className="block px-4 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
+                  className="flex  justify-start items-center  px-2 py-1 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
                 >
-                  <LightBulbIcon className="h-5 w-5 inline mr-2" />
+                  <LightBulbIcon className="h-5 w-5 inline " />
                   {/* Thoughts of the Day */}
                   <Link
                     to="/thoughtoftheday"
-                    className="bg-gray-500 text-white px-4 py-2 rounded-md hover:bg-gray-600 focus:outline-none"
+                    className="bg-gray-500 text-white px-2 py-2 rounded-md hover:bg-gray-600 focus:outline-none"
                   >
                     Update Status
                   </Link>

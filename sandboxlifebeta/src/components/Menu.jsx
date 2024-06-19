@@ -11,6 +11,7 @@ import {
 } from '@heroicons/react/24/solid';
 import { Link } from 'react-router-dom';
 import { supabase } from '../utils/supabase';
+import logo from '../assets/otherImg/sandBoxLifeR.png'
 
 const SidebarMenu = ({ toggleMenu }) => {
   const [userId, setUserId] = useState(null);
@@ -33,9 +34,15 @@ const SidebarMenu = ({ toggleMenu }) => {
     }
   };
   return (
-    <div className="fixed bg-darkpapyrus text-gray-300 flex flex-col h-screen left-0 top-0 z-11 w-1/5">
-      <div className="flex justify-between items-cente px-10 py-20">
-        <div className="text-xl font-semibold mb-4">Sandbox Life</div>
+    <div className="fixed bg-darkpapyrus text-gray-300 flex flex-col h-screen left-0 top-0 z-11 w-3/5 md:w-1/5 ">
+      <div className="flex justify-between items-cente px-10 py-10">
+      <div className=" flex justify-center items-center mx-2 ">
+        <img
+          alt=""
+          className="h-4 md:h-6 "
+          src={logo}
+          />
+        </div>
         <XMarkIcon height={24} onClick={toggleMenu} />
       </div>
 

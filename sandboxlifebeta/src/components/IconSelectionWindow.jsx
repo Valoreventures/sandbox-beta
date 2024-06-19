@@ -17,11 +17,15 @@ const IconCarousel = ({ icons, onSave, setSelectedIconTheme }) => {
     setStartIndex((prevIndex) => Math.min(prevIndex + 4, icons.length - 4));
   };
 
-  const visibleIcons = icons.slice(startIndex, startIndex + 4);
+  const visibleIcons = icons.slice(startIndex, startIndex + 5);
+
+  useEffect(()=>{
+    handleIconClick(icons[0])
+  },[])
 
   return (
-    <div className="bg-bgpapyrus rounded-lg shadow-md p-6">
-      <h2 className="text-xl font-bold mb-4">
+    <div className="bg-bgpapyrus rounded-lg shadow-md py-4 w-[19rem] sm:w-auto md:w-[40rem]">
+      <h2 className=" md:text-xl font-bold mb-4">
         1. Pick an icon for your Chapter...
       </h2>
       <div className="flex items-center justify-between mb-4">
@@ -30,14 +34,13 @@ const IconCarousel = ({ icons, onSave, setSelectedIconTheme }) => {
             <span className="text-sm font-bold">{selectedIcon.label}</span>
           )}
         </div>
-        <div className="flex">
           <button
             onClick={handlePrevClick}
             disabled={startIndex === 0}
-            className="px-2 py-1 rounded-md bg-gray-300 hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed"
+            className=" px-1 py-1 md:px-2 rounded-md bg-gray-300 hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg
-              className="h-6 w-6 text-gray-600"
+              className="h-5 w-5 md:w-8 md:h-8 text-gray-600"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -50,7 +53,8 @@ const IconCarousel = ({ icons, onSave, setSelectedIconTheme }) => {
               />
             </svg>
           </button>
-          <div className="flex mx-2">
+        <div className="flex  mx-auto ">
+          <div className="flex mx-2  ">
             {visibleIcons.map((icon, index) => (
               <div
                 key={index}
@@ -59,17 +63,18 @@ const IconCarousel = ({ icons, onSave, setSelectedIconTheme }) => {
                 }`}
                 onClick={() => handleIconClick(icon)}
               >
-                <img src={icon.icon} alt={icon.label} className="h-12 w-12" />
+                <img src={icon.icon} alt={icon.label} className="w-10 h-10 md:h-24 md:w-24 rounded-md shadow-md shadow-[#9c9c9c]" />
               </div>
             ))}
           </div>
+        </div>
           <button
             onClick={handleNextClick}
             disabled={startIndex >= icons.length - 4}
-            className="px-2 py-1 rounded-md bg-gray-300 hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed"
+            className="px-1 py-1 md:px-2 rounded-md bg-gray-300 hover:bg-gray-400 disabled:opacity-50 disabled:cursor-not-allowed"
           >
             <svg
-              className="h-6 w-6 text-gray-600"
+              className="h-5 w-5 md:w-8 md:h-8 text-gray-600"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -82,24 +87,25 @@ const IconCarousel = ({ icons, onSave, setSelectedIconTheme }) => {
               />
             </svg>
           </button>
-        </div>
       </div>
-      <button
+      <div className=' justify-end'>
+      <div
         onClick={() => handleIconClick(null)}
-        className={`border border-gray-300 rounded-lg p-2 mr-2 ${
+        className={` w-full p-2  ${
           !selectedIcon ? 'bg-gray-200' : 'bg-white'
         }`}
       >
         <span className="text-sm font-bold">
           {selectedIcon.name}-{selectedIcon.meaning}
         </span>
-      </button>
+      </div>
       <button
         onClick={selectedIcon.name&&onSave}
-        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 focus:outline-none border"
+        className="bg-blue-500 text-white px-4 py-2 mx-2 w-1/3 md:w-1/5 text-xs sm:text-base rounded-xl hover:bg-darkpapyrus focus:outline-none border"
       >
         Next Step
       </button>
+      </div>
     </div>
   );
 };

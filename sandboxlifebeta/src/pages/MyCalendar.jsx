@@ -8,12 +8,17 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { Link, animateScroll as scroll } from 'react-scroll';
+import JournalEntry from "../components/JournalEntry";
+import { formatJournalType } from "../utils/helpers";
+import EntryDetails from "../components/EntryDetails";
+
 export default function MyCalendar() {
   const { userId } = useParams();
   // const date = parseISO(datetimeStr);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [entries, setEntries] = useState([]);
+
   
 
   //Check activity//
@@ -23,6 +28,7 @@ export default function MyCalendar() {
   const [totalDays, setTotalDays] = useState();
   const [total, setTotal] = useState(new Array(31).fill(null).map(() => []));
   const [monthAndYear, setMonthAndYear] = useState("");
+  const [selected, setSelected] = useState(null)
 
   // const [userId, setUserId] = useState(null);
   useEffect(() => {
@@ -130,6 +136,10 @@ export default function MyCalendar() {
     return `${formattedHours}:${formattedMinutes}`;
   };
 
+  const handleOnClick = (data) => {
+    setSelected(data);
+};
+
   return (
     <div className="">
       <TopBar toggleMenu={toggleMenu} />
@@ -201,35 +211,63 @@ export default function MyCalendar() {
             </div>
           </div>
         </div>
-        <div className="h-[25vh] md:hidden" id="section1"></div>
-        <div className="md:w-1/2 " >
-        <h2 className="text-lg font-bold">Activity</h2>
+        <div className=" h-[25vh] md:hidden" id="section1"></div>
+        <div className="w-auto  md:w-1/2   " >
+        <h2 className="text-lg font-bold ">Activity</h2>
           {selectedDay &&
             selectedDay.map((value, index) => (
-              <div
-                key={index}
-                className="bg-white border shadow-md rounded-lg p-4 w-auto mx-2 mb-2 h-min"
-              >
-                <h2 className="text-lg font-bold">{value.journal_type}</h2>
-                <div className="flex justify-between items-center mb-2">
-                  <h3 className="text-sm font-bold">
-                    {value.journal_meaning}
-                  </h3>
-                  {value.journal_icon && (
-                    <img
-                      src={value.journal_icon}
-                      alt="Image"
-                      className="h-6 w-6"
-                    />
-                  )}
-                </div>
-                <p className="flex items-left text-gray-700 mb-2">
-                  {formatDatetime(value.created_at).date} at{" "}
-                  {value.created_at && formatTime(new Date(value.created_at))}
-                </p>
-                <p className="text-gray-600">{value.journal_entry}</p>
+              // <div
+              //   key={index}
+              //   className="bg-white border shadow-md rounded-lg p-4 w-auto mx-2 mb-2 h-min"
+              // >
+              //   <h2 className="text-lg font-bold">{value.journal_type}</h2>
+              //   <div className="flex justify-between items-center mb-2">
+              //     <h3 className="text-sm font-bold">
+              //       {value.journal_meaning}
+              //     </h3>
+              //     {value.journal_icon && (
+              //       <img
+              //         src={value.journal_icon}
+              //         alt="Image"
+              //         className="h-6 w-6"
+              //       />
+              //     )}
+              //   </div>
+              //   <p className="flex items-left text-gray-700 mb-2">
+              //     {formatDatetime(value.created_at).date} at{" "}
+              //     {value.created_at && formatTime(new Date(value.created_at))}
+              //   </p>
+              //   <p className="text-gray-600">{value.journal_entry}</p>
+              // </div>
+              <div key={index} className='my-2 cursor-pointer' 
+               onClick={()=>handleOnClick(value)} 
+               >
+              <JournalEntry
+                id={value.id}
+                title={formatJournalType(value.journal_type)}
+                iconTitle={value.journal_meaning}
+                // date="10th March 2023"
+                date={formatDatetime(value.created_at).date}
+                image={value.journal_icon}
+                message={value.journal_entry}
+                time={formatDatetime(value.created_at).time} 
+                // selected={selected}
+              />
               </div>
+                
             ))}
+
+                {selected && <EntryDetails  id={selected.id}
+                title={formatJournalType(selected.journal_type)}
+                iconTitle={selected.journal_meaning}
+                // date="10th March 2023"
+                date={formatDatetime(selected.created_at).date}
+                image={selected.journal_icon}
+                message={selected.journal_entry}
+                time={formatDatetime(selected.created_at).time} 
+                selected={selected} 
+                setSelected={setSelected}
+                />}
         </div>
       </div>}
       </div>
