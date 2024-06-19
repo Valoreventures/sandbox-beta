@@ -15,9 +15,8 @@ export default function HomePage() {
   const [entries, setEntries] = useState([]);
   const [tod, setTod] = useState({});
   const newHomeData = [tod, ...entries];
-
   // const [userId, setUserId] = useState(null);
-
+console.log(newHomeData,"oooo");
   useEffect(() => {
     fetchEntries(userId, 'thought_of_the_day', 1)
       .then((data) => {
@@ -109,7 +108,7 @@ export default function HomePage() {
       />
       <ToastContainer />
 
-      <div className="flex flex-row w-full items-center justify-center mt-60">
+      <div className="flex flex-row w-full  items-center justify-center mt-40">
         {/* Other list cards */}
         <GridList items={newHomeData} />
       </div>

@@ -1,11 +1,13 @@
+import { t, useState } from 'react';
 import JournalEntry from '../components/JournalEntry';
+import EntryDetails from '../components/EntryDetails';
 
 export const formatJournalType = (journalType) => {
   switch (journalType) {
     case 'daily_journal':
-      return 'Daily Entry';
+      return 'Daily';
     case 'book_journal':
-      return 'Book Entry';
+      return 'Book';
 
     case 'thought_of_the_day':
       return 'Status';
@@ -18,7 +20,11 @@ export const formatJournalType = (journalType) => {
   }
 };
 
-function formatDatetime(datetimeStr) {
+export  const formatDatetime = (datetimeStr)=> {
+
+
+ 
+
   // Create a Date object from the datetime string
   const date = new Date(datetimeStr);
 
@@ -28,7 +34,7 @@ function formatDatetime(datetimeStr) {
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
     const day = String(date.getDate()).padStart(2, '0');
 
-    return `${year}-${month}-${day}`;
+    return `${month}-${day}`;
   }
 
   // Function to extract time part (hh:mm)
@@ -36,7 +42,7 @@ function formatDatetime(datetimeStr) {
     const hours = String(date.getHours()).padStart(2, '0');
     const minutes = String(date.getMinutes()).padStart(2, '0');
 
-    return `${hours}:${minutes}`;
+    return `${hours}:${minutes } ${ hours >= 12 ? 'pm' : 'am'}`;
   }
 
   // Return the desired formats
@@ -46,35 +52,46 @@ function formatDatetime(datetimeStr) {
   };
 }
 
+
+
 export const GridList = ({ items }) => {
+
+  const [selected, setSelected] = useState(null)
+  
+  const handleOnClick = (data) => {
+      setSelected(data);
+  };
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
+    <div className="relative grid grid-cols-1 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3  gap-2   " >
       {items.map((d, index) => (
+        <div key={index} className=' cursor-pointer '  onClick={()=>handleOnClick(d)} >
         <JournalEntry
-          key={index}
+          id={d.id}
           title={formatJournalType(d.journal_type)}
           iconTitle={d.journal_meaning}
           // date="10th March 2023"
           date={formatDatetime(d.created_at).date}
           image={d.journal_icon}
           message={d.journal_entry}
-          time={d.created_at}
+          time={formatDatetime(d.created_at).time} 
+          selected={selected}
         />
+        </div>
       ))}
+       {selected && <EntryDetails  id={selected.id}
+          title={formatJournalType(selected.journal_type)}
+          iconTitle={selected.journal_meaning}
+          // date="10th March 2023"
+          date={formatDatetime(selected.created_at).date}
+          image={selected.journal_icon}
+          message={selected.journal_entry}
+          time={formatDatetime(selected.created_at).time} 
+          selected={selected} 
+          setSelected={setSelected}
+          />}
+          
     </div>
-    // <div className={`grid grid-cols-${numColumns} gap-4`}>
-    //   {items.map((d, index) => (
-    //     <JournalEntry
-    //       key={index}
-    //       title={formatJournalType(d.journal_type)}
-    //       iconTitle={d.journal_meaning}
-    //       // date="10th March 2023"
-    //       date={formatDatetime(d.created_at).date}
-    //       image={d.journal_icon}
-    //       message={d.journal_entry}
-    //       time={d.created_at}
-    //     />
-    //   ))}
-    // </div>
+
   );
 };

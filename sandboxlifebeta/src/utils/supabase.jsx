@@ -11,7 +11,7 @@ export async function insertJournalEntry(
   journalIcon,
   journalMeaning,
   journalEntry,
-  wisdomMessage
+  wisdomMessage,
 ) {
   const { data, error } = await supabase.from('user_journal_entries').insert({
     user_id: userId,
@@ -104,14 +104,16 @@ export const fetchWeeklyData = async (userId,weekStart) => {
       .from("user_journal_entries")
       .select("*")
       .eq("user_id", userId)
-      .order("created_at", { ascending: true })
-      .gt("created_at", weekStart)
+      .order("created_at", { ascending: false })
+      // .gt("created_at", weekStart)
+      .limit(5)
 
     if (error) {
       console.error("Error fetching thought of the day:", error);
       return error;
     } else {
-      return data;
+      const sorted = data.sort((a,b)=>new Date(a.created_at)-new Date(b.created_at))
+      return sorted;
     }
   } catch (error) {
     console.error("Error fetching thought of the day:", error);

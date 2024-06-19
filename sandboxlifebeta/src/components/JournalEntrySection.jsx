@@ -18,15 +18,15 @@ export const JournalEntrySection = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-4 mt-52 md:mt-28">
-      <div className="bg-bgpapyrus rounded-md shadow-md p-4 max-w-2xl">
+    <div className="flex flex-col items-center justify-center p-4 mt-56 md:mt-40 ">
+      <div className="bg-bgpapyrus rounded-md shadow-md p-4 max-w-2xl sm:w-auto md:w-[40rem]">
         <h2 className="text-lg font-semibold mb-2">The Story...</h2>
         <p className="text-gray-600 mb-4">2. Answer the trigger question.</p>
         <div className="flex items-center justify-center mb-4">
           <img className="w-16 h-16" src={triggerIcon} alt="Trigger Icon" />
         </div>
-        <p className="text-gray-800 mb-4">{triggerQuestion}</p>
-        <ArrowPathIcon className='w-5 ml-auto m-2 cursor-pointer ' onClick={()=>changeQuestion()} />
+        <p className="text-gray-800 mb-4">{typeof triggerQuestion === "string" ? triggerQuestion:triggerQuestion[0]}</p>
+        {/* <ArrowPathIcon className='w-5 ml-auto m-2 cursor-pointer ' onClick={()=>changeQuestion()} /> */}
         <textarea
           className="w-full p-2 border border-gray-300 rounded-md resize-none"
           rows={4}

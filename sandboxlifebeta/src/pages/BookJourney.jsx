@@ -93,7 +93,7 @@ export default function BookJourney() {
       case 2:
         return (
           <JournalEntrySection
-            triggerQuestion={selectedIconTheme.trigger_question[changeQuestion]}
+            triggerQuestion={selectedIconTheme.trigger_question[0]} // here add changequestion for chneging the question
             triggerIcon={selectedIconTheme.icon}
             chapterEntry="Write your story here"
             onCancel={() => setCurrentStep(1)}

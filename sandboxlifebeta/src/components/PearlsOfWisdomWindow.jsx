@@ -11,11 +11,11 @@ export const PearlsOfWisdomWindow = ({
 }) => {
   const [input, setInput] = useState('');
   const handleTextChange = (e) => {
-    setWisdomMessage(e.target.value);
+    setWisdomMessage(e.target.value); 
   };
 
   return (
-    <div className="flex flex-col items-center justify-center p-4  mt-28 md:mt-14">
+    <div className="flex flex-col items-center justify-center p-4  mt-44 md:mt-32">
       <div className="bg-bgpapyrus rounded-md shadow-md p-4 max-w-2xl">
         <h2 className="text-lg font-semibold mb-2">Pearls of Wisdom</h2>
         <p className="text-gray-600 mb-4">3. Reflect on the topic.</p>
