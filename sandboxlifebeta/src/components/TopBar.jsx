@@ -11,7 +11,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Link } from "react-router-dom";
 import { fetchAllEntries } from "../utils/supabase";
-
+import logo from '../assets/otherImg/sandBoxLifeR.png'
 const TopBar = ({ toggleMenu }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -65,14 +65,20 @@ const TopBar = ({ toggleMenu }) => {
   return (
     <div className="fixed z-50 top-0 left-0 right-0 shadow-md  bg-darkpapyrus">
       <div className="container mx-auto px-2 py-2 flex items-center justify-between">
-        <div className="flex items-center ">
+        <div className="flex items-center  ">
           <Bars4Icon className="h-6 w-6" onClick={toggleMenu} />
+         <div className="flex justify-center ml-2">
           <a
             href="#"
-            className="text-gray-800 text-[0.7rem] md:text-lg font-bold mx-2"
+  
           >
-            Sandbox Life
+        <img
+          alt=""
+          className="h-6 md:h-8 "
+          src={logo}
+          />
           </a>
+        </div>
         </div>
         <div className="flex-grow">
           <div className="relative mx-auto max-w-md">

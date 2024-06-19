@@ -65,8 +65,7 @@ const CalendarComponent = () => {
               )}
             </div>
             <span className={` font-semibold text-[0.4rem] sm:text-[0.5rem] `}>
-              {formatDatetime(day.created_at).date}/
-              {formatDatetime(day.created_at).time}
+              {formatDatetime(day.created_at).date}
             </span>
           </div>
         ))}
