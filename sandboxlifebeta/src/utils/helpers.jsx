@@ -1,6 +1,8 @@
-import { t, useState } from 'react';
+import {  useState } from 'react';
+import React from "react";
 import JournalEntry from '../components/JournalEntry';
 import EntryDetails from '../components/EntryDetails';
+export const Context = React.createContext(null);
 
 export const formatJournalType = (journalType) => {
   switch (journalType) {
@@ -34,7 +36,7 @@ export  const formatDatetime = (datetimeStr)=> {
     const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
     const day = String(date.getDate()).padStart(2, '0');
 
-    return `${month}-${day}`;
+    return `${month}/${day}`;
   }
 
   // Function to extract time part (hh:mm)

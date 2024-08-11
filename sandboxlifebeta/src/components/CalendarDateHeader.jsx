@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchWeeklyData } from "../utils/supabase";
 import { formatDatetime } from "../utils/helpers";
+import { useOutletContext } from "react-router-dom";
 
 const CalendarComponent = () => {
   const [weeklyData, setweeklyData] = useState([]);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +46,7 @@ const CalendarComponent = () => {
   }, []);
 
   return (
-    <div className=" fixed z-10 w-full gap-2 h-auto flex justify-evenly text-xs items-center  right-0 top-6 md:top-6 bg-bgpapyrus bg-opacity-100 px-2 md:px-0 py-2  mt-8">
+    <div className=" fixed z-10 w-full gap-2 h-auto flex justify-evenly text-xs items-center  right-0 top-12 md:top-4 bg-bgpapyrus bg-opacity-100 px-2 md:px-0 py-2  mt-5">
       {weeklyData &&
         weeklyData?.sort()?.map((day, index) => (
           <div key={index} className="m-auto w-16 h-20 ">

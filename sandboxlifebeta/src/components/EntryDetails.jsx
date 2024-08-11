@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import defaultImg from "../assets/icons/default.jpg";
 import {
   Button,
@@ -15,6 +15,7 @@ import {
   LightBulbIcon,XMarkIcon
 } from "@heroicons/react/24/outline";
 import { daily_journal_questions } from "../constants/questions";
+import { Context } from "../utils/helpers";
 
 export default function EntryDetails({
   id,
@@ -29,6 +30,8 @@ export default function EntryDetails({
 }) {
   const [open, setOpen] = useState(false);
   const [question, setQuestion] = useState("");
+  const [context, setContext] = useContext(Context);
+
 
   useEffect(() => {
     if (selected) setOpen(true);
@@ -41,6 +44,11 @@ export default function EntryDetails({
       }
     });
   }, [selected,iconTitle]);
+
+
+ 
+
+
   return (
     <>
       <Transition show={open}>
@@ -95,7 +103,7 @@ export default function EntryDetails({
                         className=" h-20 w-20 md:w-28 md:h-28  rounded-md"
                       />
 
-                    <p className="text-[0.6rem] sm:text-sm">{date},{time}</p>
+                    <p className="text-[0.6rem] sm:text-sm">{date} <br/> {time}</p>
 
                       <div className="flex justify-start  items-center gap-2  w-auto">
                         <div className="flex justify-center items-center w-8 h-8 md:w-10 md:h-10  border border-[#b1b1b1] rounded-xl bg-[#ffff]">

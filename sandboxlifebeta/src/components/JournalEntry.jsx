@@ -15,6 +15,7 @@ const ThoughtsOfTheDay = ({
   message,
   time,
   selected,
+  index
 }) => {
   const formatTime = (dateObj) => {
     const hrs = dateObj.getHours();
@@ -26,14 +27,14 @@ const ThoughtsOfTheDay = ({
 
   return (
     <div
-      className={` flex justify-between bg-opacity-70 shadow-md rounded-lg p-2 md:p-4 min-w-[280px]    mx-2   border bg-white ${
+      className={` flex justify-between bg-opacity-70 shadow-md rounded-lg p-2 md:p-4 min-w-[280px] ${index == 0 ? "shadow-md shadow-red border-2 border-red":"border"}   mx-2    bg-white ${
         (title === "Book" && "bg-[#83cefd] border-[#83cefd]") ||
         (title === "Status" && "bg-[#f5c15f] border-[#f5c15f]") ||
         (title === "Daily" && "bg-[#72fe82] border-[#44f959]")
       }  `}
     >
       <div className="w-full   text-start space-y-2 ">
-        <h2 className="text-lg font-bold  ">{iconTitle}</h2>
+        <h2 className="text-lg font-bold leading-5 ">{iconTitle}</h2>
         <div className=" md:h-1/3 capitalize text-gray-600  text-sm">
           <p>
             {message?.length > 32 ? message?.slice(0, 32) + "..." : message}
