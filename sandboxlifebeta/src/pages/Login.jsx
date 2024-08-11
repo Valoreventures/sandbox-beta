@@ -6,9 +6,9 @@ import backGroundImg from '../assets/otherImg/loginBackgroundImg.jpg';
 
 export default function LoginPage() {
   return (
-    <div className="relative h-screen flex  items-center justify-center ">
-      <img src={backGroundImg} className='w-screen h-screen' alt="" />
-      <div className='absolute bg-opacity-10  p-5 rounded-md shadow-md shadow-[#282828] mx-2'>
+    <div className="relative  h-screen flex  items-center justify-center ">
+      <img src={backGroundImg} className='absolute object-cover w-full h-full' alt="Background" />
+      <div className='relative bg-opacity-10  p-5 rounded-md shadow-md shadow-[#282828] mx-2'>
       <Header
         heading="Login to your account"
         paragraph="Don't have an account yet? "
