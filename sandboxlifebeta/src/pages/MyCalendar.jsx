@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import CalendarDateHeader from "../components/CalendarDateHeader";
 import Menu from "../components/Menu";
 import TopBar from "../components/TopBar";
@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import { Link, animateScroll as scroll } from 'react-scroll';
 import JournalEntry from "../components/JournalEntry";
-import { formatJournalType } from "../utils/helpers";
+import { Context, formatJournalType } from "../utils/helpers";
 import EntryDetails from "../components/EntryDetails";
 
 export default function MyCalendar() {
@@ -18,12 +18,12 @@ export default function MyCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [entries, setEntries] = useState([]);
-
+  const [context, setContext] = useContext(Context);
   
 
   //Check activity//
-  const monthAndRef = useRef();
-  const [value, setValue] = useState("");
+
+  // const [value, setValue] = useState("");
   const [selectedDay, setSelectedDay] = useState();
   const [totalDays, setTotalDays] = useState();
   const [total, setTotal] = useState(new Array(31).fill(null).map(() => []));
@@ -73,7 +73,7 @@ export default function MyCalendar() {
           });
           setTotal(newDataArray);
           setTotalDays(date.getDate());
-          setMonthAndYear(`${month}-${year}`);
+          setMonthAndYear(`${month}/${year}`);
         } else {
           toast.error("Somthing wrong❗");
         }
@@ -81,8 +81,11 @@ export default function MyCalendar() {
         console.log(error);
       }
     };
-    value.length > 0 && handleAllData(value);
-  }, [value]);
+    
+    context && handleAllData(context);
+  }, [context]);
+
+
 
   const handlePrevClick = () => {
     setCurrentDate(
@@ -140,6 +143,14 @@ export default function MyCalendar() {
     setSelected(data);
 };
 
+const resetContextAndStates = () => {
+  setTotalDays(null);
+  setMonthAndYear("");
+  setTotal(new Array(31).fill(null).map(() => []));
+  setSelectedDay(null);
+  setContext(null);
+};
+
   return (
     <div className="">
       <TopBar toggleMenu={toggleMenu} />
@@ -157,7 +168,7 @@ export default function MyCalendar() {
       <ToastContainer />
 
       <div className=" w-full   mt-40">
-        <div className="mx-auto  w-min border-2  rounded-md flex flex-col p-1 my-5  text-start text-sm ">
+        {/* <div className="mx-auto  w-min border-2  rounded-md flex flex-col p-1 my-5  text-start text-sm ">
           <p className="right-5 text-center font-semibold ">Check activity</p>
           <input
             ref={monthAndRef}
@@ -165,23 +176,15 @@ export default function MyCalendar() {
             className=" rounded-md px-1 cursor-pointer hover:bg-darkpapyrus"
             onChange={(e) => setValue(e.target.value)}
           />
-        </div>
-      {value&&<div className="grid md:flex  ">
+        </div> */}
+      {context&&<div className="grid md:flex  ">
       <div className=" w-auto md:w-1/2  px-2 mb-10">
       <h2 className="text-lg font-bold">Calendar</h2>
           <div className="w-auto sm:w-[23rem] lg:w-[24rem]  m-auto bg-darkpapyrus shadow-2xl shadow-[#000000] border rounded-md  p-1   ">
             <XMarkIcon
-              onClick={() => {
-                (monthAndRef.current.value = ""),
-                  setTotalDays();
-                setMonthAndYear();
-                setTotal(new Array(31).fill(null).map(() => []));
-                setSelectedDay();
-                setValue("")
-              }}
+              onClick={resetContextAndStates}
               className="ml-auto my-1 w-6  bg-bgpapyrus shadow-md border cursor-pointer rounded-md"
             />
-
             <span>{monthAndYear && monthAndYear}</span>
             <div className=" grid  grid-cols-6 gap-1 p-1 w-full h-full border rounded-md ">
               {total?.map((value, index) => (
@@ -244,6 +247,7 @@ export default function MyCalendar() {
                >
               <JournalEntry
                 id={value.id}
+                index={index}
                 title={formatJournalType(value.journal_type)}
                 iconTitle={value.journal_meaning}
                 // date="10th March 2023"

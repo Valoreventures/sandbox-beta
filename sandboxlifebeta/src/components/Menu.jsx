@@ -33,6 +33,8 @@ const SidebarMenu = ({ toggleMenu }) => {
       console.error('Error logging out:', error);
     }
   };
+
+  
   return (
     <div className="fixed bg-darkpapyrus text-gray-300 flex flex-col h-screen left-0 top-0 z-11 w-3/5 md:w-1/5 ">
       <div className="flex justify-between items-cente px-10 py-10">
@@ -48,7 +50,7 @@ const SidebarMenu = ({ toggleMenu }) => {
 
       <div className="flex flex-col space-y-2">
         <a
-          href="#"
+          
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
           <PresentationChartBarIcon className="h-5 w-5" />
@@ -57,7 +59,7 @@ const SidebarMenu = ({ toggleMenu }) => {
         </a>
 
         <a
-          href="#"
+          
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
           <BookOpenIcon className="h-5 w-5" />
@@ -65,7 +67,7 @@ const SidebarMenu = ({ toggleMenu }) => {
           <Link to={`/my-book/${userId}`}>My book</Link>
         </a>
         <a
-          href="#"
+          
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
           <CalendarDaysIcon className="h-5 w-5" />
@@ -73,31 +75,31 @@ const SidebarMenu = ({ toggleMenu }) => {
           <Link to={`/my-calendar/${userId}`}>My Calendar</Link>
         </a>
         <a
-          href="#"
+          
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
           <InboxIcon className="h-5 w-5" />
           <span>Inbox</span>
           <span className="bg-red-500 text-white rounded-full px-2 py-1 ml-auto">
-            14
+           
           </span>
         </a>
         <a
-          href="#"
+          
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
           <UserCircleIcon className="h-5 w-5" />
           <span>Profile</span>
         </a>
         <a
-          href="#"
+          
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
           <Cog6ToothIcon className="h-5 w-5" />
           <span>Settings</span>
         </a>
         <a
-          href="#"
+          
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
           <PowerIcon className="h-5 w-5" />

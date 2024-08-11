@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import {
   Bars4Icon,
   PlusIcon,
@@ -9,9 +9,10 @@ import {
 } from "@heroicons/react/24/solid";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { fetchAllEntries } from "../utils/supabase";
-import logo from '../assets/otherImg/sandBoxLifeR.png'
+import logo from "../assets/otherImg/sandBoxLifeR.png";
+import { Context } from "../utils/helpers";
 const TopBar = ({ toggleMenu }) => {
   const [searchQuery, setSearchQuery] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -23,11 +24,29 @@ const TopBar = ({ toggleMenu }) => {
   const [totalDays, setTotalDays] = useState();
   const [total, setTotal] = useState();
   const [monthAndYear, setMonthAndYear] = useState("");
+  const [userId, setUserId] = useState(null);
+  const [context, setContext] = useContext(Context);
+  const {pathname} = useLocation();
+  const currentPath = pathname.split("/")[1]
+  const navigate = useNavigate()
 
-  const handleSearch = (e) => {
-    setSearchQuery(e.target.value);
-    // Implement your search logic here
-  };
+  function getUserIdFromStorage() {
+    const storedUserId = localStorage.getItem('user_id');
+    setUserId(storedUserId);
+  }
+  useEffect(() => {
+    getUserIdFromStorage();
+  }, []);
+
+
+  const handleCheckActivity = (e) => {
+    setContext(e.target.value)
+    console.log(currentPath);
+    if(currentPath != "my-calendar"){
+      navigate(`/my-calendar/${userId}`)
+    }
+  }
+
 
   useEffect(() => {
     const handleAllData = async (selectedMonth) => {
@@ -67,22 +86,15 @@ const TopBar = ({ toggleMenu }) => {
       <div className="container mx-auto px-2 py-2 flex items-center justify-between">
         <div className="flex items-center  ">
           <Bars4Icon className="h-6 w-6" onClick={toggleMenu} />
-         <div className="flex justify-center ml-2">
-          <a
-            href="#"
-  
-          >
-        <img
-          alt=""
-          className="h-6 md:h-8 "
-          src={logo}
-          />
-          </a>
-        </div>
+          <div className="flex justify-center ml-2">
+            <a href="#">
+              <img alt="" className="h-6 md:h-8 " src={logo} />
+            </a>
+          </div>
         </div>
         <div className="flex-grow">
           <div className="relative mx-auto max-w-md">
-            <input
+            {/* <input
               type="text"
               placeholder="Search..."
               value={searchQuery}
@@ -101,7 +113,18 @@ const TopBar = ({ toggleMenu }) => {
                 strokeWidth={2}
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
-            </svg>
+            </svg> */}
+            <div className=" hidden sm:flex  mx-auto   w-min   rounded-md     text-start text-sm ">
+              <input
+                type="month"
+                className=" rounded-md px-1 cursor-pointer hover:bg-darkpapyrus w-[8rem] "
+                value={context&&context}
+                onChange={handleCheckActivity}
+              />
+              <p className="right-5 text-center font-semibold text-nowrap ml-2 ">
+                Check activity
+              </p>
+            </div>
           </div>
         </div>
         <div className="flex  ">
@@ -112,9 +135,7 @@ const TopBar = ({ toggleMenu }) => {
               className="flex items-center ml-1 text-gray-800 hover:text-gray-600 "
             >
               <PlusIcon className="h-5 w-5 mx-1" />
-              <span className=" text-[0.7rem] md:text-lg font-bold ">
-                New Entry
-              </span>
+              <span className=" text-[0.7rem] md:text-lg font-bold ">New</span>
             </button>
             {isDropdownOpen && (
               <div className="absolute  border right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20 bg-darkpapyrus">
@@ -128,7 +149,7 @@ const TopBar = ({ toggleMenu }) => {
                     to="/bookjourney"
                     className="bg-gray-500 text-white px-2 py-1 rounded-md hover:bg-gray-600 focus:outline-none"
                   >
-                    Book Entry
+                    Book
                   </Link>
                 </a>
                 <a
@@ -141,7 +162,7 @@ const TopBar = ({ toggleMenu }) => {
                     to="/dailyjournal"
                     className="bg-gray-500 text-white px-2 py-1 rounded-md hover:bg-gray-600 focus:outline-none"
                   >
-                    Daily Entry
+                    Daily
                   </Link>
                 </a>
                 <a
@@ -161,6 +182,17 @@ const TopBar = ({ toggleMenu }) => {
             )}
           </div>
         </div>
+      </div>
+      <div className=" sm:hidden  mx-auto flex  w-min   rounded-md     text-start text-sm ">
+        <input
+          type="month"
+          className=" rounded-md px-1 cursor-pointer hover:bg-darkpapyrus w-[8rem] "
+          value={context&&context}
+                onChange={handleCheckActivity}
+        />
+        <p className="right-5 text-center font-semibold text-nowrap ml-2 ">
+          Check activity
+        </p>
       </div>
       <ToastContainer />
     </div>
