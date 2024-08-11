@@ -46,7 +46,7 @@ const CalendarComponent = () => {
   return (
     <div className=" fixed z-10 w-full gap-2 h-auto flex justify-evenly text-xs items-center  right-0 top-6 md:top-6 bg-bgpapyrus bg-opacity-100 px-2 md:px-0 py-2  mt-8">
       {weeklyData &&
-        weeklyData.sort().map((day, index) => (
+        weeklyData?.sort()?.map((day, index) => (
           <div key={index} className="m-auto w-16 h-20 ">
             <div
               className={`relative flex flex-col items-center   h-16   ${

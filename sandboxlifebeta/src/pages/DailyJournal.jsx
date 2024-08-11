@@ -72,7 +72,7 @@ export default function DailyJournal() {
       case 2:
         return (
           <JournalEntrySection
-            triggerQuestion={selectedIconTheme.trigger_question[changeQuestion]}
+            triggerQuestion={selectedIconTheme.trigger_question}
             triggerIcon={selectedIconTheme.icon}
             chapterEntry="Write your story here"
             onCancel={() => setCurrentStep(1)}
