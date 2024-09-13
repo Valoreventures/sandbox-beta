@@ -1,4 +1,5 @@
 import './App.css';
+import 'flowbite/dist/flowbite.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import SignupPage from './pages/Signup';
 import LoginPage from './pages/Login';
@@ -8,6 +9,7 @@ import DailyJournal from './pages/DailyJournal';
 import ThoughtOfTheDay from './pages/ThoughtOfTheDay';
 import MyBook from './pages/MyBook';
 import MyCalendar from './pages/MyCalendar';
+import ChatPage from './pages/Inbox';
 
 function App() {
   return (
@@ -22,6 +24,7 @@ function App() {
         <Route path="/bookjourney" element={<BookJourney />} />
         <Route path="/dailyjournal" element={<DailyJournal />} />
         <Route path="/thoughtoftheday" element={<ThoughtOfTheDay />} />
+        <Route path="/chat/:userId" element={<ChatPage />} />
       </Routes>
     </BrowserRouter>
   );

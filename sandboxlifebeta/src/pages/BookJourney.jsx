@@ -44,6 +44,7 @@ export default function BookJourney() {
       return;
     }
   }, []);
+  
   const handlePrevClick = () => {
     setCurrentDate(
       (prevDate) => new Date(prevDate.setMonth(prevDate.getMonth() - 1))

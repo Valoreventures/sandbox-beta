@@ -77,10 +77,7 @@ const SidebarMenu = ({ toggleMenu }) => {
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
           <InboxIcon className="h-5 w-5" />
-          <span>Inbox</span>
-          <span className="bg-red-500 text-white rounded-full px-2 py-1 ml-auto">
-            14
-          </span>
+          <Link to={`/chat/${userId}`}>Inbox</Link>
         </a>
         <a
           href="#"
