@@ -76,7 +76,7 @@ export default function DailyJournal() {
             triggerIcon={selectedIconTheme.icon}
             chapterEntry="Write your story here"
             onCancel={() => setCurrentStep(1)}
-            onSave={() => saveToDb()}
+            saveToDb={saveToDb}
             journalEntry={journalEntry}
             setJournalEntry={setJournalEntry}
             changeQuestion={handleChangeQuestion}
@@ -88,7 +88,7 @@ export default function DailyJournal() {
     }
   };
 
-  const saveToDb = async () => {
+  const saveToDb = async (isNewEntry = false) => {
     const dbOperation = await insertJournalEntry(
       userId,
       selectedIconTheme.journal_type,
@@ -99,21 +99,29 @@ export default function DailyJournal() {
     );
     if (dbOperation.success) {
       toast.success('saved successfully!');
-      navigate(`/home/${userId}`);
+      console.log('new entry', isNewEntry);
+      // isNewEntry ? navigate(`/dailyjournal`):navigate(`/home/${userId}`);
+      if (isNewEntry) {
+        setCurrentStep(1);
+        setSelectedIconTheme('');
+        setJournalEntry('');
+      } else {
+        navigate(`/home/${userId}`);
+      }
     } else {
       toast('something went wrong while saving the data');
     }
   };
 
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center h-screen">
       <ToastContainer />
-      <TopBar toggleMenu={toggleMenu} />
+      {/* <TopBar toggleMenu={toggleMenu} />
       {isMenuOpen && (
         <div className="fixed inset-0 z-50">
           <Menu toggleMenu={toggleMenu} />
         </div>
-      )}
+      )} */}
       <CalendarDateHeader
         currentDate={currentDate}
         onPrevClick={handlePrevClick}
