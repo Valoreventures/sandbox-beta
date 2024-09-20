@@ -167,43 +167,55 @@ const resetContextAndStates = () => {
       />
       <ToastContainer />
 
-      <div className=" w-full   mt-40">
-        {/* <div className="mx-auto  w-min border-2  rounded-md flex flex-col p-1 my-5  text-start text-sm ">
-          <p className="right-5 text-center font-semibold ">Check activity</p>
+      <div className="w-full mt-40 ">
+        {/* <div className="flex flex-col p-1 mx-auto my-5 text-sm border-2 rounded-md w-min text-start ">
+          <p className="font-semibold text-center right-5 ">Check activity</p>
           <input
             ref={monthAndRef}
             type="month"
-            className=" rounded-md px-1 cursor-pointer hover:bg-darkpapyrus"
+            className="px-1 rounded-md cursor-pointer hover:bg-darkpapyrus"
             onChange={(e) => setValue(e.target.value)}
           />
         </div> */}
-      {context&&<div className="grid md:flex  ">
-      <div className=" w-auto md:w-1/2  px-2 mb-10">
+      {context&&<div className="grid md:flex ">
+      <div className="w-auto px-2 mb-10 md:w-1/2">
       <h2 className="text-lg font-bold">Calendar</h2>
           <div className="w-auto sm:w-[23rem] lg:w-[24rem]  m-auto bg-darkpapyrus shadow-2xl shadow-[#000000] border rounded-md  p-1   ">
             <XMarkIcon
               onClick={resetContextAndStates}
-              className="ml-auto my-1 w-6  bg-bgpapyrus shadow-md border cursor-pointer rounded-md"
+              className="w-6 my-1 ml-auto border rounded-md shadow-md cursor-pointer bg-bgpapyrus"
             />
             <span>{monthAndYear && monthAndYear}</span>
-            <div className=" grid  grid-cols-6 gap-1 p-1 w-full h-full border rounded-md ">
+            <div className="grid w-full h-full grid-cols-6 gap-1 p-1 border rounded-md ">
               {total?.map((value, index) => (
                 <Link  key={index} activeClass="active" to="section1" spy={true} smooth={true} duration={500}>
                 <div
                  
-                  onClick={() => setSelectedDay(value)}
+                  onClick={() =>{
+                    const bookJournals = value.filter(
+                      (entry) => entry.journal_type === "book_journal"
+                    );
+
+                    const dailyJournals = value.filter(
+                      (entry) => entry.journal_type === "daily_journal"
+                    );
+
+                    dailyJournals.reverse();
+
+                    setSelectedDay([...dailyJournals, ...bookJournals]);
+                  }}
                   className={` bg-opacity-35 h-11 w-11  md:h-14 md:w-14 cursor-pointer  ${
                     index + 1 <= totalDays ? "bg-red" : "bg-[#000000] "
                   } `}
                 >
                   {" "}
-                  <p className="absolute  text-xs">{index + 1}</p>
+                  <p className="absolute text-xs">{index + 1}</p>
                   
                   {value.length ? (
                     <img
                       src={value[0].journal_icon}
                       alt=""
-                      className=" object-cover h-auto md:h-14 w-full"
+                      className="object-cover w-full h-auto md:h-14"
                     />
                   ) : (
                     ""
@@ -215,16 +227,16 @@ const resetContextAndStates = () => {
           </div>
         </div>
         <div className=" h-[25vh] md:hidden" id="section1"></div>
-        <div className="w-auto  md:w-1/2   " >
+        <div className="w-auto md:w-1/2 " >
         <h2 className="text-lg font-bold ">Activity</h2>
           {selectedDay &&
-            selectedDay.map((value, index) => (
+            selectedDay?.reverse().map((value, index) => (
               // <div
               //   key={index}
-              //   className="bg-white border shadow-md rounded-lg p-4 w-auto mx-2 mb-2 h-min"
+              //   className="w-auto p-4 mx-2 mb-2 bg-white border rounded-lg shadow-md h-min"
               // >
               //   <h2 className="text-lg font-bold">{value.journal_type}</h2>
-              //   <div className="flex justify-between items-center mb-2">
+              //   <div className="flex items-center justify-between mb-2">
               //     <h3 className="text-sm font-bold">
               //       {value.journal_meaning}
               //     </h3>
@@ -232,11 +244,11 @@ const resetContextAndStates = () => {
               //       <img
               //         src={value.journal_icon}
               //         alt="Image"
-              //         className="h-6 w-6"
+              //         className="w-6 h-6"
               //       />
               //     )}
               //   </div>
-              //   <p className="flex items-left text-gray-700 mb-2">
+              //   <p className="flex mb-2 text-gray-700 items-left">
               //     {formatDatetime(value.created_at).date} at{" "}
               //     {value.created_at && formatTime(new Date(value.created_at))}
               //   </p>
