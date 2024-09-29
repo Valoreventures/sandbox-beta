@@ -77,7 +77,7 @@ export default function ThoughtOfTheDay() {
             triggerIcon={selectedIconTheme.icon}
             chapterEntry="Write your story here"
             onCancel={() => setCurrentStep(1)}
-            onSave={() => saveToDb()}
+            saveToDb={() => saveToDb()}
             journalEntry={journalEntry}
             setJournalEntry={setJournalEntry}
           />
@@ -106,7 +106,7 @@ export default function ThoughtOfTheDay() {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center h-screen">
       <ToastContainer />
       <TopBar toggleMenu={toggleMenu} />
       {isMenuOpen && (
