@@ -74,6 +74,7 @@ export default function DailyJournal() {
           <JournalEntrySection
             triggerQuestion={selectedIconTheme.trigger_question}
             triggerIcon={selectedIconTheme.icon}
+            journalType={selectedIconTheme.journal_type}
             chapterEntry="Write your story here"
             onCancel={() => setCurrentStep(1)}
             saveToDb={saveToDb}
@@ -116,12 +117,12 @@ export default function DailyJournal() {
   return (
     <div className="flex items-center justify-center h-screen">
       <ToastContainer />
-      {/* <TopBar toggleMenu={toggleMenu} />
+      <TopBar toggleMenu={toggleMenu} />
       {isMenuOpen && (
         <div className="fixed inset-0 z-50">
           <Menu toggleMenu={toggleMenu} />
         </div>
-      )} */}
+      )}
       <CalendarDateHeader
         currentDate={currentDate}
         onPrevClick={handlePrevClick}
