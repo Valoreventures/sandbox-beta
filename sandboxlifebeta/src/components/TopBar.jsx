@@ -82,10 +82,10 @@ const TopBar = ({ toggleMenu }) => {
   }, [value]);
 
   return (
-    <div className="fixed z-50 top-0 left-0 right-0 shadow-md  bg-darkpapyrus">
-      <div className="container mx-auto px-2 py-2 flex items-center justify-between">
-        <div className="flex items-center  ">
-          <Bars4Icon className="h-6 w-6" onClick={toggleMenu} />
+    <div className="fixed top-0 left-0 right-0 z-50 shadow-md bg-darkpapyrus">
+      <div className="container flex items-center justify-between px-2 py-2 mx-auto">
+        <div className="flex items-center ">
+          <Bars4Icon className="w-6 h-6" onClick={toggleMenu} />
           <div className="flex justify-center ml-2">
             <a href="#">
               <img alt="" className="h-6 md:h-8 " src={logo} />
@@ -93,16 +93,16 @@ const TopBar = ({ toggleMenu }) => {
           </div>
         </div>
         <div className="flex-grow">
-          <div className="relative mx-auto max-w-md">
+          <div className="relative max-w-md mx-auto">
             {/* <input
               type="text"
               placeholder="Search..."
               value={searchQuery}
               onChange={handleSearch}
-              className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
             <svg
-              className="absolute right-3 top-0 mt-3 h-6 w-6 text-gray-500"
+              className="absolute top-0 w-6 h-6 mt-3 text-gray-500 right-3"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -114,66 +114,66 @@ const TopBar = ({ toggleMenu }) => {
                 d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
               />
             </svg> */}
-            <div className=" hidden sm:flex  mx-auto   w-min   rounded-md     text-start text-sm ">
+            <div className="hidden mx-auto text-sm rounded-md  sm:flex w-min text-start">
               <input
                 type="month"
                 className=" rounded-md px-1 cursor-pointer hover:bg-darkpapyrus w-[8rem] "
                 value={context&&context}
                 onChange={handleCheckActivity}
               />
-              <p className="right-5 text-center font-semibold text-nowrap ml-2 ">
+              <p className="ml-2 font-semibold text-center right-5 text-nowrap ">
                 Check activity
               </p>
             </div>
           </div>
         </div>
-        <div className="flex  ">
+        <div className="flex ">
           {/* Dropdown Button */}
-          <div className="relative  ">
+          <div className="relative ">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
               className="flex items-center ml-1 text-gray-800 hover:text-gray-600 "
             >
-              <PlusIcon className="h-5 w-5 mx-1" />
+              <PlusIcon className="w-5 h-5 mx-1" />
               <span className=" text-[0.7rem] md:text-lg font-bold ">New</span>
             </button>
             {isDropdownOpen && (
-              <div className="absolute  border right-0 mt-2 py-2 w-48 bg-white rounded-md shadow-xl z-20 bg-darkpapyrus">
+              <div className="absolute right-0 z-20 w-48 py-2 mt-2 bg-white border rounded-md shadow-xl bg-darkpapyrus">
                 <a
                   href="#"
-                  className=" flex justify-start items-center  px-2 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
+                  className="flex items-center justify-start px-2 py-2 text-sm text-gray-700 capitalize  hover:bg-blue-500 hover:text-white"
                 >
-                  <BookOpenIcon className="h-5 w-5  inline " />
+                  <BookOpenIcon className="inline w-5 h-5 " />
                   {/* Book Journal */}
                   <Link
                     to="/bookjourney"
-                    className="bg-gray-500 text-white px-2 py-1 rounded-md hover:bg-gray-600 focus:outline-none"
+                    className="px-2 py-1 text-white bg-gray-500 rounded-md hover:bg-gray-600 focus:outline-none"
                   >
                     Book
                   </Link>
                 </a>
                 <a
                   href="#"
-                  className=" flex justify-start items-center  px-2 py-2 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
+                  className="flex items-center justify-start px-2 py-2 text-sm text-gray-700 capitalize  hover:bg-blue-500 hover:text-white"
                 >
-                  <CalendarIcon className="h-5 w-5 inline " />
+                  <CalendarIcon className="inline w-5 h-5 " />
                   {/* Daily Journal */}
                   <Link
                     to="/dailyjournal"
-                    className="bg-gray-500 text-white px-2 py-1 rounded-md hover:bg-gray-600 focus:outline-none"
+                    className="px-2 py-1 text-white bg-gray-500 rounded-md hover:bg-gray-600 focus:outline-none"
                   >
                     Daily
                   </Link>
                 </a>
                 <a
                   href="#"
-                  className="flex  justify-start items-center  px-2 py-1 text-sm capitalize text-gray-700 hover:bg-blue-500 hover:text-white"
+                  className="flex items-center justify-start px-2 py-1 text-sm text-gray-700 capitalize hover:bg-blue-500 hover:text-white"
                 >
-                  <LightBulbIcon className="h-5 w-5 inline " />
+                  <LightBulbIcon className="inline w-5 h-5 " />
                   {/* Thoughts of the Day */}
                   <Link
                     to="/thoughtoftheday"
-                    className="bg-gray-500 text-white px-2 py-2 rounded-md hover:bg-gray-600 focus:outline-none"
+                    className="px-2 py-2 text-white bg-gray-500 rounded-md hover:bg-gray-600 focus:outline-none"
                   >
                     Update Status
                   </Link>
@@ -183,14 +183,14 @@ const TopBar = ({ toggleMenu }) => {
           </div>
         </div>
       </div>
-      <div className=" sm:hidden  mx-auto flex  w-min   rounded-md     text-start text-sm ">
+      <div className="flex mx-auto text-sm rounded-md  sm:hidden w-min text-start">
         <input
           type="month"
           className=" rounded-md px-1 cursor-pointer hover:bg-darkpapyrus w-[8rem] "
           value={context&&context}
                 onChange={handleCheckActivity}
         />
-        <p className="right-5 text-center font-semibold text-nowrap ml-2 ">
+        <p className="ml-2 font-semibold text-center right-5 text-nowrap ">
           Check activity
         </p>
       </div>

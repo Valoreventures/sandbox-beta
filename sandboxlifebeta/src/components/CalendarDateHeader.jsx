@@ -46,10 +46,10 @@ const CalendarComponent = () => {
   }, []);
 
   return (
-    <div className=" fixed z-10 w-full gap-2 h-auto flex justify-evenly text-xs items-center  right-0 top-12 md:top-4 bg-bgpapyrus bg-opacity-100 px-2 md:px-0 py-2  mt-5">
+    <div className="fixed right-0 z-10 flex items-center w-full h-auto gap-2 px-2 py-2 text-xs bg-opacity-100 mt-9 justify-evenly top-12 md:top-4 bg-bgpapyrus md:px-0">
       {weeklyData &&
         weeklyData?.sort()?.map((day, index) => (
-          <div key={index} className="m-auto w-16 h-20 ">
+          <div key={index} className="w-16 h-20 m-auto ">
             <div
               className={`relative flex flex-col items-center   h-16   ${
                 index === 4 &&
