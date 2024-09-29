@@ -97,7 +97,7 @@ export default function BookJourney() {
             triggerIcon={selectedIconTheme.icon}
             chapterEntry="Write your story here"
             onCancel={() => setCurrentStep(1)}
-            onSave={() => setCurrentStep(3)}
+            saveToDb={() => setCurrentStep(3)}
             journalEntry={journalEntry}
             setJournalEntry={setJournalEntry}
             changeQuestion={handleChangeQuestion}
@@ -122,7 +122,7 @@ export default function BookJourney() {
   };
 
   return (
-    <div className="h-screen flex items-center justify-center">
+    <div className="flex items-center justify-center h-screen">
       <TopBar toggleMenu={toggleMenu} />
       {isMenuOpen && (
         <div className="fixed inset-0 z-50">

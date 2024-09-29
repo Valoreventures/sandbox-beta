@@ -9,6 +9,7 @@ export const JournalEntrySection = ({
   saveToDb,
   journalEntry,
   setJournalEntry,
+  journalType,
   changeQuestion
 }) => {
   const [input, setInput] = useState('');
@@ -45,12 +46,12 @@ export const JournalEntrySection = ({
           >
             Back
           </button>
-          <button
+          {journalType === "daily_journal" && <button
             onClick={()=>onSave(true)}
             className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none"
           >
             Save &amp; Entry
-          </button>
+          </button>}
           <button
             onClick={()=>onSave(false)}
             className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none"
