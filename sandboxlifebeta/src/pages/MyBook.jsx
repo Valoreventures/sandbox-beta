@@ -15,6 +15,7 @@ export default function MyBook() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [entries, setEntries] = useState([]);
   const [tod, setTod] = useState({});
+  const [chapters, setChapters] = useState([]);
 
   // const [userId, setUserId] = useState(null);
 
@@ -33,6 +34,18 @@ export default function MyBook() {
           };
         });
         setEntries(tempData);
+
+        // create a set of journal_meaning 
+        const journalMeaning = new Set();
+
+        tempData.forEach((entry) => {
+          console.log('entry', entry.journal_meaning);
+          journalMeaning.add(entry.journal_meaning);
+        });
+
+        console.log('journalMeaning', Array.from(journalMeaning));
+
+        setChapters(Array.from(journalMeaning));
       })
       .catch((error) => {
         console.log('ERROR', error), toast.error(error.message);
@@ -97,10 +110,13 @@ export default function MyBook() {
         onNextClick={handleNextClick}
       />
       <ToastContainer />
+      
 
-      <div className="flex flex-row w-full items-center justify-center mt-60">
+      <div className="flex flex-row items-center justify-center w-full mt-60">
         {/* Other list cards */}
-        <GridList items={entries} />
+   
+        <GridList items={entries} chapters={chapters} />
+          
       </div>
     </>
   );
