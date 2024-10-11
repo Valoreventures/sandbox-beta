@@ -235,7 +235,7 @@ export default function MyCalendar() {
             <div className="w-auto md:w-1/2 ">
               <h2 className="text-lg font-bold ">Activity</h2>
               {selectedDay &&
-                selectedDay?.reverse().map((value, index) => (
+                selectedDay?.map((value, index) => (
                   // <div
                   //   key={index}
                   //   className="w-auto p-4 mx-2 mb-2 bg-white border rounded-lg shadow-md h-min"
