@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import { Link, animateScroll as scroll } from 'react-scroll';
+import { Link, animateScroll as scroll } from "react-scroll";
 import JournalEntry from "../components/JournalEntry";
 import { Context, formatJournalType } from "../utils/helpers";
 import EntryDetails from "../components/EntryDetails";
@@ -19,7 +19,6 @@ export default function MyCalendar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [entries, setEntries] = useState([]);
   const [context, setContext] = useContext(Context);
-  
 
   //Check activity//
 
@@ -28,7 +27,7 @@ export default function MyCalendar() {
   const [totalDays, setTotalDays] = useState();
   const [total, setTotal] = useState(new Array(31).fill(null).map(() => []));
   const [monthAndYear, setMonthAndYear] = useState("");
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState(null);
 
   // const [userId, setUserId] = useState(null);
   useEffect(() => {
@@ -81,11 +80,9 @@ export default function MyCalendar() {
         console.log(error);
       }
     };
-    
+
     context && handleAllData(context);
   }, [context]);
-
-
 
   const handlePrevClick = () => {
     setCurrentDate(
@@ -141,15 +138,15 @@ export default function MyCalendar() {
 
   const handleOnClick = (data) => {
     setSelected(data);
-};
+  };
 
-const resetContextAndStates = () => {
-  setTotalDays(null);
-  setMonthAndYear("");
-  setTotal(new Array(31).fill(null).map(() => []));
-  setSelectedDay(null);
-  setContext(null);
-};
+  const resetContextAndStates = () => {
+    setTotalDays(null);
+    setMonthAndYear("");
+    setTotal(new Array(31).fill(null).map(() => []));
+    setSelectedDay(null);
+    setContext(null);
+  };
 
   return (
     <div className="">
@@ -177,21 +174,18 @@ const resetContextAndStates = () => {
             onChange={(e) => setValue(e.target.value)}
           />
         </div> */}
-      {context&&<div className="grid md:flex ">
-      <div className="w-auto px-2 mb-10 md:w-1/2">
-      <h2 className="text-lg font-bold">Calendar</h2>
-          <div className="w-auto sm:w-[23rem] lg:w-[24rem]  m-auto bg-darkpapyrus shadow-2xl shadow-[#000000] border rounded-md  p-1   ">
-            <XMarkIcon
-              onClick={resetContextAndStates}
-              className="w-6 my-1 ml-auto border rounded-md shadow-md cursor-pointer bg-bgpapyrus"
-            />
-            <span>{monthAndYear && monthAndYear}</span>
-            <div className="grid w-full h-full grid-cols-6 gap-1 p-1 border rounded-md ">
-              {total?.map((value, index) => (
-                <Link  key={index} activeClass="active" to="section1" spy={true} smooth={true} duration={500}>
-                <div
-                 
-                  onClick={() =>{
+        {context && (
+          <div className="grid md:flex ">
+            <div className="w-auto px-2 mb-10 md:w-1/2">
+              <h2 className="text-lg font-bold">Calendar</h2>
+              <div className="w-auto sm:w-[23rem] lg:w-[24rem]  m-auto bg-darkpapyrus shadow-2xl shadow-[#000000] border rounded-md  p-1   ">
+                <XMarkIcon
+                  onClick={resetContextAndStates}
+                  className="w-6 my-1 ml-auto border rounded-md shadow-md cursor-pointer bg-bgpapyrus"
+                />
+                <span>{monthAndYear && monthAndYear}</span>
+                <div className="grid w-full h-full grid-cols-6 gap-1 p-1 border rounded-md ">
+                  {total?.map((value, index) => {
                     const bookJournals = value.filter(
                       (entry) => entry.journal_type === "book_journal"
                     );
@@ -201,91 +195,107 @@ const resetContextAndStates = () => {
                     );
 
                     dailyJournals.reverse();
-
-                    setSelectedDay([...dailyJournals, ...bookJournals]);
-                  }}
-                  className={` bg-opacity-35 h-11 w-11  md:h-14 md:w-14 cursor-pointer  ${
-                    index + 1 <= totalDays ? "bg-red" : "bg-[#000000] "
-                  } `}
-                >
-                  {" "}
-                  <p className="absolute text-xs">{index + 1}</p>
-                  
-                  {value.length ? (
-                    <img
-                      src={value[0].journal_icon}
-                      alt=""
-                      className="object-cover w-full h-auto md:h-14"
-                    />
-                  ) : (
-                    ""
-                  )}
+                    const totalJournals = [...dailyJournals, ...bookJournals];
+                    return (
+                      <Link
+                        key={index}
+                        activeClass="active"
+                        to="section1"
+                        spy={true}
+                        smooth={true}
+                        duration={500}
+                      >
+                        <div
+                          onClick={() => {
+                            setSelectedDay(totalJournals);
+                          }}
+                          className={` bg-opacity-35 h-11 w-11  md:h-14 md:w-14 cursor-pointer  ${
+                            index + 1 <= totalDays ? "bg-red" : "bg-[#000000] "
+                          } `}
+                        >
+                          {" "}
+                          <p className="absolute text-xs">{index + 1}</p>
+                          {value.length ? (
+                            <img
+                              src={totalJournals[0].journal_icon}
+                              alt=""
+                              className="object-cover w-full h-auto md:h-14"
+                            />
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      </Link>
+                    );
+                  })}
                 </div>
-                </Link>
-              ))}
+              </div>
+            </div>
+            <div className=" h-[25vh] md:hidden" id="section1"></div>
+            <div className="w-auto md:w-1/2 ">
+              <h2 className="text-lg font-bold ">Activity</h2>
+              {selectedDay &&
+                selectedDay?.reverse().map((value, index) => (
+                  // <div
+                  //   key={index}
+                  //   className="w-auto p-4 mx-2 mb-2 bg-white border rounded-lg shadow-md h-min"
+                  // >
+                  //   <h2 className="text-lg font-bold">{value.journal_type}</h2>
+                  //   <div className="flex items-center justify-between mb-2">
+                  //     <h3 className="text-sm font-bold">
+                  //       {value.journal_meaning}
+                  //     </h3>
+                  //     {value.journal_icon && (
+                  //       <img
+                  //         src={value.journal_icon}
+                  //         alt="Image"
+                  //         className="w-6 h-6"
+                  //       />
+                  //     )}
+                  //   </div>
+                  //   <p className="flex mb-2 text-gray-700 items-left">
+                  //     {formatDatetime(value.created_at).date} at{" "}
+                  //     {value.created_at && formatTime(new Date(value.created_at))}
+                  //   </p>
+                  //   <p className="text-gray-600">{value.journal_entry}</p>
+                  // </div>
+                  <div
+                    key={index}
+                    className="my-2 cursor-pointer"
+                    onClick={() => handleOnClick(value)}
+                  >
+                    <JournalEntry
+                      id={value.id}
+                      index={index}
+                      title={formatJournalType(value.journal_type)}
+                      iconTitle={value.journal_meaning}
+                      // date="10th March 2023"
+                      date={formatDatetime(value.created_at).date}
+                      image={value.journal_icon}
+                      message={value.journal_entry}
+                      time={formatDatetime(value.created_at).time}
+                      // selected={selected}
+                    />
+                  </div>
+                ))}
+
+              {selected && (
+                <EntryDetails
+                  id={selected.id}
+                  title={formatJournalType(selected.journal_type)}
+                  iconTitle={selected.journal_meaning}
+                  // date="10th March 2023"
+                  date={formatDatetime(selected.created_at).date}
+                  image={selected.journal_icon}
+                  message={selected.journal_entry}
+                  time={formatDatetime(selected.created_at).time}
+                  selected={selected}
+                  setSelected={setSelected}
+                />
+              )}
             </div>
           </div>
-        </div>
-        <div className=" h-[25vh] md:hidden" id="section1"></div>
-        <div className="w-auto md:w-1/2 " >
-        <h2 className="text-lg font-bold ">Activity</h2>
-          {selectedDay &&
-            selectedDay?.reverse().map((value, index) => (
-              // <div
-              //   key={index}
-              //   className="w-auto p-4 mx-2 mb-2 bg-white border rounded-lg shadow-md h-min"
-              // >
-              //   <h2 className="text-lg font-bold">{value.journal_type}</h2>
-              //   <div className="flex items-center justify-between mb-2">
-              //     <h3 className="text-sm font-bold">
-              //       {value.journal_meaning}
-              //     </h3>
-              //     {value.journal_icon && (
-              //       <img
-              //         src={value.journal_icon}
-              //         alt="Image"
-              //         className="w-6 h-6"
-              //       />
-              //     )}
-              //   </div>
-              //   <p className="flex mb-2 text-gray-700 items-left">
-              //     {formatDatetime(value.created_at).date} at{" "}
-              //     {value.created_at && formatTime(new Date(value.created_at))}
-              //   </p>
-              //   <p className="text-gray-600">{value.journal_entry}</p>
-              // </div>
-              <div key={index} className='my-2 cursor-pointer' 
-               onClick={()=>handleOnClick(value)} 
-               >
-              <JournalEntry
-                id={value.id}
-                index={index}
-                title={formatJournalType(value.journal_type)}
-                iconTitle={value.journal_meaning}
-                // date="10th March 2023"
-                date={formatDatetime(value.created_at).date}
-                image={value.journal_icon}
-                message={value.journal_entry}
-                time={formatDatetime(value.created_at).time} 
-                // selected={selected}
-              />
-              </div>
-                
-            ))}
-
-                {selected && <EntryDetails  id={selected.id}
-                title={formatJournalType(selected.journal_type)}
-                iconTitle={selected.journal_meaning}
-                // date="10th March 2023"
-                date={formatDatetime(selected.created_at).date}
-                image={selected.journal_icon}
-                message={selected.journal_entry}
-                time={formatDatetime(selected.created_at).time} 
-                selected={selected} 
-                setSelected={setSelected}
-                />}
-        </div>
-      </div>}
+        )}
       </div>
       <ToastContainer />
     </div>
