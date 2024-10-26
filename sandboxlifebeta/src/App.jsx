@@ -7,6 +7,9 @@ import BookJourney from "./pages/BookJourney";
 import DailyJournal from "./pages/DailyJournal";
 import ThoughtOfTheDay from "./pages/ThoughtOfTheDay";
 import MyBook from "./pages/MyBook";
+import ProfilePage from "./pages/ProfilePage";
+import SettingsPage from "./pages/SettingsPage";
+
 import MyCalendar from "./pages/MyCalendar";
 import { useState } from "react";
 import { Context } from "./utils/helpers";
@@ -23,6 +26,8 @@ function App() {
           {/* <Route path="/signup" element={<SignupPage/>} /> */}
           <Route path="/home/:userId" element={<HomePage />} />
           <Route path="/my-book/:userId" element={<MyBook />} />
+          <Route path="/profile/:userId" element={<ProfilePage />} />
+          <Route path="/settings/:userId" element={<SettingsPage />} />
           <Route path="/my-calendar/:userId" element={<MyCalendar />} />
           <Route path="/bookjourney" element={<BookJourney />} />
           <Route path="/dailyjournal" element={<DailyJournal />} />

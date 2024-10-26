@@ -89,14 +89,16 @@ const SidebarMenu = ({ toggleMenu }) => {
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
           <UserCircleIcon className="h-5 w-5" />
-          <span>Profile</span>
+          {/* <span>Profile</span> */}
+          <Link to={`/profile/${userId}`}>Profile</Link>
         </a>
         <a
           
           className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3"
         >
           <Cog6ToothIcon className="h-5 w-5" />
-          <span>Settings</span>
+          {/* <span>Settings</span> */}
+          <Link to={`/settings/${userId}`}>Settings</Link>
         </a>
         <a
           

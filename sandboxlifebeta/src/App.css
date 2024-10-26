@@ -5,3 +5,44 @@
   text-align: center;
   width: 100%;
 }
+
+/* Add this to your CSS file */
+.profile-panel {
+  margin-bottom: 20px;
+}
+
+.rs-panel-header {
+  background-color: #f5f5dc !important; /* red-800 equivalent */
+  color: black !important;
+  padding: 16px !important;
+}
+
+.rs-panel-body {
+  padding: 24px !important;
+}
+
+.rs-form-group {
+  margin-bottom: 16px !important;
+}
+
+.rs-input, 
+.rs-input-group,
+.rs-picker-toggle {
+  border-radius: 0.375rem !important;
+}
+
+.rs-btn-primary {
+  background-color: #f5f5dc !important;
+  color: black !important;
+}
+
+.rs-btn-primary:hover {
+  background-color: #f5f5dc !important;
+}
+
+/* Responsive Grid Adjustments */
+@media (max-width: 768px) {
+  .rs-grid-container {
+    padding: 0 !important;
+  }
+}
