@@ -36,11 +36,9 @@ export default function Signup() {
     if (error) {
       toast.error(error.message);
     } else {
-      toast.success('Account created successfully! Please check your email for verification');
-      // wait for 2 seconds before redirecting to login page
-      setTimeout(() => {
-        navigate(`/login`);
-      }, 2000);
+      localStorage.setItem('user_id', data.user.id);
+      toast('Welcome to Sandbox');
+      navigate(`/home/${data.user.id}`);
     }
   };
 
