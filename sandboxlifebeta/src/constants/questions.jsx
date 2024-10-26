@@ -268,9 +268,9 @@ export const daily_journal_questions = [
   },
   {
     journal_type: "daily_journal",
-    name: "Frog",
+    name: "Lizard",
     meaning: "Regeneration",
-    icon: Frog,
+    icon: Lizard,
     trigger_question: [
       "How can you reinvent and regenerate yourself?",
       "Tell a story of overcoming an injury, threat or setback.  ",
