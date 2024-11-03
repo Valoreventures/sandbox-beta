@@ -65,7 +65,8 @@ const SidebarMenu = ({toggleMenu }) => {
             </a>
             <a className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3">
               <InboxIcon className="h-5 w-5" />
-              <span>Inbox</span>
+              {/* <span>Inbox</span> */}
+              <Link to={`/chat/${userId}`}>Inbox</Link>
               <span className="bg-red-500 text-white rounded-full px-2 py-1 ml-auto"></span>
             </a>
             <a className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3">
@@ -80,11 +81,10 @@ const SidebarMenu = ({toggleMenu }) => {
             </a>
 
             {/* chat room page link*/}
-            <a className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3">
+            {/* <a className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3">
               <ChatBubbleBottomCenterTextIcon className="h-5 w-5" />
-              {/* <span>Log Out</span> */}
               <Link to={`/chat/${userId}`}>Chat Room</Link>
-            </a>
+            </a> */}
 
             <a className="flex items-center space-x-2 hover:bg-gray-700 rounded-md py-2 px-3">
               <PowerIcon className="h-5 w-5" />
