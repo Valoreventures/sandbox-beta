@@ -98,7 +98,7 @@ export const fetchAllEntries = async (userId, startDay, lastDay) => {
 
 
 //------------------------------------------ made change here ------------------------------- //
-export const fetchWeeklyData = async (userId,weekStart) => {
+export const fetchWeeklyData = async (userId,) => {
   try {
     const { data, error } = await supabase
       .from("user_journal_entries")

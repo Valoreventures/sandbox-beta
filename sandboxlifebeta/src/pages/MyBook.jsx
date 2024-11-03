@@ -2,19 +2,18 @@ import { useState, useEffect } from 'react';
 import CalendarDateHeader from '../components/CalendarDateHeader';
 import Menu from '../components/Menu';
 import TopBar from '../components/TopBar';
-import JournalEntry from '../components/JournalEntry';
 import { fetchEntries } from '../utils/supabase';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { GridList, formatJournalType } from '../utils/helpers';
+import { GridList } from '../utils/helpers';
 export default function MyBook() {
   const { userId } = useParams();
   // const date = parseISO(datetimeStr);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [entries, setEntries] = useState([]);
-  const [tod, setTod] = useState({});
+  // const [tod, setTod] = useState({});
   const [chapters, setChapters] = useState([]);
 
   // const [userId, setUserId] = useState(null);

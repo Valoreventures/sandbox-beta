@@ -9,6 +9,8 @@ import ThoughtOfTheDay from "./pages/ThoughtOfTheDay";
 import MyBook from "./pages/MyBook";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
+import ChatRoomPage from "./pages/ChatRoomPage";
+
 
 import MyCalendar from "./pages/MyCalendar";
 import { useState } from "react";
@@ -28,6 +30,7 @@ function App() {
           <Route path="/my-book/:userId" element={<MyBook />} />
           <Route path="/profile/:userId" element={<ProfilePage />} />
           <Route path="/settings/:userId" element={<SettingsPage />} />
+          <Route path="/chat/:userId" element={<ChatRoomPage />} />
           <Route path="/my-calendar/:userId" element={<MyCalendar />} />
           <Route path="/bookjourney" element={<BookJourney />} />
           <Route path="/dailyjournal" element={<DailyJournal />} />

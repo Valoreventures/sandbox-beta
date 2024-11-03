@@ -4,11 +4,7 @@ import {
   Form,
   Button,
   Input,
-  InputGroup,
   SelectPicker,
-  Uploader,
-  Avatar,
-  Grid,
   Row,
   Col,
   Container,
@@ -19,7 +15,7 @@ import "rsuite/dist/rsuite.min.css"; // Make sure to import RSuite CSS
 import TopBar from "../components/TopBar";
 import Menu from "../components/Menu";
 import CalendarDateHeader from "../components/CalendarDateHeader";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer,} from 'react-toastify';
 
 const SettingsPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

@@ -60,59 +60,63 @@ export const GridList = ({ items, chapters = [] }) => {
     setSelected(data);
   };
 
-  console.log(chapters);
-
   return (
     <div className="flex flex-col items-start justify-start gap-4 p-4 mt-0">
-      {chapters.length>0 && <div className="flex flex-row items-center justify-center gap-2">
-        <p>Filter by chapter: </p>
-        <Menu>
-          <MenuButton className="px-4 py-2 bg-white border border-gray-300 rounded-md w-fit">
-            {selectedChapter}
-          </MenuButton>
-          <MenuItems
-            anchor="bottom"
-            className="absolute z-10 w-48 py-2 mt-2 border rounded-md shadow-xl ml-9 bg-lightpapyrus "
-          >
-            {chapters?.map((chapter, index) => (
-              <MenuItem key={index} className="block px-3 hover:bg-darkpapyrus"
-                onClick={() => setSelectedChapter(chapter)}
+      {chapters.length > 0 && (
+        <div className="flex flex-row items-center justify-center gap-2">
+          <p>Filter by chapter: </p>
+          <Menu>
+            <MenuButton className="px-4 py-2 bg-white border border-gray-300 rounded-md w-fit">
+              {selectedChapter}
+            </MenuButton>
+            <MenuItems
+              anchor="bottom"
+              className="absolute z-10 w-48 py-2 mt-2 border rounded-md shadow-xl ml-9 bg-lightpapyrus"
+            >
+              {chapters?.map((chapter, index) => (
+                <MenuItem
+                  key={index}
+                  className="block px-3 hover:bg-darkpapyrus"
+                  onClick={() => setSelectedChapter(chapter)}
+                >
+                  <p>{chapter}</p>
+                </MenuItem>
+              ))}
+            </MenuItems>
+          </Menu>
+        </div>
+      )}
+      <div className="relative grid grid-cols-1 gap-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
+        {items
+          .filter((item) => {
+            if (selectedChapter === "All") return true;
+            return item?.journal_meaning === selectedChapter;
+          })
+          .map((d, index) =>
+            d && d.id ? ( // Ensure `d` exists and has an `id` property
+              <div
+                key={index}
+                className="cursor-pointer"
+                onClick={() => handleOnClick(d)}
               >
-                <p className="">{chapter}</p>
-              </MenuItem>
-            ))}
-          </MenuItems>
-        </Menu>
-      </div>}
-      <div className="relative grid grid-cols-1 gap-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 ">
-        {items.filter((item)=>{
-          if(selectedChapter === "All") return true;
-          return item.journal_meaning === selectedChapter;
-        }).map((d, index) => (
-          <div
-            key={index}
-            className="cursor-pointer "
-            onClick={() => handleOnClick(d)}
-          >
-            <JournalEntry
-              id={d.id}
-              title={formatJournalType(d.journal_type)}
-              iconTitle={d.journal_meaning}
-              // date="10th March 2023"
-              date={formatDatetime(d.created_at).date}
-              image={d.journal_icon}
-              message={d.journal_entry}
-              time={formatDatetime(d.created_at).time}
-              selected={selected}
-            />
-          </div>
-        ))}
+                <JournalEntry
+                  id={d.id}
+                  title={formatJournalType(d.journal_type)}
+                  iconTitle={d.journal_meaning}
+                  date={formatDatetime(d.created_at).date}
+                  image={d.journal_icon}
+                  message={d.journal_entry}
+                  time={formatDatetime(d.created_at).time}
+                  selected={selected}
+                />
+              </div>
+            ) : null // If `d` is undefined or lacks `id`, render nothing
+          )}
         {selected && (
           <EntryDetails
             id={selected.id}
             title={formatJournalType(selected.journal_type)}
             iconTitle={selected.journal_meaning}
-            // date="10th March 2023"
             date={formatDatetime(selected.created_at).date}
             image={selected.journal_icon}
             message={selected.journal_entry}
