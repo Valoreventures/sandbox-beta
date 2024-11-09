@@ -213,7 +213,7 @@ const resetContextAndStates = () => {
                   
                   {value.length ? (
                     <img
-                      src={value[0].journal_icon}
+                    src={value[value.length - 1].journal_icon} // Oldest journal entry
                       alt=""
                       className="object-cover w-full h-auto md:h-14"
                     />
@@ -230,7 +230,7 @@ const resetContextAndStates = () => {
         <div className="w-auto md:w-1/2 " >
         <h2 className="text-lg font-bold ">Activity</h2>
           {selectedDay &&
-            selectedDay?.reverse().map((value, index) => (
+            selectedDay?.map((value, index) => (
               // <div
               //   key={index}
               //   className="w-auto p-4 mx-2 mb-2 bg-white border rounded-lg shadow-md h-min"
