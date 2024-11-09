@@ -266,7 +266,7 @@ export const daily_journal_questions = [
   },
   {
     journal_type: "daily_journal",
-    name: "Frog",
+    name: "Lizard",
     meaning: "Regeneration",
     icon: "https://teyudjxlutkavyyigwwz.supabase.co/storage/v1/object/sign/new_icons/Lizard%20copy.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuZXdfaWNvbnMvTGl6YXJkIGNvcHkuc3ZnIiwiaWF0IjoxNzMxMTczMTIyLCJleHAiOjE3NjI3MDkxMjJ9.58Cc-qDjiOZny_ofiyVlGQz0WUac6XQRcCm8sFVDPLw&t=2024-11-09T17%3A25%3A22.409Z",
     trigger_question: [
@@ -275,7 +275,7 @@ export const daily_journal_questions = [
       "How did you adapt and move forward after experiencing a loss or difficult change?",
       "What resilience did you develop from confronting those obstacles?",
     ],
-    uuid: "d_frog",
+    uuid: "d_lizard",
   },
   {
     journal_type: "daily_journal",
