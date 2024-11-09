@@ -1,39 +1,37 @@
-import Anchor from '../assets/icons/anchor.svg'
-import BirdMaccaw from '../assets/icons/BirdMaccaw.svg'
-import Butterfly from '../assets/icons/Butterfly.svg'
-import Column from '../assets/icons/column.svg'
-import Egg from '../assets/icons/Egg.svg'
-// import Frog from '../assets/icons/frog.png'
-import Globe from '../assets/icons/Globe.svg'
-import HorseShoe from '../assets/icons/HorseShoe.svg'
-import Key from '../assets/icons/Key.svg'
-import Leaf from '../assets/icons/Leaf.svg'
-import Lighthouse from '../assets/icons/Lighthouse.svg'
-import Lizard from '../assets/icons/Lizard.svg'
-import Lock from '../assets/icons/Lock.svg'
-import WaterLily from '../assets/icons/Lotus.svg'
-import NauticalWheel from '../assets/icons/NauticalWheel.svg'
-import Octopus from '../assets/icons/Octopus.svg'
-import PalmTree from '../assets/icons/PalmTree.svg'
-import Rose from '../assets/icons/Rose.svg'
-import Shark from '../assets/icons/Shark.svg'
-import Shell from '../assets/icons/shell.svg'
-import Shield from '../assets/icons/shield.svg'
-import SkullCrossBones from '../assets/icons/SkullCrossBones.svg'
-import Snake from '../assets/icons/Snake.svg'
-import Star from '../assets/icons/Star.svg'
-import Sword from '../assets/icons/Sword.svg'
-import TreasureChest from '../assets/icons/TreasureChest.svg'
-import Trophy from '../assets/icons/Trophy.svg'
-
-
+import Anchor from "../assets/icons/anchor.svg";
+import BirdMaccaw from "../assets/icons/BirdMaccaw.svg";
+import Butterfly from "../assets/icons/Butterfly.svg";
+import Column from "../assets/icons/column.svg";
+import Egg from "../assets/icons/Egg.svg";
+import Frog from "../assets/icons/frog.png";
+import Globe from "../assets/icons/Globe.svg";
+import HorseShoe from "../assets/icons/HorseShoe.svg";
+import Key from "../assets/icons/Key.svg";
+import Leaf from "../assets/icons/Leaf.svg";
+import Lighthouse from "../assets/icons/Lighthouse.svg";
+import Lizard from "../assets/icons/Lizard.svg";
+import Lock from "../assets/icons/Lock.svg";
+import WaterLily from "../assets/icons/Lotus.svg";
+import NauticalWheel from "../assets/icons/NauticalWheel.svg";
+import Octopus from "../assets/icons/Octopus.svg";
+import PalmTree from "../assets/icons/PalmTree.svg";
+import Rose from "../assets/icons/Rose.svg";
+import Shark from "../assets/icons/Shark.svg";
+import Shell from "../assets/icons/shell.svg";
+import Shield from "../assets/icons/shield.svg";
+import SkullCrossBones from "../assets/icons/SkullCrossBones.svg";
+import Snake from "../assets/icons/Snake.svg";
+import Star from "../assets/icons/Star.svg";
+import Sword from "../assets/icons/Sword.svg";
+import TreasureChest from "../assets/icons/TreasureChest.svg";
+import Trophy from "../assets/icons/Trophy.svg";
 
 export const book_journal_questions = [
   {
     journal_type: "book_journal",
     name: "Shield",
     meaning: "Protection",
-    icon:"https://teyudjxlutkavyyigwwz.supabase.co/storage/v1/object/sign/new_icons/shield%20copy.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuZXdfaWNvbnMvc2hpZWxkIGNvcHkuc3ZnIiwiaWF0IjoxNzIzMzU2NjU5LCJleHAiOjE4MDk2NzAyNTl9.HWZyumyugVrqu52Wt4zUmWLjmg7cgQUJrxIsGroKz3M&t=2024-08-11T06%3A10%3A53.928Z",
+    icon: "https://teyudjxlutkavyyigwwz.supabase.co/storage/v1/object/sign/new_icons/shield%20copy.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuZXdfaWNvbnMvc2hpZWxkIGNvcHkuc3ZnIiwiaWF0IjoxNzIzMzU2NjU5LCJleHAiOjE4MDk2NzAyNTl9.HWZyumyugVrqu52Wt4zUmWLjmg7cgQUJrxIsGroKz3M&t=2024-08-11T06%3A10%3A53.928Z",
     trigger_question: [
       "What ways do you need protection?",
       "What forces or threats required you to be on guard?",
@@ -61,7 +59,7 @@ export const book_journal_questions = [
     meaning: "Discovery & Prosperity",
     icon: "https://teyudjxlutkavyyigwwz.supabase.co/storage/v1/object/sign/new_icons/TreasureChest%20copy.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuZXdfaWNvbnMvVHJlYXN1cmVDaGVzdCBjb3B5LnN2ZyIsImlhdCI6MTcyMzM1NjQwNiwiZXhwIjoxODA5NjcwMDA2fQ.ko_JHtZ01xs99g3j-we_has8u1v4eGyR-QuELigeb4Q&t=2024-08-11T06%3A06%3A41.144Z",
     trigger_question: [
-      'What do you consider to be your strongest natural talents, skills and gifts?',
+      "What do you consider to be your strongest natural talents, skills and gifts?",
       "What non-material treasures have you recognized as truly valuable?",
       "How do you currently define and experience abundance in your life?",
       "Where might your views of prosperity grow or evolve next?",
@@ -270,7 +268,7 @@ export const daily_journal_questions = [
     journal_type: "daily_journal",
     name: "Frog",
     meaning: "Regeneration",
-    icon: "https://teyudjxlutkavyyigwwz.supabase.co/storage/v1/object/sign/new_icons/Lizard%20copy.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuZXdfaWNvbnMvTGl6YXJkIGNvcHkuc3ZnIiwiaWF0IjoxNzMxMTU3MjEwLCJleHAiOjE3NjI2OTMyMTB9.vnC-LFzAwUJ-P1BUn4YhOavogFfLJZJGG7XXcweCwJg&t=2024-11-09T13%3A00%3A11.453Z",
+    icon: Frog,
     trigger_question: [
       "How can you reinvent and regenerate yourself?",
       "Tell a story of overcoming an injury, threat or setback.  ",
@@ -336,8 +334,7 @@ export const daily_journal_questions = [
     name: "Shield",
     meaning: "Protection",
     icon: "https://teyudjxlutkavyyigwwz.supabase.co/storage/v1/object/sign/new_icons/shield%20copy.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuZXdfaWNvbnMvc2hpZWxkIGNvcHkuc3ZnIiwiaWF0IjoxNzIzMzU2NjU5LCJleHAiOjE4MDk2NzAyNTl9.HWZyumyugVrqu52Wt4zUmWLjmg7cgQUJrxIsGroKz3M&t=2024-08-11T06%3A10%3A53.928Z",
-    trigger_question:
-      "What ways do you need protection?",
+    trigger_question: "What ways do you need protection?",
     uuid: "d_shield",
   },
   {
@@ -426,7 +423,7 @@ export const daily_journal_questions = [
     meaning: "Endings",
     icon: "https://teyudjxlutkavyyigwwz.supabase.co/storage/v1/object/sign/new_icons/SkullCrossBones%20copy.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuZXdfaWNvbnMvU2t1bGxDcm9zc0JvbmVzIGNvcHkuc3ZnIiwiaWF0IjoxNzIzMzU2MTk4LCJleHAiOjE4MDk2Njk3OTh9.egbWXxXTqxzMjA8UGc1pQBbrJi7pqwfpuCjhWpLMcC4&t=2024-08-11T06%3A03%3A13.063Z",
     trigger_question:
-      'What chapters in your life are closing, and are you creating a conscious ending?',
+      "What chapters in your life are closing, and are you creating a conscious ending?",
     uuid: "d_skull_bones",
   },
   {
@@ -434,8 +431,7 @@ export const daily_journal_questions = [
     name: "Shark",
     meaning: "Boundaries",
     icon: "https://teyudjxlutkavyyigwwz.supabase.co/storage/v1/object/sign/new_icons/Shark%20copy.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuZXdfaWNvbnMvU2hhcmsgY29weS5zdmciLCJpYXQiOjE3MjMzNTYxNTAsImV4cCI6MTgwOTY2OTc1MH0.FqZQnlpLRDDJgxdQz45Zy0xhaWVNZbHcIKbfGAk79Pk&t=2024-08-11T06%3A02%3A25.503Z",
-    trigger_question:
-      "What are your thoughts about boundaries?",
+    trigger_question: "What are your thoughts about boundaries?",
     uuid: "d_shark",
   },
   {
@@ -443,8 +439,7 @@ export const daily_journal_questions = [
     name: "Leaf",
     meaning: "Vitality",
     icon: "https://teyudjxlutkavyyigwwz.supabase.co/storage/v1/object/sign/new_icons/Leaf%20copy.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuZXdfaWNvbnMvTGVhZiBjb3B5LnN2ZyIsImlhdCI6MTcyMzM1NTUxOSwiZXhwIjoxODA5NjY5MTE5fQ.LwIfiKv6lusnfHUpGtksDGlw1XBcDXfLDHMbrPSrkz0&t=2024-08-11T05%3A51%3A54.411Z",
-    trigger_question:
-      "What are your notions about health and fitness?",
+    trigger_question: "What are your notions about health and fitness?",
     uuid: "d_leaf",
   },
   {
@@ -488,8 +483,7 @@ export const daily_journal_questions = [
     name: "Sword",
     meaning: "Decisive",
     icon: "https://teyudjxlutkavyyigwwz.supabase.co/storage/v1/object/sign/new_icons/Sword%20copy.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuZXdfaWNvbnMvU3dvcmQgY29weS5zdmciLCJpYXQiOjE3MjMzNTYzNjMsImV4cCI6MTgwOTY2OTk2M30.CwWbMVAsikzoyBDeAinDdY2UXhqEWo4Cxo85gH2v4hg&t=2024-08-11T06%3A05%3A58.053Z",
-    trigger_question:
-      "Are you a quick decision maker?",
+    trigger_question: "Are you a quick decision maker?",
     uuid: "d_sword",
   },
   {
@@ -502,6 +496,3 @@ export const daily_journal_questions = [
     uuid: "d_nautical_wheel",
   },
 ];
-
-
-
