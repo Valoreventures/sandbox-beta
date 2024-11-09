@@ -32,6 +32,34 @@ export async function insertJournalEntry(
   }
 }
 
+
+export const fetchDailyEntryCount = async (userId) => {
+  console.log('Fetching daily entry count for user:', userId);
+
+  const today = new Date();
+  const startOfDay = new Date(today.setHours(0, 0, 0, 0)).toISOString();
+  const endOfDay = new Date(today.setHours(23, 59, 59, 999)).toISOString();
+
+  console.log('Start of day:', startOfDay);
+  console.log('End of day:', endOfDay);
+
+  const { data, error } = await supabase
+    .from('user_journal_entries') // Correct table name
+    .select('id', { count: 'exact' })
+    .eq('user_id', userId)
+    .gte('created_at', startOfDay)
+    .lte('created_at', endOfDay);
+
+  if (error) {
+    console.error('Error fetching daily entry count:', error);
+    return 0;
+  }
+
+  console.log('Fetched daily entry count:', data?.length || 0);
+  return data?.length || 0;
+};
+
+
 export async function fetchTopUserRecords(userId) {
   const { data, error } = await supabase
     .from('user_journal_entries')

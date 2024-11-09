@@ -5,7 +5,7 @@ import TopBar from '../components/TopBar';
 import IconSelectionWindow from '../components/IconSelectionWindow';
 import { daily_journal_questions } from '../constants/questions';
 import { JournalEntrySection } from '../components/JournalEntrySection';
-import { insertJournalEntry } from '../utils/supabase';
+import { insertJournalEntry , fetchDailyEntryCount} from '../utils/supabase';
 import { useNavigate } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
@@ -19,15 +19,33 @@ export default function DailyJournal() {
   const [journalEntry, setJournalEntry] = useState('');
   const [userId, setUserId] = useState(null);
   const [changeQuestion, setChangeQuestion] = useState(0);
+  const [dailyEntryCount, setDailyEntryCount] = useState(0);
 
-  function getUserIdFromStorage() {
-    const storedUserId = localStorage.getItem('user_id');
-    setUserId(storedUserId);
-  }
+  // function getUserIdFromStorage() {
+  //   const storedUserId = localStorage.getItem('user_id');
+  //   setUserId(storedUserId);
+  // }
+
+  // useEffect(() => {
+  //   getUserIdFromStorage();
+  // }, []);
 
   useEffect(() => {
-    getUserIdFromStorage();
+    const storedUserId = localStorage.getItem('user_id');
+    setUserId(storedUserId);
+
+    // Fetch the daily entry count
+    const fetchCount = async () => {
+      const count = await fetchDailyEntryCount(storedUserId);
+      console.log("count", count)
+      setDailyEntryCount(count);
+    };
+
+    if (storedUserId) {
+      fetchCount();
+    }
   }, []);
+
 
   const handleChangeQuestion = () =>{
      const number = Math.floor(Math.random() * 4)
@@ -67,6 +85,7 @@ export default function DailyJournal() {
             setSelectedIconTheme={setSelectedIconTheme}
             onSave={() => setCurrentStep(2)}
             onCancel={() => {}}
+            dailyEntryCount={dailyEntryCount}
           />
         );
       case 2:
@@ -81,6 +100,7 @@ export default function DailyJournal() {
             journalEntry={journalEntry}
             setJournalEntry={setJournalEntry}
             changeQuestion={handleChangeQuestion}
+            isLimitReached={dailyEntryCount >= 5}
           />
         );
 
@@ -90,6 +110,11 @@ export default function DailyJournal() {
   };
 
   const saveToDb = async (isNewEntry = false) => {
+    if (dailyEntryCount >= 5) {
+      toast.error('You have reached the maximum of 5 entries for today!');
+      return;
+    }
+
     const dbOperation = await insertJournalEntry(
       userId,
       selectedIconTheme.journal_type,
@@ -100,6 +125,7 @@ export default function DailyJournal() {
     );
     if (dbOperation.success) {
       toast.success('saved successfully!');
+      setDailyEntryCount((prev) => prev + 1);
       console.log('new entry', isNewEntry);
       // isNewEntry ? navigate(`/dailyjournal`):navigate(`/home/${userId}`);
       if (isNewEntry) {

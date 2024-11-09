@@ -10,7 +10,8 @@ export const JournalEntrySection = ({
   journalEntry,
   setJournalEntry,
   journalType,
-  changeQuestion
+  changeQuestion,
+  isLimitReached
 }) => {
   const [input, setInput] = useState('');
   const handleTextChange = (e) => {
@@ -38,6 +39,7 @@ export const JournalEntrySection = ({
           value={journalEntry}
           onChange={handleTextChange}
           placeholder="Chapter Entry 'The Story'"
+          disabled={isLimitReached}
         />
         <div className="flex justify-end mt-4">
           <button
@@ -48,12 +50,14 @@ export const JournalEntrySection = ({
           </button>
           {journalType === "daily_journal" && <button
             onClick={()=>onSave(true)}
+            disabled={isLimitReached}
             className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none"
           >
             Save &amp; Entry
           </button>}
           <button
             onClick={()=>onSave(false)}
+            disabled={isLimitReached}
             className="px-4 py-2 text-white bg-green-500 rounded-md hover:bg-green-600 focus:outline-none"
           >
             Save &amp; Continue

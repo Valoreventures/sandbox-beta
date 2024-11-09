@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
+import { toast } from "react-toastify";
 
-const IconCarousel = ({ icons, onSave, setSelectedIconTheme }) => {
+const IconCarousel = ({ icons, onSave, setSelectedIconTheme, dailyEntryCount }) => {
   const [selectedIcon, setSelectedIcon] = useState({ name: '', meaning: '' });
   const [startIndex, setStartIndex] = useState(0);
 
@@ -22,6 +23,17 @@ const IconCarousel = ({ icons, onSave, setSelectedIconTheme }) => {
   useEffect(()=>{
     handleIconClick(icons[0])
   },[])
+
+
+  const handleNextStep = () => {
+    if (dailyEntryCount >= 5) {
+      // Show a toast message if the limit is reached
+      toast.error("You have reached the daily limit of 5 entries.");
+    } else {
+      // Proceed to the next step if the limit is not reached
+      onSave();
+    }
+  };
 
   return (
     <div className="bg-bgpapyrus rounded-lg shadow-md py-4 w-[19rem] sm:w-auto md:w-[40rem]">
@@ -100,7 +112,7 @@ const IconCarousel = ({ icons, onSave, setSelectedIconTheme }) => {
         </span>
       </div>
       <button
-        onClick={selectedIcon.name&&onSave}
+        onClick={handleNextStep}
         className="bg-blue-500 text-white px-4 py-2 mx-2 w-1/3 md:w-1/5 text-xs sm:text-base rounded-xl hover:bg-darkpapyrus focus:outline-none border"
       >
         Next Step
