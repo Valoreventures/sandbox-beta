@@ -1,30 +1,30 @@
-import Anchor from '../assets/icons/anchor.png'
-import BirdMaccaw from '../assets/icons/BirdMaccaw.png'
-import Butterfly from '../assets/icons/Butterfly.png'
-import Column from '../assets/icons/column.png'
-import Egg from '../assets/icons/Egg.png'
-import Frog from '../assets/icons/frog.png'
-import Globe from '../assets/icons/Globe.png'
-import HorseShoe from '../assets/icons/HorseShoe.png'
-import Key from '../assets/icons/Key.png'
-import Leaf from '../assets/icons/Leaf.png'
-import Lighthouse from '../assets/icons/Lighthouse.png'
-import Lizard from '../assets/icons/Lizard.png'
-import Lock from '../assets/icons/Lock.png'
-import WaterLily from '../assets/icons/Lotus.png'
-import NauticalWheel from '../assets/icons/NauticalWheel.png'
-import Octopus from '../assets/icons/Octopus.png'
-import PalmTree from '../assets/icons/PalmTree.png'
-import Rose from '../assets/icons/Rose.png'
-import Shark from '../assets/icons/Shark.png'
-import Shell from '../assets/icons/shell.png'
-import Shield from '../assets/icons/shield.png'
-import SkullCrossBones from '../assets/icons/SkullCrossBones.png'
-import Snake from '../assets/icons/Snake.png'
-import Star from '../assets/icons/Star.png'
-import Sword from '../assets/icons/Sword.png'
-import TreasureChest from '../assets/icons/TreasureChest.png'
-import Trophy from '../assets/icons/Trophy.png'
+import Anchor from '../assets/icons/anchor.svg'
+import BirdMaccaw from '../assets/icons/BirdMaccaw.svg'
+import Butterfly from '../assets/icons/Butterfly.svg'
+import Column from '../assets/icons/column.svg'
+import Egg from '../assets/icons/Egg.svg'
+// import Frog from '../assets/icons/frog.png'
+import Globe from '../assets/icons/Globe.svg'
+import HorseShoe from '../assets/icons/HorseShoe.svg'
+import Key from '../assets/icons/Key.svg'
+import Leaf from '../assets/icons/Leaf.svg'
+import Lighthouse from '../assets/icons/Lighthouse.svg'
+import Lizard from '../assets/icons/Lizard.svg'
+import Lock from '../assets/icons/Lock.svg'
+import WaterLily from '../assets/icons/Lotus.svg'
+import NauticalWheel from '../assets/icons/NauticalWheel.svg'
+import Octopus from '../assets/icons/Octopus.svg'
+import PalmTree from '../assets/icons/PalmTree.svg'
+import Rose from '../assets/icons/Rose.svg'
+import Shark from '../assets/icons/Shark.svg'
+import Shell from '../assets/icons/shell.svg'
+import Shield from '../assets/icons/shield.svg'
+import SkullCrossBones from '../assets/icons/SkullCrossBones.svg'
+import Snake from '../assets/icons/Snake.svg'
+import Star from '../assets/icons/Star.svg'
+import Sword from '../assets/icons/Sword.svg'
+import TreasureChest from '../assets/icons/TreasureChest.svg'
+import Trophy from '../assets/icons/Trophy.svg'
 
 
 
@@ -270,7 +270,7 @@ export const daily_journal_questions = [
     journal_type: "daily_journal",
     name: "Frog",
     meaning: "Regeneration",
-    icon: Frog,
+    icon: "https://teyudjxlutkavyyigwwz.supabase.co/storage/v1/object/sign/new_icons/Lizard%20copy.svg?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJuZXdfaWNvbnMvTGl6YXJkIGNvcHkuc3ZnIiwiaWF0IjoxNzMxMTU3MjEwLCJleHAiOjE3NjI2OTMyMTB9.vnC-LFzAwUJ-P1BUn4YhOavogFfLJZJGG7XXcweCwJg&t=2024-11-09T13%3A00%3A11.453Z",
     trigger_question: [
       "How can you reinvent and regenerate yourself?",
       "Tell a story of overcoming an injury, threat or setback.  ",
