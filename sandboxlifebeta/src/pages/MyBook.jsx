@@ -111,7 +111,7 @@ export default function MyBook() {
       <ToastContainer />
       
 
-      <div className="flex flex-row items-center justify-center w-full mt-60">
+      <div className="flex flex-row items-center justify-center w-full mt-35">
         {/* Other list cards */}
    
         <GridList items={entries} chapters={chapters} />

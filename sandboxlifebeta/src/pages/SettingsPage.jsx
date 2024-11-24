@@ -312,7 +312,7 @@ const SettingsPage = () => {
       <CalendarDateHeader currentDate={currentDate} onPrevClick={handlePrevClick} onNextClick={handleNextClick} />
       <ToastContainer />
 
-      <div className="flex flex-row items-center justify-center w-full mt-60">
+      <div className="flex flex-row items-center justify-center w-full mt-35">
         <Container className="max-w-4xl mx-auto p-6 space-y-6">
           {/* Display Settings */}
           <Panel header="Display Settings" bordered>

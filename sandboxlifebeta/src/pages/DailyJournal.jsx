@@ -141,8 +141,9 @@ export default function DailyJournal() {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen">
-      <ToastContainer />
+    <div className="h-screen" style={{display:"flex",alignItems:"center",justifyContent:"flex-start", flexDirection:"column", gap:"10%"}}>
+      
+      <div style={{width:"100vw"}}>
       <TopBar toggleMenu={toggleMenu} />
       {isMenuOpen && (
         <div className="fixed inset-0 z-50">
@@ -154,7 +155,12 @@ export default function DailyJournal() {
         onPrevClick={handlePrevClick}
         onNextClick={handleNextClick}
       />
+
+      </div>
+      
       {renderComponents()}
+
+      <ToastContainer />
     </div>
   );
 }

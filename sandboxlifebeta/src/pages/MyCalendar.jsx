@@ -167,7 +167,7 @@ const resetContextAndStates = () => {
       />
       <ToastContainer />
 
-      <div className="w-full mt-40 ">
+      <div className="w-full mt-2 ">
         {/* <div className="flex flex-col p-1 mx-auto my-5 text-sm border-2 rounded-md w-min text-start ">
           <p className="font-semibold text-center right-5 ">Check activity</p>
           <input

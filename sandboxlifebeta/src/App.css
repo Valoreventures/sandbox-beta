@@ -40,9 +40,12 @@
   background-color: #f5f5dc !important;
 }
 
-/* Responsive Grid Adjustments */
-@media (max-width: 768px) {
-  .rs-grid-container {
-    padding: 0 !important;
-  }
+.rs-calendar {
+  background-color: #e5e5c7 !important; /* Sets the background to red */
+  color: black; /* Adjusts text color for readability */
+}
+
+.rs-calendar-month-dropdown {
+  background-color: #e5e5c7 !important;
+
 }

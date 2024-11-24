@@ -269,7 +269,7 @@ const ChatRoomPage = () => {
       )}
       <ToastContainer />
 
-      <div className="flex flex-row items-center justify-center w-[70%] mx-auto mt-60">
+      <div className="flex flex-row items-center justify-center w-[70%] mx-auto mt-35">
         <Container>
           {/* Chat Room */}
           <Panel header="Chat Room" bordered>

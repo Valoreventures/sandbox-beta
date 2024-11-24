@@ -495,7 +495,7 @@ const ProfilePage = () => {
       />
       <ToastContainer />
 
-      <div className="flex flex-row items-center justify-center w-full mt-60">
+      <div className="flex flex-row items-center justify-center w-full mt-35">
         <Container className="max-w-4xl mx-auto p-6 space-y-6">
           {/* Profile Card */}
           <Panel header="Profile Card" bordered>

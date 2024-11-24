@@ -108,7 +108,7 @@ console.log(newHomeData,"oooo");
       />
       <ToastContainer />
 
-      <div className="flex flex-row w-full  items-center justify-center mt-40">
+      <div className="flex flex-row w-full  items-center justify-center mt-35">
         {/* Other list cards */}
         <GridList items={newHomeData} />
       </div>

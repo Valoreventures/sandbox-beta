@@ -46,7 +46,7 @@ const CalendarComponent = () => {
   }, []);
 
   return (
-    <div className="fixed right-0 z-10 flex items-center w-full h-auto gap-2 px-2 py-2 text-xs bg-opacity-100 mt-9 justify-evenly top-12 md:top-4 bg-bgpapyrus md:px-0">
+    <div className="sticky right-0 z-10 flex items-center w-full h-auto gap-2 px-2 py-2 text-xs bg-opacity-100 justify-evenly bg-bgpapyrus md:px-0" style={{zIndex:"1",position:"sticky", margin:"0px", padding:"1%", top: "6.6vh", left:"0px"}}>
       {weeklyData &&
         weeklyData?.sort()?.map((day, index) => (
           <div key={index} className="w-16 h-20 m-auto ">
