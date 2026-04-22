@@ -2,30 +2,29 @@ import { useState, useEffect } from 'react';
 import CalendarDateHeader from '../components/CalendarDateHeader';
 import Menu from '../components/Menu';
 import TopBar from '../components/TopBar';
+import EmptyState from '../components/EmptyState';
+import LoadingSkeleton from '../components/LoadingSkeleton';
 import { fetchEntries } from '../utils/supabase';
 import { useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { GridList } from '../utils/helpers';
+import { BookOpenIcon } from '@heroicons/react/24/outline';
+
 export default function MyBook() {
   const { userId } = useParams();
-  // const date = parseISO(datetimeStr);
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [entries, setEntries] = useState([]);
-  // const [tod, setTod] = useState({});
   const [chapters, setChapters] = useState([]);
-
-  // const [userId, setUserId] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
+    setIsLoading(true);
     fetchEntries(userId, 'book_journal', 50)
       .then((data) => {
-        console.log('My Book', data);
         let tempData = data.map((entry) => {
-          // Format the created_at field
           const formattedDatetime = formatDatetime(entry.created_at);
-          // Add the formatted date and time to the entry
           return {
             ...entry,
             date: formattedDatetime.date,
@@ -34,22 +33,20 @@ export default function MyBook() {
         });
         setEntries(tempData);
 
-        // create a set of journal_meaning 
         const journalMeaning = new Set();
-
         tempData.forEach((entry) => {
-          console.log('entry', entry.journal_meaning);
           journalMeaning.add(entry.journal_meaning);
         });
-
-        console.log('journalMeaning', Array.from(journalMeaning));
-
         setChapters(Array.from(journalMeaning));
       })
       .catch((error) => {
-        console.log('ERROR', error), toast.error(error.message);
+        console.log('ERROR', error);
+        toast.error(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-  }, []);
+  }, [userId]);
 
   const handlePrevClick = () => {
     setCurrentDate(
@@ -68,27 +65,21 @@ export default function MyBook() {
   };
 
   function formatDatetime(datetimeStr) {
-    // Create a Date object from the datetime string
     const date = new Date(datetimeStr);
 
-    // Function to extract date part (YYYY-MM-DD)
     function formatDate() {
       const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+      const month = String(date.getMonth() + 1).padStart(2, '0');
       const day = String(date.getDate()).padStart(2, '0');
-
       return `${year}-${month}-${day}`;
     }
 
-    // Function to extract time part (hh:mm)
     function formatTime() {
       const hours = String(date.getHours()).padStart(2, '0');
       const minutes = String(date.getMinutes()).padStart(2, '0');
-
       return `${hours}:${minutes}`;
     }
 
-    // Return the desired formats
     return {
       date: formatDate(),
       time: formatTime(),
@@ -109,13 +100,23 @@ export default function MyBook() {
         onNextClick={handleNextClick}
       />
       <ToastContainer />
-      
 
-      <div className="flex flex-row items-center justify-center w-full mt-35">
-        {/* Other list cards */}
-   
-        <GridList items={entries} chapters={chapters} />
-          
+      <div className="flex flex-row items-center justify-center w-full mt-35 px-4">
+        {isLoading ? (
+          <div className="w-full max-w-7xl">
+            <LoadingSkeleton variant="card" count={4} />
+          </div>
+        ) : entries.length > 0 ? (
+          <GridList items={entries} chapters={chapters} />
+        ) : (
+          <EmptyState
+            icon={BookOpenIcon}
+            title="No book entries yet"
+            description="Start documenting your reading journey by creating your first book entry."
+            actionText="Create Book Entry"
+            actionPath="/bookjourney/:userId"
+          />
+        )}
       </div>
     </>
   );

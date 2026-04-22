@@ -2,11 +2,14 @@ import { useState, useEffect, useRef, useContext } from "react";
 import CalendarDateHeader from "../components/CalendarDateHeader";
 import Menu from "../components/Menu";
 import TopBar from "../components/TopBar";
+import LoadingSkeleton from "../components/LoadingSkeleton";
+import EmptyState from "../components/EmptyState";
 import { fetchAllEntries, fetchEntries } from "../utils/supabase";
 import { useParams } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { XMarkIcon } from "@heroicons/react/24/solid";
+import { CalendarIcon } from "@heroicons/react/24/outline";
 import { Link, animateScroll as scroll } from 'react-scroll';
 import JournalEntry from "../components/JournalEntry";
 import { Context, formatJournalType } from "../utils/helpers";
@@ -23,22 +26,19 @@ export default function MyCalendar() {
 
   //Check activity//
 
-  // const [value, setValue] = useState("");
   const [selectedDay, setSelectedDay] = useState();
   const [totalDays, setTotalDays] = useState();
   const [total, setTotal] = useState(new Array(31).fill(null).map(() => []));
   const [monthAndYear, setMonthAndYear] = useState("");
-  const [selected, setSelected] = useState(null)
+  const [selected, setSelected] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
 
-  // const [userId, setUserId] = useState(null);
   useEffect(() => {
+    setIsLoading(true);
     fetchEntries(userId, "daily_journal", 50)
       .then((data) => {
-        console.log("My Calendar", data);
         let tempData = data.map((entry) => {
-          // Format the created_at field
           const formattedDatetime = formatDatetime(entry.created_at);
-          // Add the formatted date and time to the entry
           return {
             ...entry,
             date: formattedDatetime.date,
@@ -48,9 +48,13 @@ export default function MyCalendar() {
         setEntries(tempData);
       })
       .catch((error) => {
-        console.log("ERROR", error), toast.error(error.message);
+        console.log("ERROR", error);
+        toast.error(error.message);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
-  }, []);
+  }, [userId]);
 
   useEffect(() => {
     const handleAllData = async (selectedMonth) => {
@@ -168,16 +172,20 @@ const resetContextAndStates = () => {
       <ToastContainer />
 
       <div className="w-full mt-2 ">
-        {/* <div className="flex flex-col p-1 mx-auto my-5 text-sm border-2 rounded-md w-min text-start ">
-          <p className="font-semibold text-center right-5 ">Check activity</p>
-          <input
-            ref={monthAndRef}
-            type="month"
-            className="px-1 rounded-md cursor-pointer hover:bg-darkpapyrus"
-            onChange={(e) => setValue(e.target.value)}
+        {isLoading ? (
+          <div className="px-4">
+            <LoadingSkeleton variant="card" count={6} />
+          </div>
+        ) : !context ? (
+          <EmptyState
+            icon={CalendarIcon}
+            title="Select a month to view entries"
+            description="Use the calendar header above to select a month and view your journal entries."
+            actionText="Create Daily Entry"
+            actionPath="/dailyjournal/:userId"
           />
-        </div> */}
-      {context&&<div className="grid md:flex ">
+        ) : (
+          <div className="grid md:flex ">
       <div className="w-auto px-2 mb-10 md:w-1/2">
       <h2 className="text-lg font-bold">Calendar</h2>
           <div className="w-auto sm:w-[23rem] lg:w-[24rem]  m-auto bg-darkpapyrus shadow-2xl shadow-[#000000] border rounded-md  p-1   ">
@@ -285,7 +293,8 @@ const resetContextAndStates = () => {
                 setSelected={setSelected}
                 />}
         </div>
-      </div>}
+          </div>
+        )}
       </div>
       <ToastContainer />
     </div>

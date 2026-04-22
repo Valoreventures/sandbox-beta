@@ -168,6 +168,7 @@ import { supabase } from "../utils/supabase";
 import TopBar from "../components/TopBar";
 import Menu from "../components/Menu";
 import { ToastContainer, toast } from 'react-toastify';
+import { ChatBubbleLeftRightIcon } from '@heroicons/react/24/outline';
 
 const ChatRoomPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -275,7 +276,7 @@ const ChatRoomPage = () => {
           <Panel header="Chat Room" bordered>
             {loading ? (
               <Loader content="Loading chat..." />
-            ) : (
+            ) : messages.length > 0 ? (
               <div style={{ maxHeight: "500px", overflowY: "auto" }}>
                 {messages.map((msg) => (
                   <Row
@@ -310,6 +311,12 @@ const ChatRoomPage = () => {
                     )}
                   </Row>
                 ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-12">
+                <ChatBubbleLeftRightIcon className="h-12 w-12 text-gray-400 mb-4" />
+                <h3 className="text-lg font-medium text-gray-900 mb-2">No messages yet</h3>
+                <p className="text-gray-500 text-center">Be the first to start the conversation!</p>
               </div>
             )}
 

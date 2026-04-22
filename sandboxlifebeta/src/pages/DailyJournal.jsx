@@ -6,45 +6,31 @@ import IconSelectionWindow from '../components/IconSelectionWindow';
 import { daily_journal_questions } from '../constants/questions';
 import { JournalEntrySection } from '../components/JournalEntrySection';
 import { insertJournalEntry , fetchDailyEntryCount} from '../utils/supabase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 export default function DailyJournal() {
   const navigate = useNavigate();
+  const { userId } = useParams();
   const [currentDate, setCurrentDate] = useState(new Date());
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
   const [selectedIconTheme, setSelectedIconTheme] = useState('');
   const [journalEntry, setJournalEntry] = useState('');
-  const [userId, setUserId] = useState(null);
   const [changeQuestion, setChangeQuestion] = useState(0);
   const [dailyEntryCount, setDailyEntryCount] = useState(0);
 
-  // function getUserIdFromStorage() {
-  //   const storedUserId = localStorage.getItem('user_id');
-  //   setUserId(storedUserId);
-  // }
-
-  // useEffect(() => {
-  //   getUserIdFromStorage();
-  // }, []);
-
   useEffect(() => {
-    const storedUserId = localStorage.getItem('user_id');
-    setUserId(storedUserId);
+    if (!userId) return;
 
-    // Fetch the daily entry count
     const fetchCount = async () => {
-      const count = await fetchDailyEntryCount(storedUserId);
-      console.log("count", count)
+      const count = await fetchDailyEntryCount(userId);
       setDailyEntryCount(count);
     };
 
-    if (storedUserId) {
-      fetchCount();
-    }
-  }, []);
+    fetchCount();
+  }, [userId]);
 
 
   const handleChangeQuestion = () =>{
@@ -141,24 +127,26 @@ export default function DailyJournal() {
   };
 
   return (
-    <div className="h-screen" style={{display:"flex",alignItems:"center",justifyContent:"flex-start", flexDirection:"column", gap:"10%"}}>
-      
-      <div style={{width:"100vw"}}>
-      <TopBar toggleMenu={toggleMenu} />
-      {isMenuOpen && (
-        <div className="fixed inset-0 z-50">
-          <Menu toggleMenu={toggleMenu} />
-        </div>
-      )}
-      <CalendarDateHeader
-        currentDate={currentDate}
-        onPrevClick={handlePrevClick}
-        onNextClick={handleNextClick}
-      />
-
+    <div className="min-h-screen flex flex-col bg-lightpapyrus">
+      <div className="w-full">
+        <TopBar toggleMenu={toggleMenu} />
+        {isMenuOpen && (
+          <div className="fixed inset-0 z-50">
+            <Menu toggleMenu={toggleMenu} />
+          </div>
+        )}
+        <CalendarDateHeader
+          currentDate={currentDate}
+          onPrevClick={handlePrevClick}
+          onNextClick={handleNextClick}
+        />
       </div>
-      
-      {renderComponents()}
+
+      <div className="flex-1 flex items-start justify-center px-4 py-6 sm:px-6 lg:px-8 overflow-auto">
+        <div className="w-full max-w-4xl">
+          {renderComponents()}
+        </div>
+      </div>
 
       <ToastContainer />
     </div>

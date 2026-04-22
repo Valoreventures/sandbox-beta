@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo, useCallback, memo } from "react";
 import React from "react";
 import JournalEntry from "../components/JournalEntry";
 import EntryDetails from "../components/EntryDetails";
@@ -52,18 +52,70 @@ export const formatDatetime = (datetimeStr) => {
   };
 };
 
-export const GridList = ({ items, chapters = [] }) => {
+export const GridList = memo(({ items, chapters = [] }) => {
+
   const [selected, setSelected] = useState(null);
   const [selectedChapter, setSelectedChapter] = useState("All");
 
-  const handleOnClick = (data) => {
+  // Memoize filtered items to prevent recalculation on every render
+  const filteredItems = useMemo(() => {
+    return items.filter((item) => {
+      if (!item || !item.id) return false; // Ensure item exists and has id
+      if (selectedChapter === "All") return true;
+      return item?.journal_meaning === selectedChapter;
+    });
+  }, [items, selectedChapter]);
+
+  // Memoize chapter options to prevent Menu re-renders
+  const chapterMenuItems = useMemo(() => {
+    return chapters?.map((chapter, index) => (
+      <MenuItem
+        key={`${chapter}-${index}`}
+        className="block px-3 hover:bg-darkpapyrus"
+        onClick={() => setSelectedChapter(chapter)}
+      >
+        <p>{chapter}</p>
+      </MenuItem>
+    ));
+  }, [chapters]);
+
+  // Optimize click handler with useCallback
+  const handleOnClick = useCallback((data) => {
     setSelected(data);
-  };
+  }, []);
+
+  // Optimize chapter selection with useCallback
+  const handleChapterSelect = useCallback((chapter) => {
+    setSelectedChapter(chapter);
+  }, []);
+
+  // Memoize grid items to prevent unnecessary re-renders
+  const gridItems = useMemo(() => {
+    return filteredItems.map((d, index) => (
+      <div
+        key={`${d.id}-${index}`}
+        className="cursor-pointer"
+        onClick={() => handleOnClick(d)}
+      >
+        <JournalEntry
+          id={d.id}
+          title={formatJournalType(d.journal_type)}
+          iconTitle={d.journal_meaning}
+          date={formatDatetime(d.created_at).date}
+          image={d.journal_icon}
+          message={d.journal_entry}
+          time={formatDatetime(d.created_at).time}
+          selected={selected}
+          index={index}
+        />
+      </div>
+    ));
+  }, [filteredItems, selected, handleOnClick]);
 
   return (
-    <div className="flex flex-col items-start justify-start gap-4 p-4 mt-0">
+    <div className="flex flex-col items-start justify-start gap-6">
       {chapters.length > 0 && (
-        <div className="flex flex-row items-center justify-center gap-2">
+        <div className="flex flex-row items-center justify-center gap-3">
           <p>Filter by chapter: </p>
           <Menu>
             <MenuButton className="px-4 py-2 bg-white border border-gray-300 rounded-md w-fit">
@@ -73,45 +125,13 @@ export const GridList = ({ items, chapters = [] }) => {
               anchor="bottom"
               className="absolute z-10 w-48 py-2 mt-2 border rounded-md shadow-xl ml-9 bg-lightpapyrus"
             >
-              {chapters?.map((chapter, index) => (
-                <MenuItem
-                  key={index}
-                  className="block px-3 hover:bg-darkpapyrus"
-                  onClick={() => setSelectedChapter(chapter)}
-                >
-                  <p>{chapter}</p>
-                </MenuItem>
-              ))}
+              {chapterMenuItems}
             </MenuItems>
           </Menu>
         </div>
       )}
-      <div className="relative grid grid-cols-1 gap-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3">
-        {items
-          .filter((item) => {
-            if (selectedChapter === "All") return true;
-            return item?.journal_meaning === selectedChapter;
-          })
-          .map((d, index) =>
-            d && d.id ? ( // Ensure `d` exists and has an `id` property
-              <div
-                key={index}
-                className="cursor-pointer"
-                onClick={() => handleOnClick(d)}
-              >
-                <JournalEntry
-                  id={d.id}
-                  title={formatJournalType(d.journal_type)}
-                  iconTitle={d.journal_meaning}
-                  date={formatDatetime(d.created_at).date}
-                  image={d.journal_icon}
-                  message={d.journal_entry}
-                  time={formatDatetime(d.created_at).time}
-                  selected={selected}
-                />
-              </div>
-            ) : null // If `d` is undefined or lacks `id`, render nothing
-          )}
+      <div className="relative grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3 lg:gap-8 xl:grid-cols-4 xl:gap-8 w-full">
+        {gridItems}
         {selected && (
           <EntryDetails
             id={selected.id}
@@ -128,4 +148,7 @@ export const GridList = ({ items, chapters = [] }) => {
       </div>
     </div>
   );
-};
+});
+
+// Add display name for debugging
+GridList.displayName = 'GridList';
